@@ -24,7 +24,7 @@ class EmployeeCars : View() {
 
     fun update() {
         val data = vehicleTable.items
-        Logic.inst!!.create.select()?.from(VEHICLE_VIEW)?.fetch()?.forEach { item ->
+        Logic.create!!.select()?.from(VEHICLE_VIEW)?.fetch()?.forEach { item ->
             data.add(VehicleView(item[VEHICLE_VIEW.LICENSE_PLATE], item[VEHICLE_VIEW.MODELCAR],
                     item[VEHICLE_VIEW.BRAND], item[VEHICLE_VIEW.FIO],
                     item[VEHICLE_VIEW.STATUS], item[VEHICLE_VIEW.BEG_DATE],

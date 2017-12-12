@@ -22,7 +22,7 @@ import javax.annotation.Generated;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class EmployeView implements Serializable {
 
-    private static final long serialVersionUID = 1586430543;
+    private static final long serialVersionUID = 1484558537;
 
     private String fio;
     private String personalid;
@@ -30,6 +30,7 @@ public class EmployeView implements Serializable {
     private Long   personPk;
     private Long   employePk;
     private String login;
+    private Long   positionPk;
 
     public EmployeView() {}
 
@@ -40,6 +41,7 @@ public class EmployeView implements Serializable {
         this.personPk = value.personPk;
         this.employePk = value.employePk;
         this.login = value.login;
+        this.positionPk = value.positionPk;
     }
 
     public EmployeView(
@@ -48,7 +50,8 @@ public class EmployeView implements Serializable {
         String name,
         Long   personPk,
         Long   employePk,
-        String login
+        String login,
+        Long   positionPk
     ) {
         this.fio = fio;
         this.personalid = personalid;
@@ -56,6 +59,7 @@ public class EmployeView implements Serializable {
         this.personPk = personPk;
         this.employePk = employePk;
         this.login = login;
+        this.positionPk = positionPk;
     }
 
     public String getFio() {
@@ -106,6 +110,14 @@ public class EmployeView implements Serializable {
         this.login = login;
     }
 
+    public Long getPositionPk() {
+        return this.positionPk;
+    }
+
+    public void setPositionPk(Long positionPk) {
+        this.positionPk = positionPk;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("EmployeView (");
@@ -116,6 +128,7 @@ public class EmployeView implements Serializable {
         sb.append(", ").append(personPk);
         sb.append(", ").append(employePk);
         sb.append(", ").append(login);
+        sb.append(", ").append(positionPk);
 
         sb.append(")");
         return sb.toString();
