@@ -39,14 +39,14 @@ class MainForm : View() {
 
 
     init {
+        brand.setCellValueFactory( PropertyValueFactory<VehicleView, String>("brand"))
+        model.setCellValueFactory( PropertyValueFactory<VehicleView, String>("modelcar"))
+        licPlate.setCellValueFactory( PropertyValueFactory<VehicleView, String>("licensePlate"))
+        fio.setCellValueFactory( PropertyValueFactory<VehicleView, String>("fio"))
+        status.setCellValueFactory( PropertyValueFactory<VehicleView, String>("status"))
+        beg.setCellValueFactory( PropertyValueFactory<VehicleView, Date>("begDate"))
+        end.setCellValueFactory( PropertyValueFactory<VehicleView, Date>("endDate"))
         EventBus.on(Events.LOGIN_DONE, {
-            brand.setCellValueFactory( PropertyValueFactory<VehicleView, String>("brand"))
-            model.setCellValueFactory( PropertyValueFactory<VehicleView, String>("modelcar"))
-            licPlate.setCellValueFactory( PropertyValueFactory<VehicleView, String>("licensePlate"))
-            fio.setCellValueFactory( PropertyValueFactory<VehicleView, String>("fio"))
-            status.setCellValueFactory( PropertyValueFactory<VehicleView, String>("status"))
-            beg.setCellValueFactory( PropertyValueFactory<VehicleView, Date>("begDate"))
-            end.setCellValueFactory( PropertyValueFactory<VehicleView, Date>("endDate"))
             updateVehicleTable()
         })
 
