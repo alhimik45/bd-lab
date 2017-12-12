@@ -23,7 +23,7 @@ class Main : App(MainForm::class) {
 }
 
 
-class Protocols : View() {
+class Chief : View() {
     override val root: TabPane by fxml()
 
   //  private val nameInTop: TextField by fxid()
@@ -32,7 +32,7 @@ class Protocols : View() {
 }
 
 
-class Run: App(Protocols::class){
+class Run: App(Chief::class){
     override fun start(stage: Stage) {
         super.start(stage)
     }
