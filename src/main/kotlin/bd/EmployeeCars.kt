@@ -3,7 +3,7 @@ package bd
 import javafx.scene.control.TableColumn
 import javafx.scene.control.TableView
 import javafx.scene.control.cell.PropertyValueFactory
-import javafx.scene.layout.GridPane
+import javafx.scene.layout.BorderPane
 import test.generated.Tables.VEHICLE_VIEW
 import test.generated.tables.pojos.VehicleView
 import tornadofx.View
@@ -11,8 +11,8 @@ import java.util.*
 
 
 class EmployeeCars : View() {
-    override val root: GridPane by fxml()
-    private val vehicleTab: TableView<VehicleView> by fxid()
+    override val root: BorderPane by fxml()
+    private val vehicleTable: TableView<VehicleView> by fxid()
     private val licPlate: TableColumn<VehicleView, String> by fxid()
     private val model: TableColumn<VehicleView, String> by fxid()
     private val brand: TableColumn<VehicleView, String> by fxid()
@@ -23,7 +23,7 @@ class EmployeeCars : View() {
 
 
     fun update() {
-        val data = vehicleTab.items
+        val data = vehicleTable.items
         Logic.inst!!.create.select()?.from(VEHICLE_VIEW)?.fetch()?.forEach { item ->
             data.add(VehicleView(item[VEHICLE_VIEW.LICENSE_PLATE], item[VEHICLE_VIEW.MODELCAR],
                     item[VEHICLE_VIEW.BRAND], item[VEHICLE_VIEW.FIO],

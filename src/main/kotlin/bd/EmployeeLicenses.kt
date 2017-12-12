@@ -1,8 +1,8 @@
 package bd
 
-import javafx.scene.layout.BorderPane
+import javafx.scene.control.TabPane
 import tornadofx.*
 
 class EmployeeLicenses : View("My View") {
-    override val root: BorderPane by fxml()
+    override val root: TabPane by fxml()
 }
