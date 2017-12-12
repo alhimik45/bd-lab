@@ -25,5 +25,3 @@ class Main : App(Chief::class) {
         }
     }
 }
-
-
