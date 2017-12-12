@@ -10,7 +10,7 @@ import tornadofx.View
 import java.util.*
 
 
-class EmployeeCars : View() {
+class EmployeeCars : View("Учёт транспортных средств") {
     override val root: BorderPane by fxml()
     private val vehicleTable: TableView<VehicleView> by fxid()
     private val licPlate: TableColumn<VehicleView, String> by fxid()
@@ -21,29 +21,21 @@ class EmployeeCars : View() {
     private val beg: TableColumn<VehicleView, Date> by fxid()
     private val end: TableColumn<VehicleView, Date> by fxid()
 
+    init {
+        brand.cellValueFactory = PropertyValueFactory<VehicleView, String>("brand")
+        model.cellValueFactory = PropertyValueFactory<VehicleView, String>("modelcar")
+        licPlate.cellValueFactory = PropertyValueFactory<VehicleView, String>("licensePlate")
+        fio.cellValueFactory = PropertyValueFactory<VehicleView, String>("fio")
+        status.cellValueFactory = PropertyValueFactory<VehicleView, String>("status")
+        beg.cellValueFactory = PropertyValueFactory<VehicleView, Date>("begDate")
+        end.cellValueFactory = PropertyValueFactory<VehicleView, Date>("endDate")
+        update()
+    }
 
     fun update() {
         val data = vehicleTable.items
-        Logic.create!!.select()?.from(VEHICLE_VIEW)?.fetch()?.forEach { item ->
-            data.add(VehicleView(item[VEHICLE_VIEW.LICENSE_PLATE], item[VEHICLE_VIEW.MODELCAR],
-                    item[VEHICLE_VIEW.BRAND], item[VEHICLE_VIEW.FIO],
-                    item[VEHICLE_VIEW.STATUS], item[VEHICLE_VIEW.BEG_DATE],
-                    item[VEHICLE_VIEW.END_DATE]))
-        }
-    }
-
-
-    init {
-        brand.setCellValueFactory(PropertyValueFactory<VehicleView, String>("brand"))
-        model.setCellValueFactory(PropertyValueFactory<VehicleView, String>("modelcar"))
-        licPlate.setCellValueFactory(PropertyValueFactory<VehicleView, String>("licensePlate"))
-        fio.setCellValueFactory(PropertyValueFactory<VehicleView, String>("fio"))
-        status.setCellValueFactory(PropertyValueFactory<VehicleView, String>("status"))
-        beg.setCellValueFactory(PropertyValueFactory<VehicleView, Date>("begDate"))
-        end.setCellValueFactory( PropertyValueFactory<VehicleView, Date>("endDate"))
-        EventBus.on(Events.LOGIN_DONE, {
-            update()
-        })
+        data.clear()
+        data.addAll(Logic.create!!.select()?.from(VEHICLE_VIEW)?.fetch()?.into(VehicleView::class.java)!!.asIterable())
     }
 }
 

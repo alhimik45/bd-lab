@@ -1,35 +1,38 @@
 package bd
 
 import javafx.scene.control.TabPane
-import tornadofx.*
+import javafx.scene.control.TableColumn
+import javafx.scene.control.TableView
+import javafx.scene.control.cell.PropertyValueFactory
+import test.generated.Tables
+import test.generated.tables.pojos.AllDistr
+import test.generated.tables.pojos.VehicleView
+import tornadofx.View
+import java.util.*
 
 
-class Chief : View() {
+class Chief : View("Начальника") {
     override val root: TabPane by fxml()
 
-    /*
-    private val distribTable: TableView<Assignment> by fxid()
 
-    private val name: TableColumn<Assignment, String> by fxid()
-    private val ek: TableColumn<Assignment, String> by fxid()
-    private val date: TableColumn<Assignment, String> by fxid()
-    val data : ObservableList<Assignment> = mutableListOf<Assignment>().observable()
+    private val distribTable: TableView<AllDistr> by fxid()
+
+    private val fio: TableColumn<AllDistr, String> by fxid()
+    private val date: TableColumn<AllDistr, Date> by fxid()
+    private val num: TableColumn<AllDistr, String> by fxid()
+    private val post: TableColumn<AllDistr, String> by fxid()
 
     init {
-        name.setCellValueFactory(PropertyValueFactory<Assignment, String>("fio"))
-        distribTable.items = data
-
-        EventBus.on(Events.LOGIN_DONE, {
-            update()
-        })
-
+        fio.cellValueFactory = PropertyValueFactory<AllDistr, String>("fio")
+        date.cellValueFactory = PropertyValueFactory<AllDistr, Date>("dateorder")
+        num.cellValueFactory = PropertyValueFactory<AllDistr, String>("personalid")
+        post.cellValueFactory = PropertyValueFactory<AllDistr, String>("address")
+        update()
     }
 
-    private fun update(){
+    private fun update() {
+        val data = distribTable.items
         data.clear()
-        Logic.inst!!.create.select()?.from(ASSIGNMENT)?.fetch()?.forEach {
-            data.add(it.into(Assignment::class.java))
-        }
+        data.addAll(Logic.create!!.select()?.from(Tables.ALL_DISTR)?.fetch()?.into(AllDistr::class.java)!!.asIterable())
     }
-    */
 }
