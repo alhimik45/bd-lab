@@ -31,7 +31,7 @@ import test.generated.tables.records.EmployeViewRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class EmployeView extends TableImpl<EmployeViewRecord> {
 
-    private static final long serialVersionUID = -691434107;
+    private static final long serialVersionUID = 1400296666;
 
     /**
      * The reference instance of <code>public.employe_view</code>
@@ -70,6 +70,11 @@ public class EmployeView extends TableImpl<EmployeViewRecord> {
      * The column <code>public.employe_view.Employe_PK</code>.
      */
     public final TableField<EmployeViewRecord, Long> EMPLOYE_PK = createField("Employe_PK", org.jooq.impl.SQLDataType.BIGINT, this, "");
+
+    /**
+     * The column <code>public.employe_view.Login</code>.
+     */
+    public final TableField<EmployeViewRecord, String> LOGIN = createField("Login", org.jooq.impl.SQLDataType.VARCHAR(30), this, "");
 
     /**
      * Create a <code>public.employe_view</code> table reference

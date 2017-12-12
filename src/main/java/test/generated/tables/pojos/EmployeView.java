@@ -22,13 +22,14 @@ import javax.annotation.Generated;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class EmployeView implements Serializable {
 
-    private static final long serialVersionUID = 865988546;
+    private static final long serialVersionUID = 1586430543;
 
     private String fio;
     private String personalid;
     private String name;
     private Long   personPk;
     private Long   employePk;
+    private String login;
 
     public EmployeView() {}
 
@@ -38,6 +39,7 @@ public class EmployeView implements Serializable {
         this.name = value.name;
         this.personPk = value.personPk;
         this.employePk = value.employePk;
+        this.login = value.login;
     }
 
     public EmployeView(
@@ -45,13 +47,15 @@ public class EmployeView implements Serializable {
         String personalid,
         String name,
         Long   personPk,
-        Long   employePk
+        Long   employePk,
+        String login
     ) {
         this.fio = fio;
         this.personalid = personalid;
         this.name = name;
         this.personPk = personPk;
         this.employePk = employePk;
+        this.login = login;
     }
 
     public String getFio() {
@@ -94,6 +98,14 @@ public class EmployeView implements Serializable {
         this.employePk = employePk;
     }
 
+    public String getLogin() {
+        return this.login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("EmployeView (");
@@ -103,6 +115,7 @@ public class EmployeView implements Serializable {
         sb.append(", ").append(name);
         sb.append(", ").append(personPk);
         sb.append(", ").append(employePk);
+        sb.append(", ").append(login);
 
         sb.append(")");
         return sb.toString();
