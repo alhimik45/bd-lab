@@ -42,7 +42,7 @@
                      <center>
                         <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" fx:id="table">
                            <columns>
-                              <TableColumn prefWidth="162.0" text="Название" />
+                              <TableColumn prefWidth="162.0" text="Название" fx:id=""/>
                               <TableColumn prefWidth="171.0" text="Экипаж" />
                               <TableColumn prefWidth="235.0" text="Дата" />
                            </columns>
