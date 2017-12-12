@@ -10,25 +10,25 @@
 
 <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <tabs>
-        <Tab text="Протоколы">
+        <Tab text="Водительские удостоверения">
             <content>
                 <BorderPane prefHeight="380.0" prefWidth="519.0">
                     <top>
                         <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
                             <children>
-                                <Label fx:id="nameInTop" alignment="CENTER" contentDisplay="CENTER" text="Протоколы">
+                                <Label fx:id="nameInTop" alignment="CENTER" contentDisplay="CENTER" text="Водительские удостоверения">
                                     <font>
                                         <Font size="24.0" />
                                     </font>
                                 </Label>
                                 <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="524.0" VBox.vgrow="ALWAYS">
                                     <children>
-                                        <TextField fx:id="searchProtocols" prefWidth="220.0">
+                                        <TextField fx:id="searchLicenses" prefWidth="220.0">
                                             <HBox.margin>
                                                 <Insets left="5.0" right="5.0" />
                                             </HBox.margin>
                                         </TextField>
-                                        <Button fx:id="searchButtonProtocols" mnemonicParsing="false" text="Искать">
+                                        <Button fx:id="searchButtonLicenses" mnemonicParsing="false" text="Искать">
                                             <HBox.margin>
                                                 <Insets left="5.0" right="5.0" />
                                             </HBox.margin>
@@ -41,9 +41,11 @@
                     <center>
                         <TableView fx:id="protocolsTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
                             <columns>
-                                <TableColumn prefWidth="162.0" text="Название" />
-                                <TableColumn prefWidth="171.0" text="Экипаж" />
-                                <TableColumn prefWidth="235.0" text="Дата" />
+                                <TableColumn prefWidth="74.0" text="ФИО" />
+                                <TableColumn prefWidth="134.0" text="Категория" />
+                                <TableColumn minWidth="0.0" prefWidth="53.0" text="Номер удостоверения" />
+                        <TableColumn minWidth="0.0" prefWidth="96.0" text="ФИО сотрудника" />
+                        <TableColumn prefWidth="139.0" text="Дата выдачи" />
                             </columns>
                             <BorderPane.margin>
                                 <Insets left="10.0" right="10.0" />
@@ -53,17 +55,17 @@
                     <bottom>
                         <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="52.0" prefWidth="524.0" BorderPane.alignment="CENTER">
                             <children>
-                                <Button fx:id="newProtocol" mnemonicParsing="false" text="Новый">
+                                <Button fx:id="newLicense" mnemonicParsing="false" text="Новое водительское удостоверение">
                                     <HBox.margin>
                                         <Insets left="5.0" right="5.0" />
                                     </HBox.margin>
                                 </Button>
-                                <Button fx:id="editProtocol" mnemonicParsing="false" text="Редактировать">
+                                <Button fx:id="editLicense" mnemonicParsing="false" text="Редактировать">
                                     <HBox.margin>
                                         <Insets left="5.0" right="5.0" />
                                     </HBox.margin>
                                 </Button>
-                                <Button fx:id="rmProtocol" mnemonicParsing="false" text="Удалить">
+                                <Button fx:id="rmLicense" mnemonicParsing="false" text="Удалить">
                                     <HBox.margin>
                                         <Insets left="5.0" right="5.0" />
                                     </HBox.margin>
@@ -77,23 +79,23 @@
                 </BorderPane>
             </content>
         </Tab>
-        <Tab text="Сотрудники">
+        <Tab text="Экзаменационные ведомости">
             <content>
                 <BorderPane prefHeight="380.0" prefWidth="519.0">
                     <bottom>
                         <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="52.0" prefWidth="524.0" BorderPane.alignment="CENTER">
                             <children>
-                                <Button fx:id="newProtocol1" mnemonicParsing="false" text="Новый">
+                                <Button fx:id="newExam" mnemonicParsing="false" text="Новая ведомость">
                                     <HBox.margin>
                                         <Insets left="5.0" right="5.0" />
                                     </HBox.margin>
                                 </Button>
-                                <Button fx:id="editProtocol1" mnemonicParsing="false" text="Редактировать">
+                                <Button fx:id="editExam" mnemonicParsing="false" text="Редактировать">
                                     <HBox.margin>
                                         <Insets left="5.0" right="5.0" />
                                     </HBox.margin>
                                 </Button>
-                                <Button fx:id="rmProtocol1" mnemonicParsing="false" text="Удалить">
+                                <Button fx:id="rmExam" mnemonicParsing="false" text="Удалить">
                                     <HBox.margin>
                                         <Insets left="5.0" right="5.0" />
                                     </HBox.margin>
@@ -107,9 +109,8 @@
                     <center>
                         <TableView fx:id="employeeTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
                             <columns>
-                                <TableColumn prefWidth="108.0" text="ФИО" />
-                                <TableColumn prefWidth="123.0" text="Должность" />
-                                <TableColumn prefWidth="337.0" text="Личный номер" />
+                                <TableColumn prefWidth="279.0" text="ФИО" />
+                                <TableColumn prefWidth="218.0" text="Оценка" />
                             </columns>
                             <BorderPane.margin>
                                 <Insets left="10.0" right="10.0" />
@@ -119,19 +120,19 @@
                     <top>
                         <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
                             <children>
-                                <Label fx:id="nameInTop1" alignment="CENTER" contentDisplay="CENTER" text="Сотрудники">
+                                <Label fx:id="nameInTop1" alignment="CENTER" contentDisplay="CENTER" text="Экзаменационные ведомости">
                                     <font>
                                         <Font size="24.0" />
                                     </font>
                                 </Label>
                                 <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="524.0" VBox.vgrow="ALWAYS">
                                     <children>
-                                        <TextField fx:id="searchEmployee" prefWidth="220.0">
+                                        <TextField fx:id="searchExam" prefWidth="220.0">
                                             <HBox.margin>
                                                 <Insets left="5.0" right="5.0" />
                                             </HBox.margin>
                                         </TextField>
-                                        <Button fx:id="searchEmployeeButton" mnemonicParsing="false" text="Искать">
+                                        <Button fx:id="searchEmployeeExam" mnemonicParsing="false" text="Искать">
                                             <HBox.margin>
                                                 <Insets left="5.0" right="5.0" />
                                             </HBox.margin>
@@ -144,73 +145,5 @@
                 </BorderPane>
             </content>
         </Tab>
-        <Tab text="Распределение">
-            <content>
-                <BorderPane prefHeight="380.0" prefWidth="519.0">
-                    <bottom>
-                        <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="52.0" prefWidth="524.0" BorderPane.alignment="CENTER">
-                            <children>
-                                <Button fx:id="newProtocol11" mnemonicParsing="false" text="Новый">
-                                    <HBox.margin>
-                                        <Insets left="5.0" right="5.0" />
-                                    </HBox.margin>
-                                </Button>
-                                <Button fx:id="editProtocol11" mnemonicParsing="false" text="Редактировать">
-                                    <HBox.margin>
-                                        <Insets left="5.0" right="5.0" />
-                                    </HBox.margin>
-                                </Button>
-                                <Button fx:id="rmProtocol11" mnemonicParsing="false" text="Удалить">
-                                    <HBox.margin>
-                                        <Insets left="5.0" right="5.0" />
-                                    </HBox.margin>
-                                </Button>
-                            </children>
-                            <BorderPane.margin>
-                                <Insets />
-                            </BorderPane.margin>
-                        </HBox>
-                    </bottom>
-                    <top>
-                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
-                            <children>
-                                <Label fx:id="nameInTop11" alignment="CENTER" contentDisplay="CENTER" text="Распределение по постам">
-                                    <font>
-                                        <Font size="24.0" />
-                                    </font>
-                                </Label>
-                                <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="524.0" VBox.vgrow="ALWAYS">
-                                    <children>
-                                        <TextField fx:id="searchDistrib" prefWidth="220.0">
-                                            <HBox.margin>
-                                                <Insets left="5.0" right="5.0" />
-                                            </HBox.margin>
-                                        </TextField>
-                                        <Button fx:id="searchDistribButton" mnemonicParsing="false" text="Искать">
-                                            <HBox.margin>
-                                                <Insets left="5.0" right="5.0" />
-                                            </HBox.margin>
-                                        </Button>
-                                    </children>
-                                </HBox>
-                            </children>
-                        </VBox>
-                    </top>
-               <center>
-                  <TableView fx:id="distribTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
-                    <columns>
-                      <TableColumn prefWidth="139.0" text="Название" />
-                      <TableColumn minWidth="4.0" prefWidth="266.0" text="Экипаж" />
-                        <TableColumn prefWidth="90.0" text="Дата" />
-                    </columns>
-                     <BorderPane.margin>
-                        <Insets left="10.0" right="10.0" />
-                     </BorderPane.margin>
-                  </TableView>
-               </center>
-                </BorderPane>
-            </content>
-        </Tab>
-        <Tab text="Отчеты" />
     </tabs>
 </TabPane>
