@@ -1,16 +1,10 @@
 package bd
 
 import javafx.application.Application
-import javafx.scene.control.TextField
-import javafx.scene.layout.GridPane
-import javafx.stage.Stage
-import tornadofx.*
-import java.awt.Panel
-import javafx.fxml.FXMLLoader
-import javafx.scene.layout.BorderPane
-import javafx.scene.control.Label
 import javafx.scene.control.TabPane
-
+import javafx.stage.Stage
+import tornadofx.App
+import tornadofx.View
 
 
 class Main : App(MainForm::class) {
