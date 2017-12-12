@@ -6,6 +6,7 @@ package test.generated;
 
 import javax.annotation.Generated;
 
+import test.generated.tables.AllDistr;
 import test.generated.tables.Appderigistration;
 import test.generated.tables.Appregistration;
 import test.generated.tables.Assignment;
@@ -169,6 +170,11 @@ public class Tables {
      * The table <code>public.Vehicle</code>.
      */
     public static final Vehicle VEHICLE = test.generated.tables.Vehicle.VEHICLE;
+
+    /**
+     * The table <code>public.all_distr</code>.
+     */
+    public static final AllDistr ALL_DISTR = test.generated.tables.AllDistr.ALL_DISTR;
 
     /**
      * The table <code>public.current_distr_view</code>.
