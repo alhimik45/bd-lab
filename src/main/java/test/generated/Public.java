@@ -15,6 +15,7 @@ import org.jooq.Sequence;
 import org.jooq.Table;
 import org.jooq.impl.SchemaImpl;
 
+import test.generated.tables.AllDistr;
 import test.generated.tables.Appderigistration;
 import test.generated.tables.Appregistration;
 import test.generated.tables.Assignment;
@@ -59,7 +60,7 @@ import test.generated.tables.VehicleView;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Public extends SchemaImpl {
 
-    private static final long serialVersionUID = 1762054886;
+    private static final long serialVersionUID = 1545054106;
 
     /**
      * The reference instance of <code>public</code>
@@ -187,6 +188,11 @@ public class Public extends SchemaImpl {
     public final Vehicle VEHICLE = test.generated.tables.Vehicle.VEHICLE;
 
     /**
+     * The table <code>public.all_distr</code>.
+     */
+    public final AllDistr ALL_DISTR = test.generated.tables.AllDistr.ALL_DISTR;
+
+    /**
      * The table <code>public.current_distr_view</code>.
      */
     public final CurrentDistrView CURRENT_DISTR_VIEW = test.generated.tables.CurrentDistrView.CURRENT_DISTR_VIEW;
@@ -295,6 +301,7 @@ public class Public extends SchemaImpl {
             Typedecision.TYPEDECISION,
             Typev.TYPEV,
             Vehicle.VEHICLE,
+            AllDistr.ALL_DISTR,
             CurrentDistrView.CURRENT_DISTR_VIEW,
             EmployeView.EMPLOYE_VIEW,
             LicensePlateView.LICENSE_PLATE_VIEW,
