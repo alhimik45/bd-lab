@@ -1,13 +1,11 @@
 package bd
 
 import javafx.application.Application
-import javafx.scene.control.TabPane
 import javafx.stage.Stage
 import tornadofx.App
-import tornadofx.View
 
 
-class Main : App(MainForm::class) {
+class Main : App(Chief::class) {
 
     override fun start(stage: Stage) {
         super.start(stage)
@@ -20,26 +18,12 @@ class Main : App(MainForm::class) {
         EventBus.emit(Events.LOGIN_DONE)
     }
 
-}
-
-
-class Protocols : View() {
-    override val root: TabPane by fxml()
-
-  //  private val nameInTop: TextField by fxid()
-
-
-}
-
-
-class Run: App(Protocols::class){
-    override fun start(stage: Stage) {
-        super.start(stage)
+    companion object {
+        @JvmStatic
+        fun main(args: Array<String>) {
+            Application.launch(Main::class.java)
+        }
     }
-
 }
 
 
-fun main(args: Array<String>) {
-    Application.launch(Run::class.java)
-}
