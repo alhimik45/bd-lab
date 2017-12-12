@@ -28,7 +28,6 @@ repositories {
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     compile "no.tornado:tornadofx:$tornadofx_version"
-    compile "org.hibernate:hibernate-core:$hibernate_version"
     compile 'org.postgresql:postgresql:42.1.4'
     compile 'org.jooq:jooq:3.10.2'
 }

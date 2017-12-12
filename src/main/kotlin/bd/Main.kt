@@ -27,7 +27,6 @@ class Main {
             } catch (e: Exception) {
                 e.printStackTrace()
             }
-
         }
     }
 }
