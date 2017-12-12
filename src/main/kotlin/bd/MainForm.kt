@@ -61,8 +61,8 @@ class Chief : View() {
     val data : ObservableList<AssignmentRecord> = mutableListOf<AssignmentRecord>().observable()
 
     init {
+        table.items = data
         EventBus.on(Events.LOGIN_DONE, {
-
             update()
         })
 

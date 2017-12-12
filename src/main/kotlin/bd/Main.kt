@@ -10,7 +10,7 @@ class Main : App(MainForm::class) {
     override fun start(stage: Stage) {
         super.start(stage)
         LoginForm().openModal(block = true)
-        if(Logic.inst == null){
+        if (Logic.inst == null) {
 
             Helpers.alert("Данные не верны")
             System.exit(0)
