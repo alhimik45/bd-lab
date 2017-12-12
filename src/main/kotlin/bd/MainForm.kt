@@ -1,5 +1,6 @@
 package bd
 
+import com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table
 import javafx.collections.ObservableList
 import javafx.scene.control.TabPane
 import javafx.scene.control.TableColumn
@@ -56,7 +57,9 @@ class MainForm : View() {
 class Chief : View() {
     override val root: TabPane by fxml()
 
-    private val table: TableView<Assignment> by fxid()
+    /*
+    private val distribTable: TableView<Assignment> by fxid()
+
     private val name: TableColumn<Assignment, String> by fxid()
     private val ek: TableColumn<Assignment, String> by fxid()
     private val date: TableColumn<Assignment, String> by fxid()
@@ -64,7 +67,7 @@ class Chief : View() {
 
     init {
         name.setCellValueFactory(PropertyValueFactory<Assignment, String>("fio"))
-        table.items = data
+        distribTable.items = data
 
         EventBus.on(Events.LOGIN_DONE, {
             update()
@@ -78,6 +81,7 @@ class Chief : View() {
             data.add(it.into(Assignment::class.java))
         }
     }
+    */
 }
 
 
