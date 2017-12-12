@@ -3,8 +3,6 @@ package bd
 import javafx.application.Application
 import javafx.stage.Stage
 import tornadofx.App
-import test.generated.tables.Vehicle
-
 
 
 class Main : App(MainForm::class) {
@@ -16,6 +14,7 @@ class Main : App(MainForm::class) {
             Helpers.alert("Данные не верны")
             System.exit(0)
         }
+        EventBus.emit(Events.LOGIN_DONE)
     }
 
     companion object {
