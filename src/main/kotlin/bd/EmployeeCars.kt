@@ -1,22 +1,16 @@
 package bd
 
-import com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table
-import javafx.collections.ObservableList
-import javafx.scene.control.TabPane
 import javafx.scene.control.TableColumn
 import javafx.scene.control.TableView
 import javafx.scene.control.cell.PropertyValueFactory
 import javafx.scene.layout.GridPane
-import test.generated.Tables.ASSIGNMENT
 import test.generated.Tables.VEHICLE_VIEW
 import test.generated.tables.pojos.VehicleView
 import tornadofx.View
-import tornadofx.observable
 import java.util.*
-import test.generated.tables.pojos.Assignment
 
 
-class MainForm : View() {
+class EmployeeCars : View() {
     override val root: GridPane by fxml()
     private val vehicleTab: TableView<VehicleView> by fxid()
     private val licPlate: TableColumn<VehicleView, String> by fxid()
@@ -28,7 +22,7 @@ class MainForm : View() {
     private val end: TableColumn<VehicleView, Date> by fxid()
 
 
-    fun updateVehicleTable() {
+    fun update() {
         val data = vehicleTab.items
         Logic.inst!!.create.select()?.from(VEHICLE_VIEW)?.fetch()?.forEach { item ->
             data.add(VehicleView(item[VEHICLE_VIEW.LICENSE_PLATE], item[VEHICLE_VIEW.MODELCAR],
@@ -48,40 +42,9 @@ class MainForm : View() {
         beg.setCellValueFactory(PropertyValueFactory<VehicleView, Date>("begDate"))
         end.setCellValueFactory( PropertyValueFactory<VehicleView, Date>("endDate"))
         EventBus.on(Events.LOGIN_DONE, {
-            updateVehicleTable()
-        })
-    }
-}
-
-
-class Chief : View() {
-    override val root: TabPane by fxml()
-
-    /*
-    private val distribTable: TableView<Assignment> by fxid()
-
-    private val name: TableColumn<Assignment, String> by fxid()
-    private val ek: TableColumn<Assignment, String> by fxid()
-    private val date: TableColumn<Assignment, String> by fxid()
-    val data : ObservableList<Assignment> = mutableListOf<Assignment>().observable()
-
-    init {
-        name.setCellValueFactory(PropertyValueFactory<Assignment, String>("fio"))
-        distribTable.items = data
-
-        EventBus.on(Events.LOGIN_DONE, {
             update()
         })
-
     }
-
-    private fun update(){
-        data.clear()
-        Logic.inst!!.create.select()?.from(ASSIGNMENT)?.fetch()?.forEach {
-            data.add(it.into(Assignment::class.java))
-        }
-    }
-    */
 }
 
 
