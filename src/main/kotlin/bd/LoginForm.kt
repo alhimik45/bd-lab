@@ -8,6 +8,9 @@ class LoginForm : Fragment() {
     override val root: GridPane by fxml()
     private val loginData: TextField by fxid()
     private val passwordData: TextField by fxid()
+    init{
+        title = "Вход на рабочее место"
+    }
 
     fun login() {
         val login = loginData.textProperty().get()
