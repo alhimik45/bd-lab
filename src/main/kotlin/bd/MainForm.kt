@@ -8,11 +8,12 @@ import javafx.scene.control.cell.PropertyValueFactory
 import javafx.scene.layout.GridPane
 import test.generated.Tables.ASSIGNMENT
 import test.generated.Tables.VEHICLE_VIEW
-import test.generated.tables.records.AssignmentRecord
 import test.generated.tables.pojos.VehicleView
 import tornadofx.View
 import tornadofx.observable
 import java.util.*
+import test.generated.tables.VehicleView
+import test.generated.tables.pojos.Assignment
 
 
 class MainForm : View() {
@@ -39,17 +40,16 @@ class MainForm : View() {
 
 
     init {
-        brand.setCellValueFactory( PropertyValueFactory<VehicleView, String>("brand"))
-        model.setCellValueFactory( PropertyValueFactory<VehicleView, String>("modelcar"))
-        licPlate.setCellValueFactory( PropertyValueFactory<VehicleView, String>("licensePlate"))
-        fio.setCellValueFactory( PropertyValueFactory<VehicleView, String>("fio"))
-        status.setCellValueFactory( PropertyValueFactory<VehicleView, String>("status"))
-        beg.setCellValueFactory( PropertyValueFactory<VehicleView, Date>("begDate"))
+        brand.setCellValueFactory(PropertyValueFactory<VehicleView, String>("brand"))
+        model.setCellValueFactory(PropertyValueFactory<VehicleView, String>("modelcar"))
+        licPlate.setCellValueFactory(PropertyValueFactory<VehicleView, String>("licensePlate"))
+        fio.setCellValueFactory(PropertyValueFactory<VehicleView, String>("fio"))
+        status.setCellValueFactory(PropertyValueFactory<VehicleView, String>("status"))
+        beg.setCellValueFactory(PropertyValueFactory<VehicleView, Date>("begDate"))
         end.setCellValueFactory( PropertyValueFactory<VehicleView, Date>("endDate"))
         EventBus.on(Events.LOGIN_DONE, {
             updateVehicleTable()
         })
-
     }
 }
 
@@ -57,11 +57,16 @@ class MainForm : View() {
 class Chief : View() {
     override val root: TabPane by fxml()
 
-    private val table: TableView<AssignmentRecord> by fxid()
-    val data : ObservableList<AssignmentRecord> = mutableListOf<AssignmentRecord>().observable()
+    private val table: TableView<Assignment> by fxid()
+    private val name: TableColumn<Assignment, String> by fxid()
+    private val ek: TableColumn<Assignment, String> by fxid()
+    private val date: TableColumn<Assignment, String> by fxid()
+    val data : ObservableList<Assignment> = mutableListOf<Assignment>().observable()
 
     init {
+        name.setCellValueFactory(PropertyValueFactory<Assignment, String>("fio"))
         table.items = data
+
         EventBus.on(Events.LOGIN_DONE, {
             update()
         })
@@ -71,7 +76,7 @@ class Chief : View() {
     private fun update(){
         data.clear()
         Logic.inst!!.create.select()?.from(ASSIGNMENT)?.fetch()?.forEach {
-            data.add(it.into(ASSIGNMENT))
+            data.add(it.into(Assignment::class.java))
         }
     }
 }
