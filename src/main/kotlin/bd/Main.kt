@@ -5,7 +5,7 @@ import javafx.stage.Stage
 import tornadofx.App
 
 
-class Main : App(Chief::class) {
+class Main : App(MainForm::class) {
 
     override fun start(stage: Stage) {
         super.start(stage)
