@@ -12,7 +12,6 @@ import test.generated.tables.pojos.VehicleView
 import tornadofx.View
 import tornadofx.observable
 import java.util.*
-import test.generated.tables.VehicleView
 import test.generated.tables.pojos.Assignment
 
 
