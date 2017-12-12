@@ -23,7 +23,7 @@ import javax.annotation.Generated;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Driverlicense implements Serializable {
 
-    private static final long serialVersionUID = 407856325;
+    private static final long serialVersionUID = -1070201155;
 
     private String category;
     private Date   dateofissue;
@@ -31,6 +31,7 @@ public class Driverlicense implements Serializable {
     private Long   driverlicensePk;
     private Long   employePk;
     private Long   personPk;
+    private String licenseid;
 
     public Driverlicense() {}
 
@@ -41,6 +42,7 @@ public class Driverlicense implements Serializable {
         this.driverlicensePk = value.driverlicensePk;
         this.employePk = value.employePk;
         this.personPk = value.personPk;
+        this.licenseid = value.licenseid;
     }
 
     public Driverlicense(
@@ -49,7 +51,8 @@ public class Driverlicense implements Serializable {
         Long   personPk1,
         Long   driverlicensePk,
         Long   employePk,
-        Long   personPk
+        Long   personPk,
+        String licenseid
     ) {
         this.category = category;
         this.dateofissue = dateofissue;
@@ -57,6 +60,7 @@ public class Driverlicense implements Serializable {
         this.driverlicensePk = driverlicensePk;
         this.employePk = employePk;
         this.personPk = personPk;
+        this.licenseid = licenseid;
     }
 
     public String getCategory() {
@@ -107,6 +111,14 @@ public class Driverlicense implements Serializable {
         this.personPk = personPk;
     }
 
+    public String getLicenseid() {
+        return this.licenseid;
+    }
+
+    public void setLicenseid(String licenseid) {
+        this.licenseid = licenseid;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Driverlicense (");
@@ -117,6 +129,7 @@ public class Driverlicense implements Serializable {
         sb.append(", ").append(driverlicensePk);
         sb.append(", ").append(employePk);
         sb.append(", ").append(personPk);
+        sb.append(", ").append(licenseid);
 
         sb.append(")");
         return sb.toString();

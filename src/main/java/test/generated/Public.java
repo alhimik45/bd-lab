@@ -23,10 +23,12 @@ import test.generated.tables.Category;
 import test.generated.tables.CurrentDistrView;
 import test.generated.tables.Distrorder;
 import test.generated.tables.Drcateg;
+import test.generated.tables.DriverLicenseView;
 import test.generated.tables.Driverlicense;
 import test.generated.tables.Employe;
 import test.generated.tables.EmployeView;
 import test.generated.tables.Enginetype;
+import test.generated.tables.ExamView;
 import test.generated.tables.Examcateg;
 import test.generated.tables.Examlist;
 import test.generated.tables.LicensePlateView;
@@ -60,7 +62,7 @@ import test.generated.tables.VehicleView;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Public extends SchemaImpl {
 
-    private static final long serialVersionUID = 1545054106;
+    private static final long serialVersionUID = -507523270;
 
     /**
      * The reference instance of <code>public</code>
@@ -198,9 +200,19 @@ public class Public extends SchemaImpl {
     public final CurrentDistrView CURRENT_DISTR_VIEW = test.generated.tables.CurrentDistrView.CURRENT_DISTR_VIEW;
 
     /**
+     * The table <code>public.driver_license_view</code>.
+     */
+    public final DriverLicenseView DRIVER_LICENSE_VIEW = test.generated.tables.DriverLicenseView.DRIVER_LICENSE_VIEW;
+
+    /**
      * The table <code>public.employe_view</code>.
      */
     public final EmployeView EMPLOYE_VIEW = test.generated.tables.EmployeView.EMPLOYE_VIEW;
+
+    /**
+     * The table <code>public.exam_view</code>.
+     */
+    public final ExamView EXAM_VIEW = test.generated.tables.ExamView.EXAM_VIEW;
 
     /**
      * The table <code>public.license_plate_view</code>.
@@ -303,7 +315,9 @@ public class Public extends SchemaImpl {
             Vehicle.VEHICLE,
             AllDistr.ALL_DISTR,
             CurrentDistrView.CURRENT_DISTR_VIEW,
+            DriverLicenseView.DRIVER_LICENSE_VIEW,
             EmployeView.EMPLOYE_VIEW,
+            ExamView.EXAM_VIEW,
             LicensePlateView.LICENSE_PLATE_VIEW,
             RegCertView.REG_CERT_VIEW,
             VehicleView.VEHICLE_VIEW);

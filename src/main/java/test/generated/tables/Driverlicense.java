@@ -39,7 +39,7 @@ import test.generated.tables.records.DriverlicenseRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Driverlicense extends TableImpl<DriverlicenseRecord> {
 
-    private static final long serialVersionUID = -1577810385;
+    private static final long serialVersionUID = -331979862;
 
     /**
      * The reference instance of <code>public.DriverLicense</code>
@@ -83,6 +83,11 @@ public class Driverlicense extends TableImpl<DriverlicenseRecord> {
      * The column <code>public.DriverLicense.Person_PK</code>.
      */
     public final TableField<DriverlicenseRecord, Long> PERSON_PK = createField("Person_PK", org.jooq.impl.SQLDataType.BIGINT, this, "");
+
+    /**
+     * The column <code>public.DriverLicense.LicenseID</code>.
+     */
+    public final TableField<DriverlicenseRecord, String> LICENSEID = createField("LicenseID", org.jooq.impl.SQLDataType.VARCHAR(30), this, "");
 
     /**
      * Create a <code>public.DriverLicense</code> table reference
