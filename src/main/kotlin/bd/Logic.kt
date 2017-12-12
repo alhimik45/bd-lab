@@ -6,7 +6,7 @@ import org.jooq.impl.DSL
 import java.sql.DriverManager
 import java.sql.SQLException
 
-internal class Logic private constructor(create: DSLContext) {
+internal class Logic private constructor(val create: DSLContext) {
 
     companion object {
         var inst: Logic? = null
