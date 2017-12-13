@@ -21,6 +21,7 @@ class Chief : View("Начальника") {
     private val postTable: TableView<Postdps> by fxid()
     private val searchEmployee: TextField by fxid()
     private val searchPost: TextField by fxid()
+    private val searchAss: TextField by fxid()
 
     private val fio: TableColumn<AllDistr, String> by fxid()
     private val fioM: TableColumn<EmployeView, String> by fxid()
@@ -52,6 +53,9 @@ class Chief : View("Начальника") {
         searchPost.textProperty().addListener { _, _, _ ->
             updatePost()
         }
+        searchAss.textProperty().addListener { _, _, _ ->
+            update()
+        }
         root.selectionModel.selectedItem.selectedProperty().addListener { _ ->
             upd()
         }
@@ -66,7 +70,19 @@ class Chief : View("Начальника") {
     fun update() {
         val data = distribTable.items
         data.clear()
-        data.addAll(Logic.create!!.select()?.from(Tables.ALL_DISTR)?.fetch()?.into(AllDistr::class.java)!!.asIterable())
+        data.addAll(Logic.create!!.select()?.from(Tables.ALL_DISTR)?.fetch()?.into(AllDistr::class.java)!!.filter { e ->
+            val v = searchAss.text
+            if (v == null || v.isEmpty()) {
+                true
+            } else {
+                val lowerCaseFilter = v.toLowerCase().split(" ").filter { it.isNotBlank() }
+                if (lowerCaseFilter.any { e.fio.toLowerCase().contains(it) }) {
+                    true
+                } else {
+                    lowerCaseFilter.any { e.address.toLowerCase().contains(it) }
+                }
+            }
+        })
     }
 
     fun updateMan() {
