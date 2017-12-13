@@ -14,7 +14,7 @@ import test.generated.tables.pojos.Person
 
 import tornadofx.*
 
-class DrLiForm(val drLi: Driverlicense? = null) : View("Водительские права") {
+class DrLiForm(var drLi: Driverlicense? = null) : View("Водительские права") {
     override val root: VBox by fxml()
 
     private val persBox: ComboBox<String> by fxid()
@@ -39,11 +39,12 @@ class DrLiForm(val drLi: Driverlicense? = null) : View("Водительские
                 .into(Category::class.java))
         catList.forEach { catView.items.add(CheckItem(it.name, false)) }
         catView.cellFactory = CheckBoxListCell.forListView {item -> item.checked }
+        println(drLi)
         drLi?.let {
             persBox.selectionModel.select(Logic.create!!
                     .select()
                     .from(Tables.PERSON)
-                    .where(Tables.PERSON.PERSON_PK.eq(it.personPk))
+                    .where(Tables.PERSON.PERSON_PK.eq(it.personPk1))
                     .fetchOne()
                     .into(Person::class.java)
                     .let { "${it.fio} ${it.pasportseries} ${it.passportid}" })
@@ -100,16 +101,21 @@ class DrLiForm(val drLi: Driverlicense? = null) : View("Водительские
                 }
             }
 
+            drcList.forEach {
+                Logic.create!!
+                        .delete(Tables.DRCATEG)
+                        .where(Tables.DRCATEG.DRCATEG_PK.eq(it.drcategPk))
+                        .execute()
+            }
+
             catView.items.forEach { item ->
                 if (item.checked.value) {
                     val temp = Drcateg()
                     temp.categoryPk = catList.find { it.name == item.o }?.categoryPk
                     temp.driverlicensePk = id
                     Logic.create!!.transaction { c ->
-                        if (drcList.find { it.categoryPk == temp.categoryPk } == null) {
-                            val pr = DSL.using(c).newRecord(Tables.DRCATEG, temp)
-                            pr.store()
-                        }
+                        val pr = DSL.using(c).newRecord(Tables.DRCATEG, temp)
+                        pr.store()
                     }
                 }
             }
