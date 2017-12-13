@@ -93,6 +93,8 @@ class ProtocolForm(val pe: Protocol?  = null) : View("Протокол") {
                     val pr = DSL.using(c).newRecord(Tables.PROTOCOL, e)
                     DSL.using(c).executeUpdate(pr)
                 } else {
+                    e.employePk = Logic.user?.employePk
+                    e.personPk1 = Logic.user?.personPk
                     val pr = DSL.using(c).newRecord(Tables.PROTOCOL, e)
                     pr.store()
                 }
