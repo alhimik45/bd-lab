@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
@@ -23,16 +24,11 @@
                                 </Label>
                                 <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="524.0" VBox.vgrow="ALWAYS">
                                     <children>
-                                        <TextField fx:id="searchLicenses" prefWidth="220.0">
+                                        <TextField fx:id="searchLicenses" prefWidth="220.0" promptText="Поиск...">
                                             <HBox.margin>
                                                 <Insets left="5.0" right="5.0" />
                                             </HBox.margin>
                                         </TextField>
-                                        <Button fx:id="searchButtonLicenses" mnemonicParsing="false" text="Искать">
-                                            <HBox.margin>
-                                                <Insets left="5.0" right="5.0" />
-                                            </HBox.margin>
-                                        </Button>
                                     </children>
                                 </HBox>
                             </children>
@@ -111,7 +107,7 @@
                         <TableView fx:id="examTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
                             <columns>
                                 <TableColumn fx:id="fio1" prefWidth="279.0" text="ФИО" />
-                                <TableColumn fx:id="ocenka" prefWidth="118.0" text="Оценка" />
+                                <TableColumn fx:id="result" prefWidth="118.0" text="Оценка" />
                                 <TableColumn fx:id="date1" prefWidth="100" text="Дата" />
                             </columns>
                             <BorderPane.margin>
@@ -129,16 +125,11 @@
                                 </Label>
                                 <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="524.0" VBox.vgrow="ALWAYS">
                                     <children>
-                                        <TextField fx:id="searchExam" prefWidth="220.0">
+                                        <TextField fx:id="searchExam" prefWidth="220.0" promptText="Поиск...">
                                             <HBox.margin>
                                                 <Insets left="5.0" right="5.0" />
                                             </HBox.margin>
                                         </TextField>
-                                        <Button fx:id="searchEmployeeExam" mnemonicParsing="false" text="Искать">
-                                            <HBox.margin>
-                                                <Insets left="5.0" right="5.0" />
-                                            </HBox.margin>
-                                        </Button>
                                     </children>
                                 </HBox>
                             </children>
