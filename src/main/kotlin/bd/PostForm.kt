@@ -30,6 +30,8 @@ class PostForm(pe:Postdps?  = null) : View("Пост ДПС") {
     }
 
     fun cancel() {
+        if(p.postdpsPk != null)
+            Logic.unlock(Lock.POST, p.postdpsPk)
         currentStage!!.close()
     }
 

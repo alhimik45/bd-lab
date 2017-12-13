@@ -10,7 +10,6 @@ import test.generated.tables.pojos.Employe
 import test.generated.tables.pojos.Person
 import test.generated.tables.pojos.Position
 import tornadofx.View
-import java.sql.Date
 
 
 class EmpForm(pe: Person? = null, ee: Employe? = null) : View("Сотрудник") {
@@ -52,6 +51,10 @@ class EmpForm(pe: Person? = null, ee: Employe? = null) : View("Сотрудни�
     }
 
     fun cancel() {
+        if (p.personPk != null)
+            Logic.unlock(Lock.PERSON, p.personPk)
+        if (e.employePk != null)
+            Logic.unlock(Lock.EMP, e.employePk)
         currentStage!!.close()
     }
 
