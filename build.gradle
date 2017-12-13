@@ -30,6 +30,8 @@ dependencies {
     compile "no.tornado:tornadofx:$tornadofx_version"
     compile 'org.postgresql:postgresql:42.1.4'
     compile 'org.jooq:jooq:3.10.2'
+    compile "org.apache.poi:poi:3.16"
+    compile "org.apache.poi:poi-ooxml:3.16"
 }
 
 jar {

@@ -3,12 +3,15 @@ package bd
 import javafx.beans.property.SimpleStringProperty
 import javafx.scene.control.*
 import javafx.scene.control.cell.PropertyValueFactory
+import javafx.stage.FileChooser
 import test.generated.Tables
 import test.generated.tables.pojos.*
 import tornadofx.View
+import java.io.FileOutputStream
 import java.time.LocalDate
 import java.util.*
-
+import org.apache.poi.xssf.usermodel.XSSFSheet
+import org.apache.poi.xssf.usermodel.XSSFWorkbook
 
 class Chief : View("Начальник") {
     override val root: TabPane by fxml()
@@ -214,5 +217,32 @@ class Chief : View("Начальник") {
             return
         }
         AssignForm(pp).openModal(block = true)
+    }
+
+    fun saveNars(){
+        val fileChooser = FileChooser()
+        fileChooser.title = "Создать отчет"
+        val extFilter = FileChooser.ExtensionFilter("XLSX files (*.xlsx)", "*.xlsx")
+        fileChooser.extensionFilters.add(extFilter)
+        val file = fileChooser.showSaveDialog(currentWindow) ?: return
+        val myWorkBook = XSSFWorkbook()
+        val mySheet = myWorkBook.createSheet("Отчёт")
+        var rowNum = mySheet.getLastRowNum()
+//        for (o in companyTable.getItems()) {
+//            val row = mySheet.createRow(rowNum++)
+//            var cellnum = 0
+//            var cell = row.createCell(cellnum++)
+//            cell.setCellValue(rowNum)
+//            cell = row.createCell(cellnum++)
+//            cell.setCellValue(o.getName())
+//            cell = row.createCell(cellnum++)
+//            cell.setCellValue(o.getAddress().toString())
+//            cell = row.createCell(cellnum)
+//            cell.setCellValue(o.getWorkers())
+//        }
+        for (i in 0..4) {
+            mySheet.autoSizeColumn(i)
+        }
+        myWorkBook.write(FileOutputStream(file))
     }
 }
