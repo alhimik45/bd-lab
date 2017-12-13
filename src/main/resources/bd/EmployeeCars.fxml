@@ -56,7 +56,7 @@
                               <TableColumn fx:id="brand" prefWidth="88.0" text="Производитель" />
                               <TableColumn fx:id="model" prefWidth="85.0" text="Модель" />
                               <TableColumn fx:id="licPlate" prefWidth="85.0" text="Госномер" />
-                              <TableColumn fx:id="fio" prefWidth="220.0" text="ФИО" />
+                              <TableColumn fx:id="fio" prefWidth="220.0" text="Лицо" />
                               <TableColumn fx:id="status" prefWidth="75.0" text="Статус" />
                               <TableColumn fx:id="beg" prefWidth="151.0" text="Дата постановки на учет" />
                               <TableColumn fx:id="end" prefWidth="159.0" text="Дата снятия с учета" />

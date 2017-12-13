@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
+
 <BorderPane prefHeight="380.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <bottom>
         <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="52.0" prefWidth="524.0" BorderPane.alignment="CENTER">
             <children>
-                <Button onAction="#update" mnemonicParsing="false" text="Обновить">
+                <Button mnemonicParsing="false" onAction="#update" text="Обновить">
                     <HBox.margin>
                         <Insets left="5.0" right="5.0" />
                     </HBox.margin>
@@ -18,7 +21,7 @@
                         <Insets left="5.0" right="5.0" />
                     </HBox.margin>
                 </Button>
-                <Button onAction="#edit" mnemonicParsing="false" text="Редактировать">
+                <Button mnemonicParsing="false" onAction="#edit" text="Редактировать">
                     <HBox.margin>
                         <Insets left="5.0" right="5.0" />
                     </HBox.margin>
@@ -32,7 +35,7 @@
     <center>
         <TableView fx:id="flTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
             <columns>
-                <TableColumn fx:id="fio" prefWidth="88.0" text="ФИО" />
+                <TableColumn fx:id="fio" prefWidth="88.0" text="Лицо" />
                 <TableColumn fx:id="ser" prefWidth="85.0" text="Серия паспорта" />
                 <TableColumn fx:id="nom" prefWidth="85.0" text="Номер паспорта" />
                 <TableColumn fx:id="date" prefWidth="220.0" text="Дата рождения" />
