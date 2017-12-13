@@ -57,6 +57,6 @@
             </PasswordField>
          </children>
       </GridPane>
-      <Button fx:id="loginBtn" mnemonicParsing="false" onAction="#login" text="Вход" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+      <Button fx:id="loginBtn" mnemonicParsing="false" onAction="#login"  text="Вход" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
    </children>
 </GridPane>

@@ -1,5 +1,6 @@
 package bd
 
 enum class Events {
-    EMP_UPD
+    EMP_UPD,
+    EXAM_UPD
 }
