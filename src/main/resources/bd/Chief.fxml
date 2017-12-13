@@ -227,7 +227,7 @@
               <tabs>
                 <Tab text="Нарушения">
                      <content>
-                        <VBox alignment="CENTER">
+                        <VBox alignment="TOP_CENTER">
                            <children>
                               <HBox alignment="CENTER">
                                  <children>
@@ -284,7 +284,7 @@
                 </Tab>
                 <Tab text="Работа офиса">
                      <content>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <BarChart fx:id="chart" legendSide="RIGHT" title="Количество обработанных заявок по дням">
                                 <xAxis>
