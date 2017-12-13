@@ -46,8 +46,12 @@ class Chief : View("Начальника") {
         updateMan()
         updatePost()
         EventBus.on(Events.EMP_UPD) { updateMan() }
+        EventBus.on(Events.POST_UPD) { updatePost() }
         searchEmployee.textProperty().addListener { _,_,_ ->
             updateMan()
+        }
+        searchPost.textProperty().addListener { _,_,_ ->
+            updatePost()
         }
 
     }

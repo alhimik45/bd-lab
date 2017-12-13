@@ -37,7 +37,7 @@ import test.generated.tables.records.PostdpsRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Postdps extends TableImpl<PostdpsRecord> {
 
-    private static final long serialVersionUID = -678529801;
+    private static final long serialVersionUID = -1616837226;
 
     /**
      * The reference instance of <code>public.PostDPS</code>
@@ -65,7 +65,7 @@ public class Postdps extends TableImpl<PostdpsRecord> {
     /**
      * The column <code>public.PostDPS.Active</code>.
      */
-    public final TableField<PostdpsRecord, Boolean> ACTIVE = createField("Active", org.jooq.impl.SQLDataType.BOOLEAN, this, "");
+    public final TableField<PostdpsRecord, Boolean> ACTIVE = createField("Active", org.jooq.impl.SQLDataType.BOOLEAN.nullable(false), this, "");
 
     /**
      * Create a <code>public.PostDPS</code> table reference

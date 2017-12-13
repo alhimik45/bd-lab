@@ -15,104 +15,42 @@ import tornadofx.View
 import java.sql.Date
 
 
-class PostForm(p:Postdps?  = null) : View("Пост ДПС") {
+class PostForm(pe:Postdps?  = null) : View("Пост ДПС") {
     override val root: VBox by fxml()
 
     val address: TextField by fxid()
     val active: CheckBox by fxid()
 
-    val p: Postdps = p ?: Postdps()
+    val p: Postdps = pe ?: Postdps()
 
 
     init {
-        fio.text = p.fio ?: ""
-        ser.text = p.pasportseries ?: ""
-        num.text = e.personalid ?: ""
-        nom.text = p.passportid ?: ""
-        address.text = p.homeaddress ?: ""
-        login.text = e.login ?: ""
-        if (p.daybirth != null) {
-            date.value = p.daybirth.toLocalDate()
-        }
-        updatePos()
-        if (e.positionPk != null) {
-            pos.selectionModel.select(Logic.create!!.select().from(Tables.POSITION).where(Tables.POSITION.POSITION_PK.eq(e.positionPk)).fetchOne().into(Position::class.java).name)
-        }
-    }
-
-    fun updatePos() {
-        pos.items.clear()
-        pos.items.addAll(Logic.create!!.select().from(Tables.POSITION).fetch().into(Position::class.java).map { it.name })
+        address.text = p.address ?: ""
+        active.isSelected = p.active ?: true
     }
 
     fun cancel() {
         currentStage!!.close()
     }
 
-    fun tex(name: String, t: TextField): String {
-        if (t.text.isNullOrBlank()) {
-            Helpers.alert("$name не может быть пустым")
-            throw KekException()
-        }
-        return t.text!!
-    }
-
-    fun rege(name: String, pattern: String, cause: String, t: TextField): String {
-        if (!t.text.matches(Regex(pattern))) {
-            Helpers.alert("$name должно быть $cause")
-            throw KekException()
-        }
-        return t.text!!
-    }
-
-    fun dat(name: String, t: DatePicker): Date {
-        if (t.value == null) {
-            Helpers.alert("$name должно быть заполнено")
-            throw KekException()
-        }
-        return Date.valueOf(t.value)
-    }
-
-    fun <T> comb(name: String, t: ComboBox<T>): T {
-        if (t.selectionModel.selectedItem == null) {
-            Helpers.alert("$name должно быть выбрано")
-            throw KekException()
-        }
-        return t.selectionModel.selectedItem;
-    }
-
     fun save() {
         try {
-            p.fio = tex("ФИО", fio)
-            p.pasportseries = rege("Серия паспорта", "\\d{4}", "4 цифры", ser)
-            p.passportid = rege("Номер паспорта", "\\d{6}", "6 цифр", nom)
-            e.personalid = tex("Личный номер", num)
-            p.homeaddress = tex("Адрес", address)
-            e.login = tex("Логин", login)
-            e.password = pass.text ?: ""
-            p.daybirth = dat("Дата рождения", date)
-            val ppos = comb("Должность", pos)
-            e.positionPk = Logic.create!!.select().from(Tables.POSITION).where(Tables.POSITION.NAME.eq(ppos)).fetchOne().into(Position::class.java).positionPk
+            p.address = Logic.textCheckEmpty("Адрес", address)
+            p.active = active.isSelected
 
-            if (p.personPk != null) {
+            if (p.postdpsPk != null) {
                 Logic.create!!.transaction { c ->
-                    val pr = DSL.using(c).newRecord(Tables.PERSON, p)
+                    val pr = DSL.using(c).newRecord(Tables.POSTDPS, p)
                     DSL.using(c).executeUpdate(pr)
-                    val er = DSL.using(c).newRecord(Tables.EMPLOYE, e)
-                    DSL.using(c).executeUpdate(er)
                 }
-                Logic.create!!.execute("SELECT pg_advisory_unlock(${Lock.PERSON.ordinal},${p.personPk})")
-                Logic.create!!.execute("SELECT pg_advisory_unlock(${Lock.EMP.ordinal},${e.employePk})")
+                Logic.unlock(Lock.POST, p.postdpsPk)
             } else {
                 Logic.create!!.transaction { c ->
-                    val pr = DSL.using(c).newRecord(Tables.PERSON, p)
+                    val pr = DSL.using(c).newRecord(Tables.POSTDPS, p)
                     pr.store()
-                    e.personPk = pr.personPk
-                    val er = DSL.using(c).newRecord(Tables.EMPLOYE, e)
-                    er.store()
                 }
             }
-            EventBus.emit(Events.EMP_UPD)
+            EventBus.emit(Events.POST_UPD)
             currentStage!!.close()
         } catch (e: KekException) {
 
