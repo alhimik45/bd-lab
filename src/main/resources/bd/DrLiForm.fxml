@@ -35,11 +35,15 @@
             <Label text="ФИО:" />
             <Label text="Номер ВУ:" GridPane.rowIndex="1" />
             <Label text="Дата выдачи:" GridPane.rowIndex="2" />
-            <ComboBox fx:id="persBox" prefHeight="25.0" prefWidth="368.0" GridPane.columnIndex="1" />
             <TextField fx:id="num" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <DatePicker fx:id="date" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="Категории:" GridPane.rowIndex="3" />
             <ListView fx:id="catView" prefHeight="109.0" prefWidth="217.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+               <children>
+                  <ComboBox fx:id="persBox" prefHeight="25.0" prefWidth="368.0" />
+                  <Button mnemonicParsing="false" text="Редактировать" onAction="#openPers"/>
+               </children></HBox>
          </children>
       </GridPane>
       <HBox alignment="CENTER" prefHeight="38.0" prefWidth="419.0" spacing="100.0">

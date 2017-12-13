@@ -1,18 +1,18 @@
 package bd
 
-import javafx.scene.control.*
+import javafx.scene.control.ComboBox
+import javafx.scene.control.DatePicker
+import javafx.scene.control.ListView
+import javafx.scene.control.TextField
 import javafx.scene.control.cell.CheckBoxListCell
-import javafx.scene.control.cell.PropertyValueFactory
-import javafx.scene.layout.BorderPane
 import javafx.scene.layout.VBox
 import org.jooq.impl.DSL
 import test.generated.Tables
 import test.generated.tables.pojos.Category
-import test.generated.tables.pojos.Driverlicense
 import test.generated.tables.pojos.Drcateg
+import test.generated.tables.pojos.Driverlicense
 import test.generated.tables.pojos.Person
-
-import tornadofx.*
+import tornadofx.View
 
 class DrLiForm(var drLi: Driverlicense? = null) : View("Водительские права") {
     override val root: VBox by fxml()
@@ -31,14 +31,14 @@ class DrLiForm(var drLi: Driverlicense? = null) : View("Водительские
                 .from(Tables.PERSON)
                 .fetch()
                 .into(Person::class.java))
-        persBox.items.addAll(peopleList.map { "${it.fio} ${it.pasportseries} ${it.passportid}" })
+        updPers()
         catList.addAll(Logic.create!!
                 .select()
                 .from(Tables.CATEGORY)
                 .fetch()
                 .into(Category::class.java))
         catList.forEach { catView.items.add(CheckItem(it.name, false)) }
-        catView.cellFactory = CheckBoxListCell.forListView {item -> item.checked }
+        catView.cellFactory = CheckBoxListCell.forListView { item -> item.checked }
         println(drLi)
         drLi?.let {
             persBox.selectionModel.select(Logic.create!!
@@ -58,7 +58,7 @@ class DrLiForm(var drLi: Driverlicense? = null) : View("Водительские
                                 .and(Tables.DRCATEG.CATEGORY_PK.eq(item.categoryPk)))
                         .fetchOne()
                 if (a != null) {
-                    catView.items[catView.items.map {it.o}.indexOf(item.name)]
+                    catView.items[catView.items.map { it.o }.indexOf(item.name)]
                             .checked.set(true)
                 }
             }
@@ -70,20 +70,35 @@ class DrLiForm(var drLi: Driverlicense? = null) : View("Водительские
                     .fetch()
                     .into(Drcateg::class.java))
         }
+        EventBus.on(Events.FL_UPD) {updPers()}
+    }
+
+    private fun updPers() {
+        persBox.items.clear()
+        persBox.items.addAll(peopleList.map { "${it.fio} ${it.pasportseries} ${it.passportid}" })
+        drLi?.let {
+            persBox.selectionModel.select(Logic.create!!
+                    .select()
+                    .from(Tables.PERSON)
+                    .where(Tables.PERSON.PERSON_PK.eq(it.personPk1))
+                    .fetchOne()
+                    .into(Person::class.java)
+                    .let { "${it.fio} ${it.pasportseries} ${it.passportid}" })
+        }
     }
 
 
     fun save() {
         try {
-            val e =  drLi ?: Driverlicense()
+            val e = drLi ?: Driverlicense()
             Logic.comboCheckEmpty("ФИО", persBox)
             e.personPk1 = peopleList[persBox.selectionModel.selectedIndex].personPk
-            e.licenseid = Logic.textCheckReg("номер ВУ", "\\d+" , "только цифры", num)
+            e.licenseid = Logic.textCheckReg("номер ВУ", "\\d+", "только цифры", num)
             e.dateofissue = Logic.dateCheckEmpty("дата", date)
 
             var flag = true
             catView.items.forEach { if (it.checked.value) flag = false }
-            if ( flag ) {
+            if (flag) {
                 Helpers.alert("Как минимум 1 категория должна быть выбрана")
                 throw KekException()
             }
@@ -137,5 +152,9 @@ class DrLiForm(var drLi: Driverlicense? = null) : View("Водительские
             Logic.unlock(Lock.PERSON, it.personPk1)
         }
         currentStage!!.close()
+    }
+
+    fun openPers() {
+        Persons().openModal(block = true)
     }
 }
