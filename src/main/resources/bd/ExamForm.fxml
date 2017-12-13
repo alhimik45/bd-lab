@@ -59,7 +59,7 @@
                               <Insets right="5.0" />
                            </HBox.margin>
                         </ComboBox>
-                        <Button mnemonicParsing="false" text="Редактировать">
+                        <Button mnemonicParsing="false" onAction="#openPers" text="Редактировать">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
