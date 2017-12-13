@@ -31,6 +31,7 @@ import test.generated.tables.Postdps;
 import test.generated.tables.Protocol;
 import test.generated.tables.ProtocolView;
 import test.generated.tables.Protocoldecision;
+import test.generated.tables.Protocoltype;
 import test.generated.tables.Pts;
 import test.generated.tables.RegCertView;
 import test.generated.tables.Regcert;
@@ -148,6 +149,11 @@ public class Tables {
      * The table <code>public.ProtocolDecision</code>.
      */
     public static final Protocoldecision PROTOCOLDECISION = test.generated.tables.Protocoldecision.PROTOCOLDECISION;
+
+    /**
+     * The table <code>public.ProtocolType</code>.
+     */
+    public static final Protocoltype PROTOCOLTYPE = test.generated.tables.Protocoltype.PROTOCOLTYPE;
 
     /**
      * The table <code>public.RegCert</code>.

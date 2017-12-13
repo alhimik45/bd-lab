@@ -29,6 +29,7 @@ import test.generated.tables.Position;
 import test.generated.tables.Postdps;
 import test.generated.tables.Protocol;
 import test.generated.tables.Protocoldecision;
+import test.generated.tables.Protocoltype;
 import test.generated.tables.Pts;
 import test.generated.tables.Regcert;
 import test.generated.tables.Region;
@@ -53,6 +54,7 @@ import test.generated.tables.records.PositionRecord;
 import test.generated.tables.records.PostdpsRecord;
 import test.generated.tables.records.ProtocolRecord;
 import test.generated.tables.records.ProtocoldecisionRecord;
+import test.generated.tables.records.ProtocoltypeRecord;
 import test.generated.tables.records.PtsRecord;
 import test.generated.tables.records.RegcertRecord;
 import test.generated.tables.records.RegionRecord;
@@ -98,6 +100,7 @@ public class Keys {
     public static final Identity<PostdpsRecord, Long> IDENTITY_POSTDPS = Identities0.IDENTITY_POSTDPS;
     public static final Identity<ProtocolRecord, Long> IDENTITY_PROTOCOL = Identities0.IDENTITY_PROTOCOL;
     public static final Identity<ProtocoldecisionRecord, Long> IDENTITY_PROTOCOLDECISION = Identities0.IDENTITY_PROTOCOLDECISION;
+    public static final Identity<ProtocoltypeRecord, Long> IDENTITY_PROTOCOLTYPE = Identities0.IDENTITY_PROTOCOLTYPE;
     public static final Identity<RegcertRecord, Long> IDENTITY_REGCERT = Identities0.IDENTITY_REGCERT;
     public static final Identity<RegionRecord, Long> IDENTITY_REGION = Identities0.IDENTITY_REGION;
     public static final Identity<TypedecisionRecord, Long> IDENTITY_TYPEDECISION = Identities0.IDENTITY_TYPEDECISION;
@@ -128,6 +131,7 @@ public class Keys {
     public static final UniqueKey<PostdpsRecord> PK_POSTDPS = UniqueKeys0.PK_POSTDPS;
     public static final UniqueKey<ProtocolRecord> PK_PROTOCOL = UniqueKeys0.PK_PROTOCOL;
     public static final UniqueKey<ProtocoldecisionRecord> PK_PROTOCOLDECISION = UniqueKeys0.PK_PROTOCOLDECISION;
+    public static final UniqueKey<ProtocoltypeRecord> PROTOCOLTYPE_PKEY = UniqueKeys0.PROTOCOLTYPE_PKEY;
     public static final UniqueKey<RegcertRecord> PK_REGCERT = UniqueKeys0.PK_REGCERT;
     public static final UniqueKey<RegionRecord> PK_REGION = UniqueKeys0.PK_REGION;
     public static final UniqueKey<TypedecisionRecord> PK_TYPEDECISION = UniqueKeys0.PK_TYPEDECISION;
@@ -197,6 +201,7 @@ public class Keys {
         public static Identity<PostdpsRecord, Long> IDENTITY_POSTDPS = createIdentity(Postdps.POSTDPS, Postdps.POSTDPS.POSTDPS_PK);
         public static Identity<ProtocolRecord, Long> IDENTITY_PROTOCOL = createIdentity(Protocol.PROTOCOL, Protocol.PROTOCOL.PROTOCOL_PK);
         public static Identity<ProtocoldecisionRecord, Long> IDENTITY_PROTOCOLDECISION = createIdentity(Protocoldecision.PROTOCOLDECISION, Protocoldecision.PROTOCOLDECISION.PROTOCOLDECISION_PK);
+        public static Identity<ProtocoltypeRecord, Long> IDENTITY_PROTOCOLTYPE = createIdentity(Protocoltype.PROTOCOLTYPE, Protocoltype.PROTOCOLTYPE.PROTOCOLTYPE_PK);
         public static Identity<RegcertRecord, Long> IDENTITY_REGCERT = createIdentity(Regcert.REGCERT, Regcert.REGCERT.REGCERT_PK);
         public static Identity<RegionRecord, Long> IDENTITY_REGION = createIdentity(Region.REGION, Region.REGION.REGION_PK);
         public static Identity<TypedecisionRecord, Long> IDENTITY_TYPEDECISION = createIdentity(Typedecision.TYPEDECISION, Typedecision.TYPEDECISION.TYPEDECISION_PK);
@@ -225,6 +230,7 @@ public class Keys {
         public static final UniqueKey<PostdpsRecord> PK_POSTDPS = createUniqueKey(Postdps.POSTDPS, "PK_PostDPS", Postdps.POSTDPS.POSTDPS_PK);
         public static final UniqueKey<ProtocolRecord> PK_PROTOCOL = createUniqueKey(Protocol.PROTOCOL, "PK_Protocol", Protocol.PROTOCOL.PROTOCOL_PK);
         public static final UniqueKey<ProtocoldecisionRecord> PK_PROTOCOLDECISION = createUniqueKey(Protocoldecision.PROTOCOLDECISION, "PK_ProtocolDecision", Protocoldecision.PROTOCOLDECISION.PROTOCOLDECISION_PK, Protocoldecision.PROTOCOLDECISION.PROTOCOL_PK);
+        public static final UniqueKey<ProtocoltypeRecord> PROTOCOLTYPE_PKEY = createUniqueKey(Protocoltype.PROTOCOLTYPE, "ProtocolType_pkey", Protocoltype.PROTOCOLTYPE.PROTOCOLTYPE_PK);
         public static final UniqueKey<RegcertRecord> PK_REGCERT = createUniqueKey(Regcert.REGCERT, "PK_RegCert", Regcert.REGCERT.REGCERT_PK);
         public static final UniqueKey<RegionRecord> PK_REGION = createUniqueKey(Region.REGION, "PK_Region", Region.REGION.REGION_PK);
         public static final UniqueKey<TypedecisionRecord> PK_TYPEDECISION = createUniqueKey(Typedecision.TYPEDECISION, "PK_TypeDecision", Typedecision.TYPEDECISION.TYPEDECISION_PK);
