@@ -18,7 +18,7 @@
 
 <TabPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <tabs>
-      <Tab text="Транспорт">
+      <Tab closable="false" text="Транспорт">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0">
                <children>
@@ -91,7 +91,7 @@
             </AnchorPane>
         </content>
       </Tab>
-      <Tab text="Заявления">
+      <Tab closable="false" text="Заявления">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0">
                <children>
