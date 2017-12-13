@@ -6,6 +6,7 @@ import javafx.scene.control.cell.PropertyValueFactory
 import test.generated.Tables
 import test.generated.tables.pojos.*
 import tornadofx.View
+import java.time.LocalDate
 import java.util.*
 
 
@@ -91,15 +92,15 @@ class Chief : View("Начальник") {
         val data = nars.items
         data.clear()
         data.addAll(Logic.create!!.select()?.from(Tables.BADS_VIEW)?.fetch()?.into(BadsView::class.java)!!.filter { e ->
-            Calendar.getInstance(). e.date
-            val v = searchAss.text
-            if (v == null || v.isEmpty()) {
-                true
-            } else {
-                val lowerCaseFilter = v.toLowerCase().split(" ").filter { it.isNotBlank() }
-                lowerCaseFilter.any { e.fio.toLowerCase().contains(it) }
-            }
+            e.date.after(fromm(from.value,java.sql.Date(0L))) &&
+                    e.date.before(fromm(to.value,java.sql.Date(Long.MAX_VALUE)))
         })
+    }
+
+    fun fromm(d: LocalDate?, def: java.sql.Date): java.sql.Date{
+        if(d == null)
+            return def
+        return java.sql.Date.valueOf(d)
     }
 
     fun update() {
