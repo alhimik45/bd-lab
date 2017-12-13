@@ -23,13 +23,14 @@ import javax.annotation.Generated;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class DriverLicenseView implements Serializable {
 
-    private static final long serialVersionUID = 640715122;
+    private static final long serialVersionUID = 1165474434;
 
     private String fio;
     private String licenseid;
     private String cat;
     private Date   dateofissue;
     private Long   personPk;
+    private Long   driverlicensePk;
 
     public DriverLicenseView() {}
 
@@ -39,6 +40,7 @@ public class DriverLicenseView implements Serializable {
         this.cat = value.cat;
         this.dateofissue = value.dateofissue;
         this.personPk = value.personPk;
+        this.driverlicensePk = value.driverlicensePk;
     }
 
     public DriverLicenseView(
@@ -46,13 +48,15 @@ public class DriverLicenseView implements Serializable {
         String licenseid,
         String cat,
         Date   dateofissue,
-        Long   personPk
+        Long   personPk,
+        Long   driverlicensePk
     ) {
         this.fio = fio;
         this.licenseid = licenseid;
         this.cat = cat;
         this.dateofissue = dateofissue;
         this.personPk = personPk;
+        this.driverlicensePk = driverlicensePk;
     }
 
     public String getFio() {
@@ -95,6 +99,14 @@ public class DriverLicenseView implements Serializable {
         this.personPk = personPk;
     }
 
+    public Long getDriverlicensePk() {
+        return this.driverlicensePk;
+    }
+
+    public void setDriverlicensePk(Long driverlicensePk) {
+        this.driverlicensePk = driverlicensePk;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("DriverLicenseView (");
@@ -104,6 +116,7 @@ public class DriverLicenseView implements Serializable {
         sb.append(", ").append(cat);
         sb.append(", ").append(dateofissue);
         sb.append(", ").append(personPk);
+        sb.append(", ").append(driverlicensePk);
 
         sb.append(")");
         return sb.toString();
