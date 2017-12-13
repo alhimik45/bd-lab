@@ -14,6 +14,7 @@ import java.util.*
 import javafx.collections.transformation.FilteredList
 import sun.rmi.runtime.Log
 import test.generated.Tables
+import test.generated.tables.pojos.Driverlicense
 import test.generated.tables.pojos.Examlist
 
 
@@ -81,6 +82,8 @@ class EmployeeLicenses : View("Учет водительских удостов�
                 }
             }
         }
+        EventBus.on(Events.EXAM_UPD) { updateEx() }
+        EventBus.on(Events.DRLI_UPD) { updateDrLi() }
 
     }
 
@@ -128,7 +131,7 @@ class EmployeeLicenses : View("Учет водительских удостов�
     }
 
     fun addDrLi() {
-
+        DrLiForm().openModal(block = true)
     }
 
     fun modDrLi() {
@@ -136,7 +139,22 @@ class EmployeeLicenses : View("Учет водительских удостов�
             Helpers.alert("Необходимо выбрать запись для редактирования")
             return
         }
-
-
+        val temp = licenseTable.selectionModel.selectedItem
+        val l = Logic.create!!
+                .select()
+                .from(Tables.DRIVERLICENSE)
+                .where(Tables.DRIVERLICENSE.DRIVERLICENSE_PK.eq(temp.driverlicensePk))
+                .fetchOne()
+                .into(Driverlicense::class.java)
+        if (!Logic.lock(Lock.DRLI, temp.driverlicensePk)) {
+            Helpers.alert("Данная запись редактируется другим пользователем")
+            return
+        }
+        if (!Logic.lock(Lock.PERSON, temp.personPk)) {
+            Logic.unlock(Lock.DRLI, temp.driverlicensePk)
+            Helpers.alert("Данная запись редактируется другим пользователем")
+            return
+        }
+        DrLiForm(l).openModal(block = true)
     }
 }

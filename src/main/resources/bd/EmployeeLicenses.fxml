@@ -46,10 +46,10 @@
                     <center>
                         <TableView fx:id="licenseTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
                             <columns>
-                                <TableColumn fx:id="fio" prefWidth="74.0" text="ФИО" />
-                                <TableColumn fx:id="cat" prefWidth="134.0" text="Категория" />
-                                <TableColumn fx:id="num" minWidth="0.0" prefWidth="53.0" text="Номер удостоверения" />
-                                <TableColumn fx:id="date" prefWidth="139.0" text="Дата выдачи" />
+                                <TableColumn fx:id="fio" minWidth="150.0" prefWidth="159.0" text="ФИО" />
+                                <TableColumn fx:id="cat" prefWidth="74.0" text="Категория" />
+                                <TableColumn fx:id="num" minWidth="0.0" prefWidth="208.0" text="Номер удостоверения" />
+                                <TableColumn fx:id="date" minWidth="0.0" prefWidth="41.0" text="Дата выдачи" />
                             </columns>
                             <BorderPane.margin>
                                 <Insets left="10.0" right="10.0" />
@@ -63,12 +63,12 @@
                         <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="52.0" prefWidth="524.0" BorderPane.alignment="CENTER">
                             <children>
                         <Button fx:id="refr" mnemonicParsing="false" onAction="#updateDrLi" text="Обновить" />
-                                <Button fx:id="newLicense" mnemonicParsing="false" text="Новое водительское удостоверение">
+                                <Button fx:id="newLicense" mnemonicParsing="false" onAction="#addDrLi" text="Новое водительское удостоверение">
                                     <HBox.margin>
                                         <Insets left="5.0" right="5.0" />
                                     </HBox.margin>
                                 </Button>
-                                <Button fx:id="editLicense" mnemonicParsing="false" text="Редактировать">
+                                <Button fx:id="editLicense" mnemonicParsing="false" onAction="#modDrLi" text="Редактировать">
                                     <HBox.margin>
                                         <Insets left="5.0" right="5.0" />
                                     </HBox.margin>
@@ -82,7 +82,7 @@
                 </BorderPane>
             </content>
         </Tab>
-        <Tab text="Экзаменационные ведомости">
+        <Tab onSelectionChanged="#updateEx" text="Экзаменационные ведомости">
             <content>
                 <BorderPane prefHeight="380.0" prefWidth="519.0">
                     <bottom>
@@ -108,8 +108,8 @@
                     <center>
                         <TableView fx:id="examTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
                             <columns>
-                                <TableColumn fx:id="fio1" prefWidth="279.0" text="ФИО" />
-                                <TableColumn fx:id="result" prefWidth="118.0" text="Оценка" />
+                                <TableColumn fx:id="fio1" prefWidth="264.0" text="ФИО" />
+                                <TableColumn fx:id="result" prefWidth="133.0" text="Оценка" />
                                 <TableColumn fx:id="date1" prefWidth="100" text="Дата" />
                             </columns>
                             <BorderPane.margin>

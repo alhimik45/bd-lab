@@ -37,7 +37,7 @@ internal object Logic {
 
     fun <T> comboCheckEmpty(name: String, t: ComboBox<T>): T {
         if (t.selectionModel.selectedItem == null) {
-            Helpers.alert("$name должно быть выбрано")
+            Helpers.alert("Поле $name должно быть выбрано")
             throw KekException()
         }
         return t.selectionModel.selectedItem;
@@ -45,7 +45,7 @@ internal object Logic {
 
     fun textCheckEmpty(name: String, t: TextField): String {
         if (t.text.isNullOrBlank()) {
-            Helpers.alert("$name не может быть пустым")
+            Helpers.alert("Поле $name не может быть пустым")
             throw KekException()
         }
         return t.text!!
@@ -53,7 +53,7 @@ internal object Logic {
 
     fun textCheckReg(name: String, pattern: String, cause: String, t: TextField): String {
         if (!t.text.matches(Regex(pattern))) {
-            Helpers.alert("$name должно быть $cause")
+            Helpers.alert("Поле $name должно быть $cause")
             throw KekException()
         }
         return t.text!!
@@ -61,7 +61,7 @@ internal object Logic {
 
     fun dateCheckEmpty(name: String, t: DatePicker): Date {
         if (t.value == null) {
-            Helpers.alert("$name должно быть заполнено")
+            Helpers.alert("Поле $name должно быть заполнено")
             throw KekException()
         }
         return Date.valueOf(t.value)

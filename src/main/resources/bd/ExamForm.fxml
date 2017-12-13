@@ -15,8 +15,8 @@
       </Label>
       <GridPane>
         <columnConstraints>
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="172.0" minWidth="10.0" prefWidth="87.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="281.0" minWidth="10.0" prefWidth="269.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -29,9 +29,9 @@
             <Label text="Категория:" GridPane.rowIndex="1" />
             <Label text="Статус:" GridPane.rowIndex="2" />
             <Label text="Дата:" GridPane.rowIndex="3" />
-            <ComboBox fx:id="peopleBox" prefWidth="150.0" GridPane.columnIndex="1" />
-            <ComboBox fx:id="catBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <ComboBox fx:id="statusBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ComboBox fx:id="peopleBox" prefHeight="25.0" prefWidth="257.0" GridPane.columnIndex="1" />
+            <ComboBox fx:id="catBox" prefHeight="25.0" prefWidth="256.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ComboBox fx:id="statusBox" prefHeight="25.0" prefWidth="257.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <DatePicker fx:id="datePick" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
