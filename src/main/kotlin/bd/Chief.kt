@@ -76,6 +76,10 @@ class Chief : View("Начальника") {
     }
 
     fun editPid() {
+        if (employeeTable.selectionModel.selectedItem == null){
+            Helpers.alert("Необходимо выбрать запись для редактирования")
+            return
+        }
         val emp = employeeTable.selectionModel.selectedItem
         val p = Logic.create!!.select().from(Tables.PERSON).where(Tables.PERSON.PERSON_PK.eq(emp.personPk)).fetchOne().into(Person::class.java)
         val e = Logic.create!!.select().from(Tables.EMPLOYE).where(Tables.EMPLOYE.EMPLOYE_PK.eq(emp.employePk)).fetchOne().into(Employe::class.java)
