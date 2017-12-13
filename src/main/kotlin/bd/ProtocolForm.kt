@@ -60,6 +60,25 @@ class ProtocolForm(val pe: Protocol?  = null) : View("Протокол") {
             stat.text = it.articlecop
             addressnar.text = it.addressvioalation
         }
+        EventBus.on(Events.FL_UPD) {updPers()}
+    }
+
+    private fun updPers() {
+        fio.items.clear()
+        fio.items.addAll(peopleList.map { "${it.fio} ${it.pasportseries} ${it.passportid}" })
+        pe?.let {
+            fio.selectionModel.select(Logic.create!!
+                    .select()
+                    .from(Tables.PERSON)
+                    .where(Tables.PERSON.PERSON_PK.eq(it.personPk1))
+                    .fetchOne()
+                    .into(Person::class.java)
+                    .let { "${it.fio} ${it.pasportseries} ${it.passportid}" })
+        }
+    }
+
+    fun openPers() {
+        Persons().openModal(block = true)
     }
 
     fun cancel() {
