@@ -1,6 +1,8 @@
 package bd
 
 import javafx.beans.property.SimpleStringProperty
+import javafx.scene.chart.BarChart
+import javafx.scene.chart.XYChart
 import javafx.scene.control.*
 import javafx.scene.control.cell.PropertyValueFactory
 import javafx.stage.FileChooser
@@ -11,6 +13,8 @@ import tornadofx.View
 import java.io.FileOutputStream
 import java.time.LocalDate
 import java.util.*
+import kotlin.collections.HashMap
+
 
 class Chief : View("Начальник") {
     override val root: TabPane by fxml()
@@ -23,6 +27,7 @@ class Chief : View("Начальник") {
     private val searchEmployee: TextField by fxid()
     private val searchPost: TextField by fxid()
     private val searchAss: TextField by fxid()
+    private val chart: BarChart<String, Int> by fxid()
 
     private val fio: TableColumn<AllDistr, String> by fxid()
     private val fioM: TableColumn<EmployeView, String> by fxid()
@@ -88,6 +93,42 @@ class Chief : View("Начальник") {
         updateMan()
         updatePost()
         updateNars()
+
+        val dls = Logic.create!!.select().from(Tables.DRIVERLICENSE).fetch().into(Driverlicense::class.java)
+        val ars = Logic.create!!.select().from(Tables.APPREGISTRATION).fetch().into(Appregistration::class.java)
+
+        val dn = HashMap<Int, Int>()
+        val an = HashMap<Int, Int>()
+        for (d in dls) {
+            val i = d.dateofissue.toLocalDate().dayOfWeek.ordinal
+            dn[i] = dn.getOrDefault(i, 0) + 1
+        }
+        for (a in ars) {
+            val i = a.date.toLocalDate().dayOfWeek.ordinal
+            an[i] = an.getOrDefault(i, 0) + 1
+        }
+
+        val series1 = XYChart.Series<String, Int>()
+        series1.name = "ТС"
+        series1.data.add(XYChart.Data("Пн", dn[0] ?: 0))
+        series1.data.add(XYChart.Data("Вт", dn[1] ?: 0))
+        series1.data.add(XYChart.Data("Ср", dn[2] ?: 0))
+        series1.data.add(XYChart.Data("Чт", dn[3] ?: 0))
+        series1.data.add(XYChart.Data("Пт", dn[4] ?: 0))
+        series1.data.add(XYChart.Data("Сб", dn[5] ?: 0))
+        series1.data.add(XYChart.Data("Вс", dn[6] ?: 0))
+        val series2 = XYChart.Series<String, Int>()
+        series2.name = "Права"
+        series2.data.add(XYChart.Data("Пн", an[0] ?: 0))
+        series2.data.add(XYChart.Data("Вт", an[1] ?: 0))
+        series2.data.add(XYChart.Data("Ср", an[2] ?: 0))
+        series2.data.add(XYChart.Data("Чт", an[3] ?: 0))
+        series2.data.add(XYChart.Data("Пт", an[4] ?: 0))
+        series2.data.add(XYChart.Data("Сб", an[5] ?: 0))
+        series2.data.add(XYChart.Data("Вс", an[6] ?: 0))
+        chart.data.clear()
+        chart.data.addAll(series1, series2)
+
     }
 
     fun updateNars() {
