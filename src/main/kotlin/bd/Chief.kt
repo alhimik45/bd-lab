@@ -42,9 +42,7 @@ class Chief : View("Начальника") {
         post.cellValueFactory = PropertyValueFactory<AllDistr, String>("address")
         address.cellValueFactory = PropertyValueFactory<Postdps, String>("address")
         active.cellValueFactory = PropertyValueFactory<Postdps, Boolean>("active")
-        update()
-        updateMan()
-        updatePost()
+        upd()
         EventBus.on(Events.EMP_UPD) { updateMan() }
         EventBus.on(Events.POST_UPD) { updatePost() }
         searchEmployee.textProperty().addListener { _,_,_ ->
@@ -53,7 +51,15 @@ class Chief : View("Начальника") {
         searchPost.textProperty().addListener { _,_,_ ->
             updatePost()
         }
+        root.selectionModel.selectedItem.selectedProperty().addListener { _ ->
+            upd()
+        }
+    }
 
+    private fun upd() {
+        update()
+        updateMan()
+        updatePost()
     }
 
     fun update() {
