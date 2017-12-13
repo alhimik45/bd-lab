@@ -38,6 +38,7 @@ import test.generated.tables.Plate;
 import test.generated.tables.Position;
 import test.generated.tables.Postdps;
 import test.generated.tables.Protocol;
+import test.generated.tables.ProtocolView;
 import test.generated.tables.Protocoldecision;
 import test.generated.tables.Pts;
 import test.generated.tables.RegCertView;
@@ -62,7 +63,7 @@ import test.generated.tables.VehicleView;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Public extends SchemaImpl {
 
-    private static final long serialVersionUID = -507523270;
+    private static final long serialVersionUID = -2126208704;
 
     /**
      * The reference instance of <code>public</code>
@@ -220,6 +221,11 @@ public class Public extends SchemaImpl {
     public final LicensePlateView LICENSE_PLATE_VIEW = test.generated.tables.LicensePlateView.LICENSE_PLATE_VIEW;
 
     /**
+     * The table <code>public.protocol_view</code>.
+     */
+    public final ProtocolView PROTOCOL_VIEW = test.generated.tables.ProtocolView.PROTOCOL_VIEW;
+
+    /**
      * The table <code>public.reg_cert_view</code>.
      */
     public final RegCertView REG_CERT_VIEW = test.generated.tables.RegCertView.REG_CERT_VIEW;
@@ -319,6 +325,7 @@ public class Public extends SchemaImpl {
             EmployeView.EMPLOYE_VIEW,
             ExamView.EXAM_VIEW,
             LicensePlateView.LICENSE_PLATE_VIEW,
+            ProtocolView.PROTOCOL_VIEW,
             RegCertView.REG_CERT_VIEW,
             VehicleView.VEHICLE_VIEW);
     }

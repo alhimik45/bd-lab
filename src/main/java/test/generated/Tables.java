@@ -29,6 +29,7 @@ import test.generated.tables.Plate;
 import test.generated.tables.Position;
 import test.generated.tables.Postdps;
 import test.generated.tables.Protocol;
+import test.generated.tables.ProtocolView;
 import test.generated.tables.Protocoldecision;
 import test.generated.tables.Pts;
 import test.generated.tables.RegCertView;
@@ -202,6 +203,11 @@ public class Tables {
      * The table <code>public.license_plate_view</code>.
      */
     public static final LicensePlateView LICENSE_PLATE_VIEW = test.generated.tables.LicensePlateView.LICENSE_PLATE_VIEW;
+
+    /**
+     * The table <code>public.protocol_view</code>.
+     */
+    public static final ProtocolView PROTOCOL_VIEW = test.generated.tables.ProtocolView.PROTOCOL_VIEW;
 
     /**
      * The table <code>public.reg_cert_view</code>.
