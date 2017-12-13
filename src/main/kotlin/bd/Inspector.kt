@@ -1,5 +1,6 @@
 package bd
 
+import javafx.collections.transformation.FilteredList
 import javafx.scene.control.TableColumn
 import javafx.scene.control.TableView
 import javafx.scene.control.TextField
@@ -17,6 +18,8 @@ class Inspector : View("Инспектор ДПС") {
 
     private val protocolsTable: TableView<ProtocolView> by fxid()
     private val searchProtocol: TextField by fxid()
+    private var dataPr = protocolsTable.items
+    private var searchPr = FilteredList<ProtocolView>(dataPr){ _ -> true}
 
     private val fioczel: TableColumn<ProtocolView, String> by fxid()
     private val ser: TableColumn<ProtocolView, String> by fxid()
@@ -36,18 +39,36 @@ class Inspector : View("Инспектор ДПС") {
         addressnar.cellValueFactory = PropertyValueFactory<ProtocolView, String>("addressvioalation")
         protocolsTable.columnResizePolicy = SmartResize.POLICY
         updateProtocols()
+        searchProtocol.textProperty().addListener { _, _, newValue ->
+            searchPr.setPredicate { item ->
+                if (newValue == null || newValue.isEmpty()) {
+                    true
+                } else {
+                    var flag = true
+                    newValue.toLowerCase().split(" ").forEach {
+                        if (!(item.fio.toLowerCase().contains(it) ||
+                                item.pasportseries.toLowerCase().contains(it) ||
+                                item.passportid.toLowerCase().contains(it) ||
+                                item.articlecop.toLowerCase().contains(it)))
+                            flag = false
+                    }
+                    flag
+                }
+            }
+        }
         EventBus.on(Events.PRTC_UPD) { updateProtocols() }
     }
 
     fun updateProtocols() {
-        val data = protocolsTable.items
-        data.clear()
-        data.addAll(Logic.create!!
+        dataPr.clear()
+        dataPr.addAll(Logic.create!!
                 .select()
                 .from(Tables.PROTOCOL_VIEW)
                 .fetch()
                 .into(ProtocolView::class.java)!!
                 .asIterable())
+        searchPr = FilteredList<ProtocolView>(dataPr){ _ -> true}
+        protocolsTable.items = searchPr
     }
 
     fun newProtocol() {
