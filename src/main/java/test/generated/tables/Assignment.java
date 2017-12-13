@@ -4,6 +4,7 @@
 package test.generated.tables;
 
 
+import java.sql.Date;
 import java.util.Arrays;
 import java.util.List;
 
@@ -38,7 +39,7 @@ import test.generated.tables.records.AssignmentRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Assignment extends TableImpl<AssignmentRecord> {
 
-    private static final long serialVersionUID = -2060836422;
+    private static final long serialVersionUID = -87912053;
 
     /**
      * The reference instance of <code>public.Assignment</code>
@@ -59,11 +60,6 @@ public class Assignment extends TableImpl<AssignmentRecord> {
     public final TableField<AssignmentRecord, Long> POSTDPS_PK = createField("PostDPS_PK", org.jooq.impl.SQLDataType.BIGINT, this, "");
 
     /**
-     * The column <code>public.Assignment.DistrOrder_PK</code>.
-     */
-    public final TableField<AssignmentRecord, Long> DISTRORDER_PK = createField("DistrOrder_PK", org.jooq.impl.SQLDataType.BIGINT, this, "");
-
-    /**
      * The column <code>public.Assignment.Assignment_PK</code>.
      */
     public final TableField<AssignmentRecord, Long> ASSIGNMENT_PK = createField("Assignment_PK", org.jooq.impl.SQLDataType.BIGINT.nullable(false).defaultValue(org.jooq.impl.DSL.field("nextval('\"Assignment_Assignment_PK_seq\"'::regclass)", org.jooq.impl.SQLDataType.BIGINT)), this, "");
@@ -77,6 +73,11 @@ public class Assignment extends TableImpl<AssignmentRecord> {
      * The column <code>public.Assignment.Person_PK</code>.
      */
     public final TableField<AssignmentRecord, Long> PERSON_PK = createField("Person_PK", org.jooq.impl.SQLDataType.BIGINT, this, "");
+
+    /**
+     * The column <code>public.Assignment.Date</code>.
+     */
+    public final TableField<AssignmentRecord, Date> DATE = createField("Date", org.jooq.impl.SQLDataType.DATE.nullable(false).defaultValue(org.jooq.impl.DSL.field("'2017-01-01'::date", org.jooq.impl.SQLDataType.DATE)), this, "");
 
     /**
      * Create a <code>public.Assignment</code> table reference
@@ -144,7 +145,7 @@ public class Assignment extends TableImpl<AssignmentRecord> {
      */
     @Override
     public List<ForeignKey<AssignmentRecord, ?>> getReferences() {
-        return Arrays.<ForeignKey<AssignmentRecord, ?>>asList(Keys.ASSIGNMENT__RELATIONSHIP25, Keys.ASSIGNMENT__RELATIONSHIP29, Keys.ASSIGNMENT__RELATIONSHIP35);
+        return Arrays.<ForeignKey<AssignmentRecord, ?>>asList(Keys.ASSIGNMENT__RELATIONSHIP25, Keys.ASSIGNMENT__RELATIONSHIP35);
     }
 
     /**

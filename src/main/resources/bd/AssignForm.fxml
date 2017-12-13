@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label contentDisplay="CENTER" text="Назначение на пост" textAlignment="CENTER">
+         <font>
+            <Font size="23.0" />
+         </font>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </Label>
+      <GridPane>
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="173.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="427.0" minWidth="10.0" prefWidth="427.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+        </rowConstraints>
+         <children>
+             <Label text="Пост" GridPane.rowIndex="1" />
+             <ComboBox prefWidth="350.0" GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="post" />
+             <Label text="Сотрудник" GridPane.rowIndex="2" />
+             <ComboBox prefWidth="350.0" GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="emp" />
+             <Label text="День назначения" GridPane.rowIndex="3" />
+             <DatePicker fx:id="date" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         </children>
+      </GridPane>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="150.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#save" text="Сохранить" />
+            <Button mnemonicParsing="false" onAction="#savenext" text="Сохранить и продолжить" />
+            <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#cancel" text="Отмена" />
+         </children>
+      </HBox>
+   </children>
+</VBox>

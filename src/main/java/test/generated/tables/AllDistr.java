@@ -33,7 +33,7 @@ import test.generated.tables.records.AllDistrRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class AllDistr extends TableImpl<AllDistrRecord> {
 
-    private static final long serialVersionUID = 317446582;
+    private static final long serialVersionUID = 1477944886;
 
     /**
      * The reference instance of <code>public.all_distr</code>
@@ -67,6 +67,11 @@ public class AllDistr extends TableImpl<AllDistrRecord> {
      * The column <code>public.all_distr.DateOrder</code>.
      */
     public final TableField<AllDistrRecord, Date> DATEORDER = createField("DateOrder", org.jooq.impl.SQLDataType.DATE, this, "");
+
+    /**
+     * The column <code>public.all_distr.Assignment_PK</code>.
+     */
+    public final TableField<AllDistrRecord, Long> ASSIGNMENT_PK = createField("Assignment_PK", org.jooq.impl.SQLDataType.BIGINT, this, "");
 
     /**
      * Create a <code>public.all_distr</code> table reference

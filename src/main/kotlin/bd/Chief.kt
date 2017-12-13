@@ -7,7 +7,6 @@ import javafx.scene.control.TextField
 import javafx.scene.control.cell.PropertyValueFactory
 import test.generated.Tables
 import test.generated.tables.pojos.*
-import tornadofx.FX.Companion.lock
 import tornadofx.View
 import java.util.*
 
@@ -45,10 +44,11 @@ class Chief : View("Начальника") {
         upd()
         EventBus.on(Events.EMP_UPD) { updateMan() }
         EventBus.on(Events.POST_UPD) { updatePost() }
-        searchEmployee.textProperty().addListener { _,_,_ ->
+        EventBus.on(Events.ASS_UPD) { update() }
+        searchEmployee.textProperty().addListener { _, _, _ ->
             updateMan()
         }
-        searchPost.textProperty().addListener { _,_,_ ->
+        searchPost.textProperty().addListener { _, _, _ ->
             updatePost()
         }
         root.selectionModel.selectedItem.selectedProperty().addListener { _ ->
@@ -77,10 +77,10 @@ class Chief : View("Начальника") {
                 true
             } else {
                 val lowerCaseFilter = v.toLowerCase().split(" ").filter { it.isNotBlank() }
-                if (lowerCaseFilter.any{e.fio.toLowerCase().contains(it)}) {
+                if (lowerCaseFilter.any { e.fio.toLowerCase().contains(it) }) {
                     true
                 } else {
-                    lowerCaseFilter.any{e.personalid.toLowerCase().contains(it)}
+                    lowerCaseFilter.any { e.personalid.toLowerCase().contains(it) }
                 }
             }
         })
@@ -95,7 +95,7 @@ class Chief : View("Начальника") {
                 true
             } else {
                 val lowerCaseFilter = v.toLowerCase().split(" ").filter { it.isNotBlank() }
-                lowerCaseFilter.any{e.address.toLowerCase().contains(it)}
+                lowerCaseFilter.any { e.address.toLowerCase().contains(it) }
             }
         })
     }
@@ -109,7 +109,7 @@ class Chief : View("Начальника") {
     }
 
     fun editPid() {
-        if (employeeTable.selectionModel.selectedItem == null){
+        if (employeeTable.selectionModel.selectedItem == null) {
             Helpers.alert("Необходимо выбрать запись для редактирования")
             return
         }
@@ -131,7 +131,7 @@ class Chief : View("Начальника") {
     }
 
     fun editPost() {
-        if (postTable.selectionModel.selectedItem == null){
+        if (postTable.selectionModel.selectedItem == null) {
             Helpers.alert("Необходимо выбрать запись для редактирования")
             return
         }
@@ -142,5 +142,23 @@ class Chief : View("Начальника") {
             return
         }
         PostForm(p).openModal(block = true)
+    }
+
+    fun addAssign() {
+        AssignForm().openModal(block = true)
+    }
+
+    fun editAssign() {
+        if (distribTable.selectionModel.selectedItem == null) {
+            Helpers.alert("Необходимо выбрать запись для редактирования")
+            return
+        }
+        val p = distribTable.selectionModel.selectedItem
+        val lock = Logic.lock(Lock.ASS, p.assignmentPk)
+        if (!lock) {
+            Helpers.alert("Данная запись редактируется другим пользователем")
+            return
+        }
+        AssignForm().openModal(block = true)
     }
 }

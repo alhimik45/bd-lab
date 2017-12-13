@@ -5,8 +5,8 @@ import javafx.scene.control.DatePicker
 import javafx.scene.control.TextField
 import org.jooq.DSLContext
 import org.jooq.SQLDialect
+import org.jooq.conf.Settings
 import org.jooq.impl.DSL
-import test.generated.Tables
 import test.generated.Tables.EMPLOYE_VIEW
 import test.generated.tables.pojos.EmployeView
 import java.sql.Date
@@ -40,7 +40,7 @@ internal object Logic {
             Helpers.alert("$name должно быть выбрано")
             throw KekException()
         }
-        return t.selectionModel.selectedItem;
+        return t.selectionModel.selectedItem
     }
 
     fun textCheckEmpty(name: String, t: TextField): String {
@@ -66,4 +66,7 @@ internal object Logic {
         }
         return Date.valueOf(t.value)
     }
+
+    var sn: Boolean = true
+
 }

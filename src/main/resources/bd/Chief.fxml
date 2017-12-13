@@ -63,17 +63,12 @@
                         <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="52.0" prefWidth="524.0" BorderPane.alignment="CENTER">
                             <children>
                                 <Button fx:id="upd1" layoutX="130.0" layoutY="23.0" mnemonicParsing="false" onAction="#update" text="Обновить" />
-                                <Button fx:id="newProtocol" mnemonicParsing="false" text="Добавить">
+                                <Button fx:id="newProtocol" mnemonicParsing="false" text="Добавить" onAction="#addAssign">
                                     <HBox.margin>
                                         <Insets left="5.0" right="5.0" />
                                     </HBox.margin>
                                 </Button>
-                                <Button fx:id="editProtocol" mnemonicParsing="false" text="Редактировать">
-                                    <HBox.margin>
-                                        <Insets left="5.0" right="5.0" />
-                                    </HBox.margin>
-                                </Button>
-                                <Button fx:id="rmProtocol" mnemonicParsing="false" text="Удалить">
+                                <Button fx:id="editProtocol" mnemonicParsing="false" text="Редактировать" onAction="#editAssign">
                                     <HBox.margin>
                                         <Insets left="5.0" right="5.0" />
                                     </HBox.margin>

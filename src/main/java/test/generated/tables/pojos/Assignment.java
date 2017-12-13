@@ -5,6 +5,7 @@ package test.generated.tables.pojos;
 
 
 import java.io.Serializable;
+import java.sql.Date;
 
 import javax.annotation.Generated;
 
@@ -22,36 +23,36 @@ import javax.annotation.Generated;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Assignment implements Serializable {
 
-    private static final long serialVersionUID = -812205741;
+    private static final long serialVersionUID = 1933068800;
 
     private Long postdpsPk;
-    private Long distrorderPk;
     private Long assignmentPk;
     private Long employePk;
     private Long personPk;
+    private Date date;
 
     public Assignment() {}
 
     public Assignment(Assignment value) {
         this.postdpsPk = value.postdpsPk;
-        this.distrorderPk = value.distrorderPk;
         this.assignmentPk = value.assignmentPk;
         this.employePk = value.employePk;
         this.personPk = value.personPk;
+        this.date = value.date;
     }
 
     public Assignment(
         Long postdpsPk,
-        Long distrorderPk,
         Long assignmentPk,
         Long employePk,
-        Long personPk
+        Long personPk,
+        Date date
     ) {
         this.postdpsPk = postdpsPk;
-        this.distrorderPk = distrorderPk;
         this.assignmentPk = assignmentPk;
         this.employePk = employePk;
         this.personPk = personPk;
+        this.date = date;
     }
 
     public Long getPostdpsPk() {
@@ -60,14 +61,6 @@ public class Assignment implements Serializable {
 
     public void setPostdpsPk(Long postdpsPk) {
         this.postdpsPk = postdpsPk;
-    }
-
-    public Long getDistrorderPk() {
-        return this.distrorderPk;
-    }
-
-    public void setDistrorderPk(Long distrorderPk) {
-        this.distrorderPk = distrorderPk;
     }
 
     public Long getAssignmentPk() {
@@ -94,15 +87,23 @@ public class Assignment implements Serializable {
         this.personPk = personPk;
     }
 
+    public Date getDate() {
+        return this.date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Assignment (");
 
         sb.append(postdpsPk);
-        sb.append(", ").append(distrorderPk);
         sb.append(", ").append(assignmentPk);
         sb.append(", ").append(employePk);
         sb.append(", ").append(personPk);
+        sb.append(", ").append(date);
 
         sb.append(")");
         return sb.toString();

@@ -145,7 +145,6 @@ public class Keys {
     public static final ForeignKey<AppregistrationRecord, EmployeRecord> APPREGISTRATION__RELATIONSHIP39 = ForeignKeys0.APPREGISTRATION__RELATIONSHIP39;
     public static final ForeignKey<AppregistrationRecord, VehicleRecord> APPREGISTRATION__RELATIONSHIP22 = ForeignKeys0.APPREGISTRATION__RELATIONSHIP22;
     public static final ForeignKey<AssignmentRecord, PostdpsRecord> ASSIGNMENT__RELATIONSHIP25 = ForeignKeys0.ASSIGNMENT__RELATIONSHIP25;
-    public static final ForeignKey<AssignmentRecord, DistrorderRecord> ASSIGNMENT__RELATIONSHIP29 = ForeignKeys0.ASSIGNMENT__RELATIONSHIP29;
     public static final ForeignKey<AssignmentRecord, EmployeRecord> ASSIGNMENT__RELATIONSHIP35 = ForeignKeys0.ASSIGNMENT__RELATIONSHIP35;
     public static final ForeignKey<DistrorderRecord, EmployeRecord> DISTRORDER__RELATIONSHIP36 = ForeignKeys0.DISTRORDER__RELATIONSHIP36;
     public static final ForeignKey<DrcategRecord, DriverlicenseRecord> DRCATEG__RELATIONSHIP45 = ForeignKeys0.DRCATEG__RELATIONSHIP45;
@@ -241,7 +240,6 @@ public class Keys {
         public static final ForeignKey<AppregistrationRecord, EmployeRecord> APPREGISTRATION__RELATIONSHIP39 = createForeignKey(test.generated.Keys.PK_EMPLOYE, Appregistration.APPREGISTRATION, "AppRegistration__Relationship39", Appregistration.APPREGISTRATION.EMPLOYE_PK, Appregistration.APPREGISTRATION.PERSON_PK);
         public static final ForeignKey<AppregistrationRecord, VehicleRecord> APPREGISTRATION__RELATIONSHIP22 = createForeignKey(test.generated.Keys.PK_VEHICLE, Appregistration.APPREGISTRATION, "AppRegistration__Relationship22", Appregistration.APPREGISTRATION.VEHICLE_PK);
         public static final ForeignKey<AssignmentRecord, PostdpsRecord> ASSIGNMENT__RELATIONSHIP25 = createForeignKey(test.generated.Keys.PK_POSTDPS, Assignment.ASSIGNMENT, "Assignment__Relationship25", Assignment.ASSIGNMENT.POSTDPS_PK);
-        public static final ForeignKey<AssignmentRecord, DistrorderRecord> ASSIGNMENT__RELATIONSHIP29 = createForeignKey(test.generated.Keys.PK_DISTROREDER, Assignment.ASSIGNMENT, "Assignment__Relationship29", Assignment.ASSIGNMENT.DISTRORDER_PK);
         public static final ForeignKey<AssignmentRecord, EmployeRecord> ASSIGNMENT__RELATIONSHIP35 = createForeignKey(test.generated.Keys.PK_EMPLOYE, Assignment.ASSIGNMENT, "Assignment__Relationship35", Assignment.ASSIGNMENT.EMPLOYE_PK, Assignment.ASSIGNMENT.PERSON_PK);
         public static final ForeignKey<DistrorderRecord, EmployeRecord> DISTRORDER__RELATIONSHIP36 = createForeignKey(test.generated.Keys.PK_EMPLOYE, Distrorder.DISTRORDER, "DistrOrder__Relationship36", Distrorder.DISTRORDER.EMPLOYE_PK, Distrorder.DISTRORDER.PERSON_PK);
         public static final ForeignKey<DrcategRecord, DriverlicenseRecord> DRCATEG__RELATIONSHIP45 = createForeignKey(test.generated.Keys.ПК_DRIVERLICENSE, Drcateg.DRCATEG, "DrCateg__Relationship45", Drcateg.DRCATEG.DRIVERLICENSE_PK);

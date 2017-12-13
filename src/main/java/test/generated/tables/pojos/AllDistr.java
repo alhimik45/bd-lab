@@ -23,12 +23,13 @@ import javax.annotation.Generated;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class AllDistr implements Serializable {
 
-    private static final long serialVersionUID = -1498793685;
+    private static final long serialVersionUID = -1411535549;
 
     private String fio;
     private String personalid;
     private String address;
     private Date   dateorder;
+    private Long   assignmentPk;
 
     public AllDistr() {}
 
@@ -37,18 +38,21 @@ public class AllDistr implements Serializable {
         this.personalid = value.personalid;
         this.address = value.address;
         this.dateorder = value.dateorder;
+        this.assignmentPk = value.assignmentPk;
     }
 
     public AllDistr(
         String fio,
         String personalid,
         String address,
-        Date   dateorder
+        Date   dateorder,
+        Long   assignmentPk
     ) {
         this.fio = fio;
         this.personalid = personalid;
         this.address = address;
         this.dateorder = dateorder;
+        this.assignmentPk = assignmentPk;
     }
 
     public String getFio() {
@@ -83,6 +87,14 @@ public class AllDistr implements Serializable {
         this.dateorder = dateorder;
     }
 
+    public Long getAssignmentPk() {
+        return this.assignmentPk;
+    }
+
+    public void setAssignmentPk(Long assignmentPk) {
+        this.assignmentPk = assignmentPk;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("AllDistr (");
@@ -91,6 +103,7 @@ public class AllDistr implements Serializable {
         sb.append(", ").append(personalid);
         sb.append(", ").append(address);
         sb.append(", ").append(dateorder);
+        sb.append(", ").append(assignmentPk);
 
         sb.append(")");
         return sb.toString();
