@@ -23,7 +23,7 @@ import javax.annotation.Generated;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Protocol implements Serializable {
 
-    private static final long serialVersionUID = -333588926;
+    private static final long serialVersionUID = 1260010244;
 
     private String articlecop;
     private String addressvioalation;
@@ -32,6 +32,8 @@ public class Protocol implements Serializable {
     private Long   employePk;
     private Long   personPk1;
     private Date   date;
+    private String more;
+    private Long   protocoltypePk;
 
     public Protocol() {}
 
@@ -43,6 +45,8 @@ public class Protocol implements Serializable {
         this.employePk = value.employePk;
         this.personPk1 = value.personPk1;
         this.date = value.date;
+        this.more = value.more;
+        this.protocoltypePk = value.protocoltypePk;
     }
 
     public Protocol(
@@ -52,7 +56,9 @@ public class Protocol implements Serializable {
         Long   protocolPk,
         Long   employePk,
         Long   personPk1,
-        Date   date
+        Date   date,
+        String more,
+        Long   protocoltypePk
     ) {
         this.articlecop = articlecop;
         this.addressvioalation = addressvioalation;
@@ -61,6 +67,8 @@ public class Protocol implements Serializable {
         this.employePk = employePk;
         this.personPk1 = personPk1;
         this.date = date;
+        this.more = more;
+        this.protocoltypePk = protocoltypePk;
     }
 
     public String getArticlecop() {
@@ -119,6 +127,22 @@ public class Protocol implements Serializable {
         this.date = date;
     }
 
+    public String getMore() {
+        return this.more;
+    }
+
+    public void setMore(String more) {
+        this.more = more;
+    }
+
+    public Long getProtocoltypePk() {
+        return this.protocoltypePk;
+    }
+
+    public void setProtocoltypePk(Long protocoltypePk) {
+        this.protocoltypePk = protocoltypePk;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Protocol (");
@@ -130,6 +154,8 @@ public class Protocol implements Serializable {
         sb.append(", ").append(employePk);
         sb.append(", ").append(personPk1);
         sb.append(", ").append(date);
+        sb.append(", ").append(more);
+        sb.append(", ").append(protocoltypePk);
 
         sb.append(")");
         return sb.toString();

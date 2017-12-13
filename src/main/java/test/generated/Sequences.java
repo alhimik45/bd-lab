@@ -114,6 +114,11 @@ public class Sequences {
     public static final Sequence<Long> PROTOCOL_PROTOCOL_PK_SEQ = new SequenceImpl<Long>("Protocol_Protocol_PK_seq", Public.PUBLIC, org.jooq.impl.SQLDataType.BIGINT.nullable(false));
 
     /**
+     * The sequence <code>public.ProtocolType_ProtocolType_PK_seq</code>
+     */
+    public static final Sequence<Long> PROTOCOLTYPE_PROTOCOLTYPE_PK_SEQ = new SequenceImpl<Long>("ProtocolType_ProtocolType_PK_seq", Public.PUBLIC, org.jooq.impl.SQLDataType.BIGINT.nullable(false));
+
+    /**
      * The sequence <code>public.PTS_PTS_PK_seq</code>
      */
     public static final Sequence<Long> PTS_PTS_PK_SEQ = new SequenceImpl<Long>("PTS_PTS_PK_seq", Public.PUBLIC, org.jooq.impl.SQLDataType.BIGINT.nullable(false));

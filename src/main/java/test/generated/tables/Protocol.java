@@ -39,7 +39,7 @@ import test.generated.tables.records.ProtocolRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Protocol extends TableImpl<ProtocolRecord> {
 
-    private static final long serialVersionUID = 1662998648;
+    private static final long serialVersionUID = 591165329;
 
     /**
      * The reference instance of <code>public.Protocol</code>
@@ -88,6 +88,16 @@ public class Protocol extends TableImpl<ProtocolRecord> {
      * The column <code>public.Protocol.Date</code>.
      */
     public final TableField<ProtocolRecord, Date> DATE = createField("Date", org.jooq.impl.SQLDataType.DATE.nullable(false).defaultValue(org.jooq.impl.DSL.field("now()", org.jooq.impl.SQLDataType.DATE)), this, "");
+
+    /**
+     * The column <code>public.Protocol.More</code>.
+     */
+    public final TableField<ProtocolRecord, String> MORE = createField("More", org.jooq.impl.SQLDataType.CLOB, this, "");
+
+    /**
+     * The column <code>public.Protocol.ProtocolType_PK</code>.
+     */
+    public final TableField<ProtocolRecord, Long> PROTOCOLTYPE_PK = createField("ProtocolType_PK", org.jooq.impl.SQLDataType.BIGINT, this, "");
 
     /**
      * Create a <code>public.Protocol</code> table reference
