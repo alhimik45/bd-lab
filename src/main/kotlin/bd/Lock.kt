@@ -5,5 +5,7 @@ enum class Lock {
     EMP,
     EXAMLIST,
     POST,
+    DRLI,
+    DRCA,
     ASS,
 }

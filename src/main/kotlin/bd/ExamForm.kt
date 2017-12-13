@@ -11,21 +11,22 @@ import test.generated.tables.pojos.Examlist
 import test.generated.tables.pojos.Position
 import tornadofx.*
 
-class ExamForm(val ex: Examlist? = null) : View("My View") {
+class ExamForm(val ex: Examlist? = null) : View("Экзаменационные ведомости") {
     override val root: VBox by fxml()
     private val peopleBox: ComboBox<String> by fxid()
     private val catBox: ComboBox<String> by fxid()
     private val statusBox: ComboBox<String> by fxid()
     private val datePick: DatePicker by fxid()
+    private var peopleList: MutableList<Person> = mutableListOf()
 
     init {
         statusBox.items.addAll(listOf("Сдано", "Не сдано"))
-        peopleBox.items.addAll(Logic.create!!
+        peopleList.addAll(Logic.create!!
                 .select()
                 .from(Tables.PERSON)
                 .fetch()
-                .into(Person::class.java)
-                .map { "${it.fio} ${it.pasportseries} ${it.passportid}" })
+                .into(Person::class.java))
+        peopleBox.items.addAll(peopleList.map { "${it.fio} ${it.pasportseries} ${it.passportid}" })
         catBox.items.addAll(Logic.create!!
                 .select()
                 .from(Tables.CATEGORY)
@@ -36,55 +37,42 @@ class ExamForm(val ex: Examlist? = null) : View("My View") {
             peopleBox.selectionModel.select(Logic.create!!
                     .select()
                     .from(Tables.PERSON)
-                    .where(Tables.PERSON.PERSON_PK.eq(ex.personPk))
+                    .where(Tables.PERSON.PERSON_PK.eq(it.personPk))
                     .fetchOne()
                     .into(Person::class.java)
                     .let { "${it.fio} ${it.pasportseries} ${it.passportid}" })
-            val splited = ex.results.split(" - ")
+            val splited = it.results.split(" - ")
             catBox.selectionModel.select(splited[0])
             statusBox.selectionModel.select(splited[1])
-            datePick.value = ex.date.toLocalDate()
+            datePick.value = it.date.toLocalDate()
         }
     }
 
 
     fun save() {
         try {
-//            e
-//            p.fio = tex("ФИО", fio)
-//            p.pasportseries = rege("Серия паспорта", "\\d{4}", "4 цифры", ser)
-//            p.passportid = rege("Номер паспорта", "\\d{6}", "6 цифр", nom)
-//            e.personalid = tex("Личный номер", num)
-//            p.homeaddress = tex("Адрес", address)
-//            e.login = tex("Логин", login)
-//            e.password = pass.text ?: ""
-//            p.daybirth = dat("Дата рождения", date)
-//            val ppos = comb("Должность", pos)
-//            e.positionPk = Logic.create!!.select().from(Tables.POSITION).where(Tables.POSITION.NAME.eq(ppos)).fetchOne().into(Position::class.java).positionPk
-//
-//            if (p.personPk != null) {
-//                Logic.create!!.transaction { c ->
-//                    val pr = DSL.using(c).newRecord(Tables.PERSON, p)
-//                    DSL.using(c).executeUpdate(pr)
-//                    val er = DSL.using(c).newRecord(Tables.EMPLOYE, e)
-//                    DSL.using(c).executeUpdate(er)
-//                }
-//                Logic.create!!.execute("SELECT pg_advisory_unlock(${Lock.PERSON.ordinal},${p.personPk})")
-//                Logic.create!!.execute("SELECT pg_advisory_unlock(${Lock.EMP.ordinal},${e.employePk})")
-//            } else {
-//                Logic.create!!.transaction { c ->
-//                    val pr = DSL.using(c).newRecord(Tables.PERSON, p)
-//                    pr.store()
-//                    e.personPk = pr.personPk
-//                    val er = DSL.using(c).newRecord(Tables.EMPLOYE, e)
-//                    er.store()
-//                }
-//            }
-            EventBus.emit(Events.EXAM_UPD)
+            val e: Examlist = ex ?: Examlist()
+            Logic.comboCheckEmpty("ФИО", peopleBox)
+            Logic.comboCheckEmpty("категория", catBox)
+            Logic.comboCheckEmpty("статус", statusBox)
+            e.personPk = peopleList[peopleBox.selectionModel.selectedIndex].personPk
+            e.results = "${catBox.selectionModel.selectedItem} - ${statusBox.selectionModel.selectedItem}"
+            e.date = Logic.dateCheckEmpty("дата", datePick)
+
+            Logic.create!!.transaction { c ->
+                if (e.examlistPk != null) {
+                    val pr = DSL.using(c).newRecord(Tables.EXAMLIST, e)
+                    DSL.using(c).executeUpdate(pr)
+                } else {
+                    val pr = DSL.using(c).newRecord(Tables.EXAMLIST, e)
+                    pr.store()
+                }
+            }
             ex?.let {
                 Logic.unlock(Lock.EXAMLIST, ex.examlistPk)
                 Logic.unlock(Lock.PERSON, ex.personPk)
             }
+            EventBus.emit(Events.EXAM_UPD)
             currentStage!!.close()
         } catch (e: KekException) {
 
