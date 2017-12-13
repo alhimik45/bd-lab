@@ -33,7 +33,7 @@ import test.generated.tables.records.ProtocolViewRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ProtocolView extends TableImpl<ProtocolViewRecord> {
 
-    private static final long serialVersionUID = -868332688;
+    private static final long serialVersionUID = 755663084;
 
     /**
      * The reference instance of <code>public.protocol_view</code>
@@ -87,6 +87,11 @@ public class ProtocolView extends TableImpl<ProtocolViewRecord> {
      * The column <code>public.protocol_view.Protocol_PK</code>.
      */
     public final TableField<ProtocolViewRecord, Long> PROTOCOL_PK = createField("Protocol_PK", org.jooq.impl.SQLDataType.BIGINT, this, "");
+
+    /**
+     * The column <code>public.protocol_view.Name</code>.
+     */
+    public final TableField<ProtocolViewRecord, String> NAME = createField("Name", org.jooq.impl.SQLDataType.CLOB, this, "");
 
     /**
      * Create a <code>public.protocol_view</code> table reference
