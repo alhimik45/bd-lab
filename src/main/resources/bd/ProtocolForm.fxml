@@ -37,7 +37,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" />
                     </rowConstraints>
                     <children>
-                        <Label text="ФИО" />
+                        <Label text="Лицо" />
                         <Label text="Дата нарушения " GridPane.rowIndex="4" />
                         <DatePicker fx:id="date" GridPane.columnIndex="1" GridPane.rowIndex="4">
                             <GridPane.margin>

@@ -46,7 +46,7 @@
                     <center>
                         <TableView fx:id="licenseTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
                             <columns>
-                                <TableColumn fx:id="fio" minWidth="150.0" prefWidth="159.0" text="ФИО" />
+                                <TableColumn fx:id="fio" minWidth="150.0" prefWidth="159.0" text="Лицо" />
                                 <TableColumn fx:id="cat" prefWidth="74.0" text="Категория" />
                                 <TableColumn fx:id="num" minWidth="0.0" prefWidth="208.0" text="Номер удостоверения" />
                                 <TableColumn fx:id="date" minWidth="0.0" prefWidth="41.0" text="Дата выдачи" />

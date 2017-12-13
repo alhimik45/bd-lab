@@ -44,8 +44,8 @@
     <center>
         <TableView fx:id="protocolsTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
             <columns>
-                <TableColumn fx:id="fioczel" prefWidth="88.0" text="ФИО" />
-                <TableColumn fx:id="ser" prefWidth="85.0" text="Серия" />
+                <TableColumn fx:id="fioczel" prefWidth="88.0" text="Лицо" />
+                <TableColumn fx:id="ser" prefWidth="85.0" text="Серия паспорта" />
                 <TableColumn fx:id="nom" prefWidth="85.0" text="Номер паспорта" />
             <TableColumn fx:id="type" prefWidth="75.0" text="Тип" />
                 <TableColumn fx:id="stat" prefWidth="151.0" text="Статья КоАП" />
