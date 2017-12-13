@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
@@ -12,40 +17,58 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label contentDisplay="CENTER" text="Пост" textAlignment="CENTER">
-         <font>
-            <Font size="23.0" />
-         </font>
-         <VBox.margin>
-            <Insets top="10.0" />
-         </VBox.margin>
-      </Label>
-      <GridPane>
-        <columnConstraints>
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="173.0" />
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="427.0" minWidth="10.0" prefWidth="427.0" />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints />
-            <RowConstraints />
-        </rowConstraints>
+      <BorderPane minHeight="200.0" minWidth="400.0">
+         <top>
+            <Label contentDisplay="CENTER" text="Пост" textAlignment="CENTER" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="23.0" />
+               </font>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </Label>
+         </top>
+         <center>
+            <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
+               <children>
+                  <Label alignment="CENTER" text="Адрес" />
+                  <TextField fx:id="address" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <CheckBox fx:id="active" alignment="CENTER" mnemonicParsing="false" text="Активен" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="41.0" />
+                  <RowConstraints minHeight="10.0" />
+               </rowConstraints>
+               <BorderPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </BorderPane.margin>
+            </GridPane>
+         </center>
+      </BorderPane>
+      <HBox alignment="CENTER">
          <children>
-             <Label text="Адрес" GridPane.rowIndex="1" />
-             <TextField fx:id="address" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                 <GridPane.margin>
-                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                 </GridPane.margin></TextField>
-             <Label text="Личный номер" GridPane.rowIndex="2" />
-            <CheckBox fx:id="active" mnemonicParsing="false" text="Активен" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" onAction="#save" text="Сохранить">
+               <HBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </HBox.margin></Button>
+            <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#cancel" text="Отмена">
+               <HBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </HBox.margin></Button>
          </children>
-      </GridPane>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="150.0">
-         <children>
-            <Button mnemonicParsing="false" onAction="#save" text="Сохранить" />
-            <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#cancel" text="Отмена" />
-         </children>
+         <padding>
+            <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+         </padding>
       </HBox>
    </children>
 </VBox>
