@@ -22,19 +22,20 @@ class Inspector : View("Инспектор ДПС") {
     private var searchPr = FilteredList<ProtocolView>(dataPr){ _ -> true}
 
     private val fioczel: TableColumn<ProtocolView, String> by fxid()
+    private val type: TableColumn<ProtocolView, String> by fxid()
     private val ser: TableColumn<ProtocolView, String> by fxid()
-    private val nom: TableColumn<ProtocolView, Date> by fxid()
+    private val nom: TableColumn<ProtocolView, String> by fxid()
     private val stat: TableColumn<ProtocolView, String> by fxid()
     private val addressnar: TableColumn<ProtocolView, String> by fxid()
-    private val date: TableColumn<ProtocolView, String> by fxid()
+    private val date: TableColumn<ProtocolView, Date> by fxid()
 
 
     init {
         fioczel.cellValueFactory = PropertyValueFactory<ProtocolView, String>("fio")
         ser.cellValueFactory = PropertyValueFactory<ProtocolView, String>("pasportseries")
-        nom.cellValueFactory = PropertyValueFactory<ProtocolView, Date>("passportid")
-        date.cellValueFactory = PropertyValueFactory<ProtocolView, String>("date")
-
+        nom.cellValueFactory = PropertyValueFactory<ProtocolView, String>("passportid")
+        date.cellValueFactory = PropertyValueFactory<ProtocolView, Date>("date")
+        type.cellValueFactory = PropertyValueFactory<ProtocolView, String>("name")
         stat.cellValueFactory = PropertyValueFactory<ProtocolView, String>("articlecop")
         addressnar.cellValueFactory = PropertyValueFactory<ProtocolView, String>("addressvioalation")
         protocolsTable.columnResizePolicy = SmartResize.POLICY
@@ -49,6 +50,7 @@ class Inspector : View("Инспектор ДПС") {
                         if (!(item.fio.toLowerCase().contains(it) ||
                                 item.pasportseries.toLowerCase().contains(it) ||
                                 item.passportid.toLowerCase().contains(it) ||
+                                item.name.toLowerCase().contains(it) ||
                                 item.articlecop.toLowerCase().contains(it)))
                             flag = false
                     }
