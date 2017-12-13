@@ -40,6 +40,7 @@ import test.generated.tables.Postdps;
 import test.generated.tables.Protocol;
 import test.generated.tables.ProtocolView;
 import test.generated.tables.Protocoldecision;
+import test.generated.tables.Protocoltype;
 import test.generated.tables.Pts;
 import test.generated.tables.RegCertView;
 import test.generated.tables.Regcert;
@@ -63,7 +64,7 @@ import test.generated.tables.VehicleView;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Public extends SchemaImpl {
 
-    private static final long serialVersionUID = -2126208704;
+    private static final long serialVersionUID = -1120825627;
 
     /**
      * The reference instance of <code>public</code>
@@ -164,6 +165,11 @@ public class Public extends SchemaImpl {
      * The table <code>public.ProtocolDecision</code>.
      */
     public final Protocoldecision PROTOCOLDECISION = test.generated.tables.Protocoldecision.PROTOCOLDECISION;
+
+    /**
+     * The table <code>public.ProtocolType</code>.
+     */
+    public final Protocoltype PROTOCOLTYPE = test.generated.tables.Protocoltype.PROTOCOLTYPE;
 
     /**
      * The table <code>public.RegCert</code>.
@@ -278,6 +284,7 @@ public class Public extends SchemaImpl {
             Sequences.POSTDPS_POSTDPS_PK_SEQ,
             Sequences.PROTOCOLDECISION_PROTOCOLDECISION_PK_SEQ,
             Sequences.PROTOCOL_PROTOCOL_PK_SEQ,
+            Sequences.PROTOCOLTYPE_PROTOCOLTYPE_PK_SEQ,
             Sequences.PTS_PTS_PK_SEQ,
             Sequences.REGCERT_REGCERT_PK_SEQ,
             Sequences.REGION_REGION_PK_SEQ,
@@ -314,6 +321,7 @@ public class Public extends SchemaImpl {
             Postdps.POSTDPS,
             Protocol.PROTOCOL,
             Protocoldecision.PROTOCOLDECISION,
+            Protocoltype.PROTOCOLTYPE,
             Regcert.REGCERT,
             Region.REGION,
             Typedecision.TYPEDECISION,
