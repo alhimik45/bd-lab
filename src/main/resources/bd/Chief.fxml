@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -13,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <tabs>
         <Tab text="Распределение">
             <content>
@@ -28,16 +33,11 @@
                                 </Label>
                                 <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="524.0" VBox.vgrow="ALWAYS">
                                     <children>
-                                        <TextField fx:id="searchAss" prefWidth="220.0">
+                                        <TextField fx:id="searchAss" prefWidth="220.0" promptText="Поиск...">
                                             <HBox.margin>
                                                 <Insets left="5.0" right="5.0" />
                                             </HBox.margin>
                                         </TextField>
-                                        <Button fx:id="searchButtonProtocols" mnemonicParsing="false" text="Искать">
-                                            <HBox.margin>
-                                                <Insets left="5.0" right="5.0" />
-                                            </HBox.margin>
-                                        </Button>
                                     </children>
                                 </HBox>
                             </children>
@@ -88,7 +88,10 @@
                     <bottom>
                         <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="52.0" prefWidth="524.0" BorderPane.alignment="CENTER">
                             <children>
-                                <Button fx:id="upd2" layoutX="130.0" layoutY="23.0" mnemonicParsing="false" onAction="#updateMan" text="Обновить" />
+                                <Button fx:id="upd2" layoutX="130.0" layoutY="23.0" mnemonicParsing="false" onAction="#updateMan" text="Обновить">
+                           <HBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </HBox.margin></Button>
                                 <Button fx:id="newProtocol1" mnemonicParsing="false" onAction="#newPid" text="Новый">
                                     <HBox.margin>
                                         <Insets left="5.0" right="5.0" />
@@ -154,7 +157,10 @@
                     <bottom>
                         <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="52.0" prefWidth="524.0" BorderPane.alignment="CENTER">
                             <children>
-                                <Button layoutX="130.0" layoutY="23.0" mnemonicParsing="false" onAction="#updatePost" text="Обновить" />
+                                <Button layoutX="130.0" layoutY="23.0" mnemonicParsing="false" onAction="#updatePost" text="Обновить">
+                           <HBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </HBox.margin></Button>
                                 <Button mnemonicParsing="false" onAction="#newPost" text="Новый">
                                     <HBox.margin>
                                         <Insets left="5.0" right="5.0" />
