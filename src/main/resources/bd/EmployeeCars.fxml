@@ -22,7 +22,7 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0">
                <children>
-                  <BorderPane layoutX="97.0" layoutY="38.0">
+                  <BorderPane layoutX="97.0" layoutY="19.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                      <bottom>
                         <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="52.0" prefWidth="524.0" BorderPane.alignment="CENTER">
                            <children>
