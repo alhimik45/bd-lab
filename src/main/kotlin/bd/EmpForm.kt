@@ -55,49 +55,17 @@ class EmpForm(pe: Person? = null, ee: Employe? = null) : View("Сотрудни�
         currentStage!!.close()
     }
 
-    fun tex(name: String, t: TextField): String {
-        if (t.text.isNullOrBlank()) {
-            Helpers.alert("$name не может быть пустым")
-            throw KekException()
-        }
-        return t.text!!
-    }
-
-    fun rege(name: String, pattern: String, cause: String, t: TextField): String {
-        if (!t.text.matches(Regex(pattern))) {
-            Helpers.alert("$name должно быть $cause")
-            throw KekException()
-        }
-        return t.text!!
-    }
-
-    fun dat(name: String, t: DatePicker): Date {
-        if (t.value == null) {
-            Helpers.alert("$name должно быть заполнено")
-            throw KekException()
-        }
-        return Date.valueOf(t.value)
-    }
-
-    fun <T> comb(name: String, t: ComboBox<T>): T {
-        if (t.selectionModel.selectedItem == null) {
-            Helpers.alert("$name должно быть выбрано")
-            throw KekException()
-        }
-        return t.selectionModel.selectedItem;
-    }
-
     fun save() {
         try {
-            p.fio = tex("ФИО", fio)
-            p.pasportseries = rege("Серия паспорта", "\\d{4}", "4 цифры", ser)
-            p.passportid = rege("Номер паспорта", "\\d{6}", "6 цифр", nom)
-            e.personalid = tex("Личный номер", num)
-            p.homeaddress = tex("Адрес", address)
-            e.login = tex("Логин", login)
+            p.fio = Logic.textCheckEmpty("ФИО", fio)
+            p.pasportseries = Logic.textCheckReg("Серия паспорта", "\\d{4}", "4 цифры", ser)
+            p.passportid = Logic.textCheckReg("Номер паспорта", "\\d{6}", "6 цифр", nom)
+            e.personalid = Logic.textCheckEmpty("Личный номер", num)
+            p.homeaddress = Logic.textCheckEmpty("Адрес", address)
+            e.login = Logic.textCheckEmpty("Логин", login)
             e.password = pass.text ?: ""
-            p.daybirth = dat("Дата рождения", date)
-            val ppos = comb("Должность", pos)
+            p.daybirth = Logic.dateCheckEmpty("Дата рождения", date)
+            val ppos = Logic.comboCheckEmpty("Должность", pos)
             e.positionPk = Logic.create!!.select().from(Tables.POSITION).where(Tables.POSITION.NAME.eq(ppos)).fetchOne().into(Position::class.java).positionPk
 
             if (p.personPk != null) {
