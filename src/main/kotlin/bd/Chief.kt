@@ -1,11 +1,11 @@
 package bd
 
+import javafx.beans.property.SimpleStringProperty
 import javafx.scene.control.TabPane
 import javafx.scene.control.TableColumn
 import javafx.scene.control.TableView
 import javafx.scene.control.TextField
 import javafx.scene.control.cell.PropertyValueFactory
-import org.jooq.Table
 import test.generated.Tables
 import test.generated.tables.pojos.*
 import tornadofx.View
@@ -31,7 +31,7 @@ class Chief : View("Начальник") {
     private val posM: TableColumn<EmployeView, String> by fxid()
     private val post: TableColumn<AllDistr, String> by fxid()
     private val address: TableColumn<Postdps, String> by fxid()
-    private val active: TableColumn<Postdps, Boolean> by fxid()
+    private val active: TableColumn<Postdps, String> by fxid()
 
     init {
         fio.cellValueFactory = PropertyValueFactory<AllDistr, String>("fio")
@@ -42,7 +42,9 @@ class Chief : View("Начальник") {
         posM.cellValueFactory = PropertyValueFactory<EmployeView, String>("name")
         post.cellValueFactory = PropertyValueFactory<AllDistr, String>("address")
         address.cellValueFactory = PropertyValueFactory<Postdps, String>("address")
-        active.cellValueFactory = PropertyValueFactory<Postdps, Boolean>("active")
+        active.setCellValueFactory { param ->
+            SimpleStringProperty(if (param.value.active) "Да" else "Нет")
+        }
         upd()
         EventBus.on(Events.EMP_UPD) { updateMan() }
         EventBus.on(Events.POST_UPD) { updatePost() }
