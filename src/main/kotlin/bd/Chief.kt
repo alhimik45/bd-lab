@@ -1,6 +1,8 @@
 package bd
 
 import javafx.beans.property.SimpleStringProperty
+import javafx.embed.swing.SwingFXUtils
+import javafx.scene.SnapshotParameters
 import javafx.scene.chart.BarChart
 import javafx.scene.chart.XYChart
 import javafx.scene.control.*
@@ -13,6 +15,7 @@ import tornadofx.View
 import java.io.FileOutputStream
 import java.time.LocalDate
 import java.util.*
+import javax.imageio.ImageIO
 import kotlin.collections.HashMap
 
 
@@ -302,5 +305,15 @@ class Chief : View("Начальник") {
             mySheet.autoSizeColumn(i)
         }
         myWorkBook.write(FileOutputStream(file))
+    }
+
+    fun expG() {
+        val fileChooser = FileChooser()
+        fileChooser.title = "Создать отчет"
+        val extFilter = FileChooser.ExtensionFilter("PNG files (*.png)", "*.png")
+        fileChooser.extensionFilters.add(extFilter)
+        val file = fileChooser.showSaveDialog(currentWindow) ?: return
+        val img = chart.snapshot(SnapshotParameters(), null)
+        ImageIO.write(SwingFXUtils.fromFXImage(img, null), "png", file)
     }
 }

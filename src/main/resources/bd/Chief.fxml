@@ -284,7 +284,7 @@
                 </Tab>
                 <Tab text="Работа офиса">
                      <content>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <BarChart fx:id="chart" legendSide="RIGHT" title="Количество обработанных заявок по дням">
                                 <xAxis>
@@ -294,6 +294,7 @@
                                   <NumberAxis side="LEFT" />
                                 </yAxis>
                               </BarChart>
+                              <Button mnemonicParsing="false" onAction="#expG" text="Экспортировать график" />
                            </children>
                         </VBox>
                      </content>
