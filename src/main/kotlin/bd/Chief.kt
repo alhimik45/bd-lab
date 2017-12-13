@@ -1,14 +1,12 @@
 package bd
 
 import javafx.beans.property.SimpleStringProperty
-import javafx.scene.control.TabPane
-import javafx.scene.control.TableColumn
-import javafx.scene.control.TableView
-import javafx.scene.control.TextField
+import javafx.scene.control.*
 import javafx.scene.control.cell.PropertyValueFactory
 import test.generated.Tables
 import test.generated.tables.pojos.*
 import tornadofx.View
+import java.time.LocalDate
 import java.util.*
 
 
@@ -19,6 +17,7 @@ class Chief : View("Начальник") {
     private val distribTable: TableView<AllDistr> by fxid()
     private val employeeTable: TableView<EmployeView> by fxid()
     private val postTable: TableView<Postdps> by fxid()
+    private val nars: TableView<BadsView> by fxid()
     private val searchEmployee: TextField by fxid()
     private val searchPost: TextField by fxid()
     private val searchAss: TextField by fxid()
@@ -32,6 +31,14 @@ class Chief : View("Начальник") {
     private val post: TableColumn<AllDistr, String> by fxid()
     private val address: TableColumn<Postdps, String> by fxid()
     private val active: TableColumn<Postdps, String> by fxid()
+    private val nar: TableColumn<BadsView, String> by fxid()
+    private val stat: TableColumn<BadsView, String> by fxid()
+    private val place: TableColumn<BadsView, String> by fxid()
+    private val insp: TableColumn<BadsView, String> by fxid()
+    private val daten: TableColumn<BadsView, Date> by fxid()
+
+    private val from: DatePicker by fxid()
+    private val to: DatePicker by fxid()
 
     init {
         fio.cellValueFactory = PropertyValueFactory<AllDistr, String>("fio")
@@ -42,6 +49,11 @@ class Chief : View("Начальник") {
         posM.cellValueFactory = PropertyValueFactory<EmployeView, String>("name")
         post.cellValueFactory = PropertyValueFactory<AllDistr, String>("address")
         address.cellValueFactory = PropertyValueFactory<Postdps, String>("address")
+        nar.cellValueFactory = PropertyValueFactory<BadsView, String>("fio")
+        stat.cellValueFactory = PropertyValueFactory<BadsView, String>("articlecop")
+        place.cellValueFactory = PropertyValueFactory<BadsView, String>("addressvioalation")
+        insp.cellValueFactory = PropertyValueFactory<BadsView, String>("fioi")
+        daten.cellValueFactory = PropertyValueFactory<BadsView, Date>("date")
         active.setCellValueFactory { param ->
             SimpleStringProperty(if (param.value.active) "Да" else "Нет")
         }
@@ -49,6 +61,12 @@ class Chief : View("Начальник") {
         EventBus.on(Events.EMP_UPD) { updateMan() }
         EventBus.on(Events.POST_UPD) { updatePost() }
         EventBus.on(Events.ASS_UPD) { update() }
+        from.valueProperty().addListener { _, _, _ ->
+            updateNars()
+        }
+        to.valueProperty().addListener { _, _, _ ->
+            updateNars()
+        }
         searchEmployee.textProperty().addListener { _, _, _ ->
             updateMan()
         }
@@ -67,6 +85,22 @@ class Chief : View("Начальник") {
         update()
         updateMan()
         updatePost()
+        updateNars()
+    }
+
+    fun updateNars() {
+        val data = nars.items
+        data.clear()
+        data.addAll(Logic.create!!.select()?.from(Tables.BADS_VIEW)?.fetch()?.into(BadsView::class.java)!!.filter { e ->
+            e.date.after(fromm(from.value,java.sql.Date(0L))) &&
+                    e.date.before(fromm(to.value,java.sql.Date(Long.MAX_VALUE)))
+        })
+    }
+
+    fun fromm(d: LocalDate?, def: java.sql.Date): java.sql.Date{
+        if(d == null)
+            return def
+        return java.sql.Date.valueOf(d)
     }
 
     fun update() {
