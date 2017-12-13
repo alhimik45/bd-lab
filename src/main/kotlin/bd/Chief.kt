@@ -11,7 +11,7 @@ import tornadofx.View
 import java.util.*
 
 
-class Chief : View("Начальника") {
+class Chief : View("Начальник") {
     override val root: TabPane by fxml()
 
 

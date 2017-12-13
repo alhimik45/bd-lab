@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
@@ -11,43 +16,80 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label contentDisplay="CENTER" text="Назначение на пост" textAlignment="CENTER">
-         <font>
-            <Font size="23.0" />
-         </font>
-         <VBox.margin>
-            <Insets top="10.0" />
-         </VBox.margin>
-      </Label>
-      <GridPane>
-        <columnConstraints>
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="173.0" />
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="427.0" minWidth="10.0" prefWidth="427.0" />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints />
-            <RowConstraints />
-        </rowConstraints>
-         <children>
-             <Label text="Пост" GridPane.rowIndex="1" />
-             <ComboBox prefWidth="350.0" GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="post" />
-             <Label text="Сотрудник" GridPane.rowIndex="2" />
-             <ComboBox prefWidth="350.0" GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="emp" />
-             <Label text="День назначения" GridPane.rowIndex="3" />
-             <DatePicker fx:id="date" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-         </children>
-      </GridPane>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="150.0">
-         <children>
-            <Button mnemonicParsing="false" onAction="#save" text="Сохранить" />
-            <Button mnemonicParsing="false" onAction="#savenext" text="Сохранить и продолжить" />
-            <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#cancel" text="Отмена" />
-         </children>
-      </HBox>
+      <BorderPane>
+         <top>
+            <Label contentDisplay="CENTER" text="Назначение на пост" textAlignment="CENTER" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+         </top>
+         <center>
+            <GridPane BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" />
+                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+              </rowConstraints>
+               <children>
+                   <Label text="Пост" GridPane.rowIndex="1" />
+                   <ComboBox fx:id="post" prefWidth="198.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="10.0" top="5.0" />
+                     </GridPane.margin>
+                  </ComboBox>
+                   <Label text="Сотрудник" GridPane.rowIndex="2" />
+                   <ComboBox fx:id="emp" prefWidth="198.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="10.0" top="5.0" />
+                     </GridPane.margin>
+                  </ComboBox>
+                   <Label text="День назначения" GridPane.rowIndex="3" />
+                   <DatePicker fx:id="date" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets left="10.0" top="5.0" />
+                     </GridPane.margin>
+                  </DatePicker>
+               </children>
+            </GridPane>
+         </center>
+         <bottom>
+            <HBox alignment="CENTER" BorderPane.alignment="CENTER">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#save" text="Сохранить">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#savenext" text="Сохранить и продолжить">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#cancel" text="Отмена">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" top="10.0" />
+               </padding>
+            </HBox>
+         </bottom>
+         <padding>
+            <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+         </padding>
+      </BorderPane>
    </children>
 </VBox>
