@@ -1,5 +1,6 @@
 package bd
 
+import javafx.scene.control.TabPane
 import javafx.scene.control.TableColumn
 import javafx.scene.control.TableView
 import javafx.scene.control.cell.PropertyValueFactory
@@ -11,7 +12,7 @@ import java.util.*
 
 
 class EmployeeCars : View("Учёт транспортных средств") {
-    override val root: BorderPane by fxml()
+    override val root: TabPane by fxml()
     private val vehicleTable: TableView<VehicleView> by fxid()
     private val licPlate: TableColumn<VehicleView, String> by fxid()
     private val model: TableColumn<VehicleView, String> by fxid()
