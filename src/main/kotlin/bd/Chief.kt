@@ -4,14 +4,13 @@ import javafx.beans.property.SimpleStringProperty
 import javafx.scene.control.*
 import javafx.scene.control.cell.PropertyValueFactory
 import javafx.stage.FileChooser
+import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import test.generated.Tables
 import test.generated.tables.pojos.*
 import tornadofx.View
 import java.io.FileOutputStream
 import java.time.LocalDate
 import java.util.*
-import org.apache.poi.xssf.usermodel.XSSFSheet
-import org.apache.poi.xssf.usermodel.XSSFWorkbook
 
 class Chief : View("Начальник") {
     override val root: TabPane by fxml()
@@ -95,13 +94,13 @@ class Chief : View("Начальник") {
         val data = nars.items
         data.clear()
         data.addAll(Logic.create!!.select()?.from(Tables.BADS_VIEW)?.fetch()?.into(BadsView::class.java)!!.filter { e ->
-            e.date.after(fromm(from.value,java.sql.Date(0L))) &&
-                    e.date.before(fromm(to.value,java.sql.Date(Long.MAX_VALUE)))
+            e.date.after(fromm(from.value, java.sql.Date(0L))) &&
+                    e.date.before(fromm(to.value, java.sql.Date(Long.MAX_VALUE)))
         })
     }
 
-    fun fromm(d: LocalDate?, def: java.sql.Date): java.sql.Date{
-        if(d == null)
+    fun fromm(d: LocalDate?, def: java.sql.Date): java.sql.Date {
+        if (d == null)
             return def
         return java.sql.Date.valueOf(d)
     }
@@ -219,7 +218,7 @@ class Chief : View("Начальник") {
         AssignForm(pp).openModal(block = true)
     }
 
-    fun saveNars(){
+    fun saveNars() {
         val fileChooser = FileChooser()
         fileChooser.title = "Создать отчет"
         val extFilter = FileChooser.ExtensionFilter("XLSX files (*.xlsx)", "*.xlsx")
@@ -227,20 +226,38 @@ class Chief : View("Начальник") {
         val file = fileChooser.showSaveDialog(currentWindow) ?: return
         val myWorkBook = XSSFWorkbook()
         val mySheet = myWorkBook.createSheet("Отчёт")
-        var rowNum = mySheet.getLastRowNum()
-//        for (o in companyTable.getItems()) {
-//            val row = mySheet.createRow(rowNum++)
-//            var cellnum = 0
-//            var cell = row.createCell(cellnum++)
-//            cell.setCellValue(rowNum)
-//            cell = row.createCell(cellnum++)
-//            cell.setCellValue(o.getName())
-//            cell = row.createCell(cellnum++)
-//            cell.setCellValue(o.getAddress().toString())
-//            cell = row.createCell(cellnum)
-//            cell.setCellValue(o.getWorkers())
-//        }
-        for (i in 0..4) {
+        var rowNum = mySheet.lastRowNum
+        var row = mySheet.createRow(rowNum++)
+        var cellnum = 0
+        var cell = row.createCell(cellnum++)
+        cell.setCellValue("")
+        cell = row.createCell(cellnum++)
+        cell.setCellValue("Нарушитель")
+        cell = row.createCell(cellnum++)
+        cell.setCellValue("Статья")
+        cell = row.createCell(cellnum++)
+        cell.setCellValue("Инспектор")
+        cell = row.createCell(cellnum++)
+        cell.setCellValue("Место нарушения")
+        cell = row.createCell(cellnum)
+        cell.setCellValue("Дата нарушения")
+        for (o in nars.items) {
+            row = mySheet.createRow(rowNum++)
+            cellnum = 0
+            cell = row.createCell(cellnum++)
+            cell.setCellValue(rowNum.toDouble())
+            cell = row.createCell(cellnum++)
+            cell.setCellValue(o.fio)
+            cell = row.createCell(cellnum++)
+            cell.setCellValue(o.articlecop)
+            cell = row.createCell(cellnum++)
+            cell.setCellValue(o.fioi)
+            cell = row.createCell(cellnum++)
+            cell.setCellValue(o.addressvioalation)
+            cell = row.createCell(cellnum)
+            cell.setCellValue(o.date)
+        }
+        for (i in 0..7) {
             mySheet.autoSizeColumn(i)
         }
         myWorkBook.write(FileOutputStream(file))

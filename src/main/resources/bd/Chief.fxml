@@ -247,6 +247,7 @@
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                  </columnResizePolicy>
                               </TableView>
+                              <Button mnemonicParsing="false" onAction="#saveNars" text="Экспортировать в Excel" />
                            </children>
                         </VBox>
                      </content>
