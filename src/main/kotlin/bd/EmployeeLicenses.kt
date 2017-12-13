@@ -114,20 +114,12 @@ class EmployeeLicenses : View("Учет водительских удостов�
                 .where(Tables.EXAMLIST.EXAMLIST_PK.eq(ex.examlistPk))
                 .fetchOne()
                 .into(Examlist::class.java)
-//        val lock = Logic.create!!.
-//                fetchOne("SELECT pg_try_advisory_lock(${Lock.EXAMLIST.ordinal},${ex.examlistPk});")
-//                .into(Boolean::class.java)
         if (!Logic.lock(Lock.EXAMLIST, ex.examlistPk)) {
             Helpers.alert("Данная запись редактируется другим пользователем")
             return
         }
-//        val lock2 = Logic.create!!
-//                .fetchOne("SELECT pg_try_advisory_lock(${Lock.PERSON.ordinal},${ex.personPk});")
-//                .into(Boolean::class.java)
         if (!Logic.lock(Lock.PERSON, ex.personPk)) {
             Logic.unlock(Lock.EXAMLIST, ex.examlistPk)
-//            Logic.create!!
-//                    .execute("SELECT pg_advisory_unlock(${Lock.EXAMLIST.ordinal},${ex.examlistPk})")
             Helpers.alert("Данная запись редактируется другим пользователем")
             return
         }
