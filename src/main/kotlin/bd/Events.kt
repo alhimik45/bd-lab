@@ -5,5 +5,7 @@ enum class Events {
     EXAM_UPD,
     POST_UPD,
     ASS_UPD,
-    DRLI_UPD
+    DRLI_UPD,
+
+    FL_UPD
 }
