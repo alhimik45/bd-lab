@@ -39,57 +39,37 @@
                     </columnConstraints>
                     <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints />
                         <RowConstraints />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
                     </rowConstraints>
                     <children>
                         <Label text="ФИО" />
-                        <TextField fx:id="fio" GridPane.columnIndex="1">
-                            <GridPane.margin>
-                                <Insets bottom="5.0" left="10.0" top="5.0" />
-                            </GridPane.margin>
-                        </TextField>
-                        <Label text="Серия паспорта" GridPane.rowIndex="1" />
-                        <TextField fx:id="ser" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                            <GridPane.margin>
-                                <Insets bottom="5.0" left="10.0" top="5.0" />
-                            </GridPane.margin>
-                        </TextField>
-                        <Label text="Номер паспорта" GridPane.rowIndex="2" />
-                        <TextField fx:id="nom" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                            <GridPane.margin>
-                                <Insets bottom="5.0" left="10.0" top="5.0" />
-                            </GridPane.margin>
-                        </TextField>
-                        <Label text="Дата рождения" GridPane.rowIndex="3" />
-                        <DatePicker fx:id="date" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <Label text="Дата нарушения " GridPane.rowIndex="4" />
+                        <DatePicker fx:id="date" GridPane.columnIndex="1" GridPane.rowIndex="4">
                             <GridPane.margin>
                                 <Insets bottom="5.0" left="10.0" top="5.0" />
                             </GridPane.margin>
                         </DatePicker>
-                        <Label text="Адрес" GridPane.rowIndex="4" />
-                        <TextField fx:id="address" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <Label text="Статья КоАП" GridPane.rowIndex="2" GridPane.rowSpan="2" />
+                        <Label text="Адрес нарушения" GridPane.rowIndex="5" />
+                        <TextField fx:id="addressnar" GridPane.columnIndex="1" GridPane.rowIndex="5">
                             <GridPane.margin>
                                 <Insets bottom="5.0" left="10.0" top="5.0" />
                             </GridPane.margin>
                         </TextField>
-                        <Label text="Статья КоАП" GridPane.rowIndex="5" GridPane.rowSpan="2" />
-                        <Label text="Адрес нарушения" GridPane.rowIndex="7" />
-                        <TextField fx:id="addressnar" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                            <GridPane.margin>
-                                <Insets bottom="5.0" left="10.0" top="5.0" />
-                            </GridPane.margin>
-                        </TextField>
-                  <TextArea fx:id="stat" prefHeight="800.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.rowSpan="2">
+                  <TextArea fx:id="stat" prefHeight="800.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.rowSpan="2">
                      <GridPane.margin>
                         <Insets bottom="5.0" left="10.0" top="5.0" />
                      </GridPane.margin>
                   </TextArea>
+                  <ComboBox fx:id="fio" prefWidth="200.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </ComboBox>
                     </children>
                     <BorderPane.margin>
                         <Insets left="10.0" right="10.0" />
