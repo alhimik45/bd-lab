@@ -1,8 +1,7 @@
 package bd
 
 import javafx.scene.layout.VBox
-import test.generated.tables.Protocol
-import test.generated.tables.pojos.Postdps
+import test.generated.tables.pojos.Protocol
 import tornadofx.*
 
 class ProtocolForm(pe: Protocol?  = null) : View("Протокол") {

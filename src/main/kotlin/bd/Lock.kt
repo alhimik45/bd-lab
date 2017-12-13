@@ -8,4 +8,5 @@ enum class Lock {
     DRLI,
     DRCA,
     ASS,
+    PRTC
 }
