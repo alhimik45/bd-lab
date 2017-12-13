@@ -44,7 +44,7 @@
                   <RowConstraints maxHeight="109.0" minHeight="10.0" prefHeight="109.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="ФИО:" />
+                  <Label text="Лицо" />
                   <Label text="Номер ВУ:" GridPane.rowIndex="1" />
                   <Label text="Дата выдачи:" GridPane.rowIndex="2" />
                   <TextField fx:id="num" GridPane.columnIndex="1" GridPane.rowIndex="1">

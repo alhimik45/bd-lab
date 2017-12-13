@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
+
 <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <BorderPane VBox.vgrow="NEVER">
@@ -34,7 +37,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" />
                     </rowConstraints>
                     <children>
-                        <Label text="ФИО" />
+                        <Label text="Лицо" />
                         <Label text="Дата нарушения " GridPane.rowIndex="4" />
                         <DatePicker fx:id="date" GridPane.columnIndex="1" GridPane.rowIndex="4">
                             <GridPane.margin>

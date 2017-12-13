@@ -33,7 +33,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="ФИО:" />
+                  <Label text="Лицо:" />
                   <Label text="Категория:" GridPane.rowIndex="1" />
                   <Label text="Статус:" GridPane.rowIndex="2" />
                   <Label text="Дата:" GridPane.rowIndex="3" />
