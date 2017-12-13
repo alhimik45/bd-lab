@@ -30,7 +30,7 @@ class Chief : View("Начальника") {
         update()
     }
 
-    private fun update() {
+    fun update() {
         val data = distribTable.items
         data.clear()
         data.addAll(Logic.create!!.select()?.from(Tables.ALL_DISTR)?.fetch()?.into(AllDistr::class.java)!!.asIterable())
