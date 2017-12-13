@@ -6,10 +6,8 @@ import javafx.scene.control.TableView
 import javafx.scene.control.TextField
 import javafx.scene.control.cell.PropertyValueFactory
 import test.generated.Tables
-import test.generated.tables.pojos.AllDistr
-import test.generated.tables.pojos.Employe
-import test.generated.tables.pojos.EmployeView
-import test.generated.tables.pojos.Person
+import test.generated.tables.pojos.*
+import tornadofx.FX.Companion.lock
 import tornadofx.View
 import java.util.*
 
@@ -20,7 +18,9 @@ class Chief : View("Начальника") {
 
     private val distribTable: TableView<AllDistr> by fxid()
     private val employeeTable: TableView<EmployeView> by fxid()
+    private val postTable: TableView<Postdps> by fxid()
     private val searchEmployee: TextField by fxid()
+    private val searchPost: TextField by fxid()
 
     private val fio: TableColumn<AllDistr, String> by fxid()
     private val fioM: TableColumn<EmployeView, String> by fxid()
@@ -29,6 +29,8 @@ class Chief : View("Начальника") {
     private val numM: TableColumn<EmployeView, String> by fxid()
     private val posM: TableColumn<EmployeView, String> by fxid()
     private val post: TableColumn<AllDistr, String> by fxid()
+    private val address: TableColumn<Postdps, String> by fxid()
+    private val active: TableColumn<Postdps, Boolean> by fxid()
 
     init {
         fio.cellValueFactory = PropertyValueFactory<AllDistr, String>("fio")
@@ -38,8 +40,11 @@ class Chief : View("Начальника") {
         numM.cellValueFactory = PropertyValueFactory<EmployeView, String>("personalid")
         posM.cellValueFactory = PropertyValueFactory<EmployeView, String>("name")
         post.cellValueFactory = PropertyValueFactory<AllDistr, String>("address")
+        address.cellValueFactory = PropertyValueFactory<Postdps, String>("address")
+        active.cellValueFactory = PropertyValueFactory<Postdps, Boolean>("active")
         update()
         updateMan()
+        updatePost()
         EventBus.on(Events.EMP_UPD) { updateMan() }
         searchEmployee.textProperty().addListener { _,_,_ ->
             updateMan()
@@ -71,6 +76,24 @@ class Chief : View("Начальника") {
         })
     }
 
+    fun updatePost() {
+        val data = postTable.items
+        data.clear()
+        data.addAll(Logic.create!!.select()?.from(Tables.POSTDPS)?.fetch()?.into(Postdps::class.java)!!.filter { e ->
+            val v = searchPost.text
+            if (v == null || v.isEmpty()) {
+                true
+            } else {
+                val lowerCaseFilter = v.toLowerCase().split(" ").filter { it.isNotBlank() }
+                lowerCaseFilter.any{e.address.toLowerCase().contains(it)}
+            }
+        })
+    }
+
+    fun newPost() {
+        PostForm().openModal(block = true)
+    }
+
     fun newPid() {
         EmpForm().openModal(block = true)
     }
@@ -95,5 +118,19 @@ class Chief : View("Начальника") {
             return
         }
         EmpForm(p, e).openModal(block = true)
+    }
+
+    fun editPost() {
+        if (postTable.selectionModel.selectedItem == null){
+            Helpers.alert("Необходимо выбрать запись для редактирования")
+            return
+        }
+        val p = postTable.selectionModel.selectedItem
+        val lock = Logic.lock(Lock.POST, p.postdpsPk)
+        if (!lock) {
+            Helpers.alert("Данная запись редактируется другим пользователем")
+            return
+        }
+        PostForm(p).openModal(block = true)
     }
 }

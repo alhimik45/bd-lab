@@ -3,5 +3,6 @@ package bd
 enum class Lock {
     PERSON ,
     EMP,
-    EXAMLIST
+    EXAMLIST,
+    POST,
 }
