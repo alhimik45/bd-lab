@@ -23,4 +23,11 @@ internal object Logic {
             create = null
         }
     }
+
+    fun lock(elem: Lock, id: Long):Boolean = Logic.create!!
+                .fetchOne("SELECT pg_try_advisory_lock(${elem.ordinal}, $id);")
+                .into(Boolean::class.java)
+
+    fun unlock(elem: Lock, id: Long) = create!!
+            .execute("SELECT pg_advisory_unlock(${elem.ordinal}, $id)")
 }

@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -13,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <tabs>
         <Tab text="Водительские удостоверения">
             <content>
@@ -68,11 +73,6 @@
                                         <Insets left="5.0" right="5.0" />
                                     </HBox.margin>
                                 </Button>
-                                <Button fx:id="rmLicense" mnemonicParsing="false" text="Удалить">
-                                    <HBox.margin>
-                                        <Insets left="5.0" right="5.0" />
-                                    </HBox.margin>
-                                </Button>
                             </children>
                             <BorderPane.margin>
                                 <Insets />
@@ -89,17 +89,12 @@
                         <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="52.0" prefWidth="524.0" BorderPane.alignment="CENTER">
                             <children>
                         <Button fx:id="refr1" mnemonicParsing="false" onAction="#updateEx" text="Обновить" />
-                                <Button fx:id="newExam" mnemonicParsing="false" text="Новая ведомость">
+                                <Button fx:id="newExam" mnemonicParsing="false" onAction="#addEx" text="Новая ведомость">
                                     <HBox.margin>
                                         <Insets left="5.0" right="5.0" />
                                     </HBox.margin>
                                 </Button>
-                                <Button fx:id="editExam" mnemonicParsing="false" text="Редактировать">
-                                    <HBox.margin>
-                                        <Insets left="5.0" right="5.0" />
-                                    </HBox.margin>
-                                </Button>
-                                <Button fx:id="rmExam" mnemonicParsing="false" text="Удалить">
+                                <Button fx:id="editExam" mnemonicParsing="false" onAction="#modEx" text="Редактировать">
                                     <HBox.margin>
                                         <Insets left="5.0" right="5.0" />
                                     </HBox.margin>

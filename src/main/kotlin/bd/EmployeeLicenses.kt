@@ -12,22 +12,28 @@ import test.generated.Tables.EXAM_VIEW
 import tornadofx.*
 import java.util.*
 import javafx.collections.transformation.FilteredList
-
+import sun.rmi.runtime.Log
+import test.generated.Tables
+import test.generated.tables.pojos.Examlist
 
 
 class EmployeeLicenses : View("Учет водительских удостоверений") {
     override val root: TabPane by fxml()
+
     private val licenseTable: TableView<DriverLicenseView> by fxid()
     private val fio: TableColumn<DriverLicenseView, String> by fxid()
     private val cat: TableColumn<DriverLicenseView, String> by fxid()
     private val num: TableColumn<DriverLicenseView, String> by fxid()
     private val date: TableColumn<DriverLicenseView, Date> by fxid()
+
     private val examTable: TableView<ExamView> by fxid()
     private val fio1: TableColumn<ExamView, String> by fxid()
     private val result: TableColumn<ExamView, String> by fxid()
     private val date1: TableColumn<ExamView, Date> by fxid()
+
     private val searchLicenses: TextField by fxid()
     private val searchExam: TextField by fxid()
+
     private val dataDrLi = licenseTable.items
     private val dataEx = examTable.items
     private var searchDrLi = FilteredList<DriverLicenseView>(dataDrLi){ _ -> true}
@@ -41,8 +47,15 @@ class EmployeeLicenses : View("Учет водительских удостов�
         fio1.cellValueFactory = PropertyValueFactory<ExamView, String>("fio")
         result.cellValueFactory = PropertyValueFactory<ExamView, String>("results")
         date1.cellValueFactory = PropertyValueFactory<ExamView, Date>("date")
+
+        licenseTable.columnResizePolicy = SmartResize.POLICY
+        examTable.columnResizePolicy = SmartResize.POLICY
+
         updateDrLi()
         updateEx()
+
+
+        //Enable search
         searchLicenses.textProperty().addListener { _, _, newValue ->
             searchDrLi.setPredicate { item ->
                 if (newValue == null || newValue.isEmpty()) {
@@ -68,6 +81,7 @@ class EmployeeLicenses : View("Учет водительских удостов�
                 }
             }
         }
+
     }
 
     fun updateDrLi() {
@@ -80,7 +94,57 @@ class EmployeeLicenses : View("Учет водительских удостов�
     fun updateEx() {
         dataEx.clear()
         dataEx.addAll(Logic.create!!.select()?.from(EXAM_VIEW)?.fetch()?.into(ExamView::class.java)!!.asIterable())
-        searchEx = FilteredList<ExamView>(examTable.items){ _ -> true}
+        searchEx = FilteredList<ExamView>(dataEx){ _ -> true}
         examTable.items = searchEx
+    }
+
+    fun addEx() {
+        ExamForm().openModal(block = true)
+    }
+
+    fun modEx() {
+        if (examTable.selectionModel.selectedItem == null){
+            Helpers.alert("Необходимо выбрать запись для редактирования")
+            return
+        }
+        val ex = examTable.selectionModel.selectedItem
+        val e = Logic.create!!
+                .select()
+                .from(Tables.EXAMLIST)
+                .where(Tables.EXAMLIST.EXAMLIST_PK.eq(ex.examlistPk))
+                .fetchOne()
+                .into(Examlist::class.java)
+//        val lock = Logic.create!!.
+//                fetchOne("SELECT pg_try_advisory_lock(${Lock.EXAMLIST.ordinal},${ex.examlistPk});")
+//                .into(Boolean::class.java)
+        if (!Logic.lock(Lock.EXAMLIST, ex.examlistPk)) {
+            Helpers.alert("Данная запись редактируется другим пользователем")
+            return
+        }
+//        val lock2 = Logic.create!!
+//                .fetchOne("SELECT pg_try_advisory_lock(${Lock.PERSON.ordinal},${ex.personPk});")
+//                .into(Boolean::class.java)
+        if (!Logic.lock(Lock.PERSON, ex.personPk)) {
+            Logic.unlock(Lock.EXAMLIST, ex.examlistPk)
+//            Logic.create!!
+//                    .execute("SELECT pg_advisory_unlock(${Lock.EXAMLIST.ordinal},${ex.examlistPk})")
+            Helpers.alert("Данная запись редактируется другим пользователем")
+            return
+        }
+
+        ExamForm(e).openModal(block = true)
+    }
+
+    fun addDrLi() {
+
+    }
+
+    fun modDrLi() {
+        if (licenseTable.selectionModel.selectedItem == null){
+            Helpers.alert("Необходимо выбрать запись для редактирования")
+            return
+        }
+
+
     }
 }
