@@ -19,6 +19,7 @@ import test.generated.tables.AllDistr;
 import test.generated.tables.Appderigistration;
 import test.generated.tables.Appregistration;
 import test.generated.tables.Assignment;
+import test.generated.tables.BadsView;
 import test.generated.tables.Category;
 import test.generated.tables.CurrentDistrView;
 import test.generated.tables.Distrorder;
@@ -64,7 +65,7 @@ import test.generated.tables.VehicleView;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Public extends SchemaImpl {
 
-    private static final long serialVersionUID = -1120825627;
+    private static final long serialVersionUID = -1513811671;
 
     /**
      * The reference instance of <code>public</code>
@@ -202,6 +203,11 @@ public class Public extends SchemaImpl {
     public final AllDistr ALL_DISTR = test.generated.tables.AllDistr.ALL_DISTR;
 
     /**
+     * The table <code>public.bads_view</code>.
+     */
+    public final BadsView BADS_VIEW = test.generated.tables.BadsView.BADS_VIEW;
+
+    /**
      * The table <code>public.current_distr_view</code>.
      */
     public final CurrentDistrView CURRENT_DISTR_VIEW = test.generated.tables.CurrentDistrView.CURRENT_DISTR_VIEW;
@@ -328,6 +334,7 @@ public class Public extends SchemaImpl {
             Typev.TYPEV,
             Vehicle.VEHICLE,
             AllDistr.ALL_DISTR,
+            BadsView.BADS_VIEW,
             CurrentDistrView.CURRENT_DISTR_VIEW,
             DriverLicenseView.DRIVER_LICENSE_VIEW,
             EmployeView.EMPLOYE_VIEW,

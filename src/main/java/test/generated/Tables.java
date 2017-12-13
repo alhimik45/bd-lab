@@ -10,6 +10,7 @@ import test.generated.tables.AllDistr;
 import test.generated.tables.Appderigistration;
 import test.generated.tables.Appregistration;
 import test.generated.tables.Assignment;
+import test.generated.tables.BadsView;
 import test.generated.tables.Category;
 import test.generated.tables.CurrentDistrView;
 import test.generated.tables.Distrorder;
@@ -184,6 +185,11 @@ public class Tables {
      * The table <code>public.all_distr</code>.
      */
     public static final AllDistr ALL_DISTR = test.generated.tables.AllDistr.ALL_DISTR;
+
+    /**
+     * The table <code>public.bads_view</code>.
+     */
+    public static final BadsView BADS_VIEW = test.generated.tables.BadsView.BADS_VIEW;
 
     /**
      * The table <code>public.current_distr_view</code>.

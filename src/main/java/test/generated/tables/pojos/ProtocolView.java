@@ -23,7 +23,7 @@ import javax.annotation.Generated;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ProtocolView implements Serializable {
 
-    private static final long serialVersionUID = 421465448;
+    private static final long serialVersionUID = -806545999;
 
     private String fio;
     private String pasportseries;
@@ -33,6 +33,7 @@ public class ProtocolView implements Serializable {
     private Date   date;
     private Long   personPk;
     private Long   protocolPk;
+    private String name;
 
     public ProtocolView() {}
 
@@ -45,6 +46,7 @@ public class ProtocolView implements Serializable {
         this.date = value.date;
         this.personPk = value.personPk;
         this.protocolPk = value.protocolPk;
+        this.name = value.name;
     }
 
     public ProtocolView(
@@ -55,7 +57,8 @@ public class ProtocolView implements Serializable {
         String addressvioalation,
         Date   date,
         Long   personPk,
-        Long   protocolPk
+        Long   protocolPk,
+        String name
     ) {
         this.fio = fio;
         this.pasportseries = pasportseries;
@@ -65,6 +68,7 @@ public class ProtocolView implements Serializable {
         this.date = date;
         this.personPk = personPk;
         this.protocolPk = protocolPk;
+        this.name = name;
     }
 
     public String getFio() {
@@ -131,6 +135,14 @@ public class ProtocolView implements Serializable {
         this.protocolPk = protocolPk;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("ProtocolView (");
@@ -143,6 +155,7 @@ public class ProtocolView implements Serializable {
         sb.append(", ").append(date);
         sb.append(", ").append(personPk);
         sb.append(", ").append(protocolPk);
+        sb.append(", ").append(name);
 
         sb.append(")");
         return sb.toString();
