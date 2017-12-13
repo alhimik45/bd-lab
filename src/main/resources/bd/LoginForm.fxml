@@ -45,12 +45,12 @@
          <children>
             <Label text="Логин:" GridPane.halignment="RIGHT" />
             <Label text="Пароль:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-            <TextField fx:id="loginData" text="yii" GridPane.columnIndex="1">
+            <TextField fx:id="loginData" text="ccc" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets left="20.0" right="20.0" />
                </GridPane.margin>
             </TextField>
-            <PasswordField fx:id="passwordData" text="yii" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <PasswordField fx:id="passwordData" text="ccc" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="20.0" right="20.0" />
                </GridPane.margin>

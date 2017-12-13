@@ -1,5 +1,5 @@
 package bd
 
 enum class Events {
-    LOGIN_DONE
+    EMP_UPD
 }

@@ -18,7 +18,6 @@ class LoginForm : Fragment("Вход на рабочее место") {
             Helpers.alert("Данные не верны")
             System.exit(0)
         }
-        EventBus.emit(Events.LOGIN_DONE)
         currentStage!!.hide()
         when (Logic.user!!.positionPk!!) {
             1L -> {
