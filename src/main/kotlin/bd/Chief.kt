@@ -5,6 +5,7 @@ import javafx.scene.control.TableColumn
 import javafx.scene.control.TableView
 import javafx.scene.control.TextField
 import javafx.scene.control.cell.PropertyValueFactory
+import org.jooq.Table
 import test.generated.Tables
 import test.generated.tables.pojos.*
 import tornadofx.View
@@ -154,11 +155,12 @@ class Chief : View("Начальника") {
             return
         }
         val p = distribTable.selectionModel.selectedItem
+        val pp = Logic.create!!.select().from(Tables.ASSIGNMENT).where(Tables.ASSIGNMENT.ASSIGNMENT_PK.eq(p.assignmentPk)).fetchOne().into(Assignment::class.java)
         val lock = Logic.lock(Lock.ASS, p.assignmentPk)
         if (!lock) {
             Helpers.alert("Данная запись редактируется другим пользователем")
             return
         }
-        AssignForm().openModal(block = true)
+        AssignForm(pp).openModal(block = true)
     }
 }

@@ -12,6 +12,10 @@ import test.generated.tables.pojos.EmployeView
 import java.sql.Date
 import java.sql.DriverManager
 import java.sql.SQLException
+import org.jooq.impl.DefaultExecuteListenerProvider
+import org.jooq.impl.DefaultConfiguration
+
+
 
 internal object Logic {
     var create: DSLContext? = null
@@ -21,7 +25,11 @@ internal object Logic {
         try {
             val url = "jdbc:postgresql://alhimik.me:5432/lab"
             val conn = DriverManager.getConnection(url, dbUser, dbPassword)
-            create = DSL.using(conn, SQLDialect.POSTGRES_9_4)
+            val configuration = DefaultConfiguration().set(conn).set(SQLDialect.POSTGRES_9_4)
+            configuration.set(DefaultExecuteListenerProvider(PrettyPrinter()))
+
+            // Create a DSLContext from the above configuration
+            create = DSL.using(configuration)
             user = create!!.select().from(EMPLOYE_VIEW).where(EMPLOYE_VIEW.LOGIN.eq(dbUser)).fetchOne().into(EmployeView::class.java)
         } catch (e: SQLException) {
             create = null
@@ -67,6 +75,6 @@ internal object Logic {
         return Date.valueOf(t.value)
     }
 
-    var sn: Boolean = true
+    var sn: Boolean = false
 
 }

@@ -53,7 +53,6 @@ class AssignForm(pe: Assignment? = null) : View("Распределение") {
         Logic.sn = true
         savenext()
         Logic.sn = false
-
     }
 
     fun savenext() {
@@ -65,6 +64,15 @@ class AssignForm(pe: Assignment? = null) : View("Распределение") {
             p.employePk = v3.employePk
             p.date = Logic.dateCheckEmpty("Дата работы", date)
             p.personPk = v3.personPk
+            val r = Logic.create!!.select().from(Tables.ASSIGNMENT).where(Tables.ASSIGNMENT.DATE.eq(p.date).and(
+                    Tables.ASSIGNMENT.EMPLOYE_PK.eq(p.employePk).and(
+                            Tables.ASSIGNMENT.POSTDPS_PK.eq(p.postdpsPk)
+                    )
+            )).fetchOne()
+            if(r != null){
+                Helpers.alert("Данное назначение уже существует")
+                return
+            }
 
             if (p.assignmentPk != null) {
                 val pr = Logic.create!!.newRecord(Tables.ASSIGNMENT, p)
@@ -75,11 +83,11 @@ class AssignForm(pe: Assignment? = null) : View("Распределение") {
                 pr.store()
             }
             EventBus.emit(Events.ASS_UPD)
-            if(Logic.sn) currentStage!!.close()
+            if (Logic.sn) currentStage!!.close()
         } catch (e: KekException) {
 
         }
-        p.assignmentPk = 0
+        p.assignmentPk = null
     }
 }
 
