@@ -25,54 +25,70 @@
                     <columnConstraints>
                         <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" />
                         <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" />
+                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" />
                     </columnConstraints>
                     <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints />
+                        <RowConstraints />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" />
                     </rowConstraints>
                     <children>
                         <Label text="Лицо" />
-                        <Label text="Дата нарушения " GridPane.rowIndex="4" />
-                        <DatePicker fx:id="date" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <Label text="Дата нарушения " GridPane.rowIndex="6" />
+                        <DatePicker fx:id="date" GridPane.columnIndex="1" GridPane.rowIndex="6">
                             <GridPane.margin>
                                 <Insets bottom="5.0" left="10.0" top="5.0" />
                             </GridPane.margin>
                         </DatePicker>
-                        <Label text="Подробности" GridPane.rowIndex="2" GridPane.rowSpan="2" />
+                        <Label text="Подробности" GridPane.rowIndex="3" GridPane.rowSpan="2" />
                         <Label text="Адрес нарушения" GridPane.rowIndex="5" />
                         <TextField fx:id="addressnar" GridPane.columnIndex="1" GridPane.rowIndex="5">
                             <GridPane.margin>
                                 <Insets bottom="5.0" left="10.0" top="5.0" />
                             </GridPane.margin>
                         </TextField>
-                  <TextArea fx:id="pod" prefHeight="800.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.rowSpan="2">
+                  <TextArea fx:id="pod" prefHeight="800.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.rowSpan="2">
                      <GridPane.margin>
                         <Insets bottom="5.0" left="10.0" top="5.0" />
                      </GridPane.margin>
                   </TextArea>
-                  <ComboBox fx:id="fio" prefWidth="200.0" GridPane.columnIndex="1">
-                     <GridPane.margin>
-                        <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
-                     </GridPane.margin>
-                  </ComboBox>
-                  <ComboBox fx:id="protocolType" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <ComboBox fx:id="protocolType" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
                      <GridPane.margin>
                         <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                      </GridPane.margin>
                   </ComboBox>
-                  <Label text="Тип протокола" GridPane.rowIndex="6" />
+                  <Label text="Тип протокола" GridPane.rowIndex="8" />
                   <TextField fx:id="stat" GridPane.columnIndex="1" GridPane.rowIndex="7">
                      <GridPane.margin>
                         <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
                      </GridPane.margin>
                   </TextField>
                   <Label text="статья КоАП" GridPane.rowIndex="7" />
+                  <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                     <children>
+                        <ComboBox fx:id="fio" prefWidth="200.0">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </ComboBox>
+                        <Button mnemonicParsing="false" onAction="#openPers" text="редактировать">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </HBox>
                     </children>
                     <BorderPane.margin>
                         <Insets left="10.0" right="10.0" />
