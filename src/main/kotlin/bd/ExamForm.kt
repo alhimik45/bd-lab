@@ -46,6 +46,25 @@ class ExamForm(val ex: Examlist? = null) : View("Экзаменационные 
             statusBox.selectionModel.select(splited[1])
             datePick.value = it.date.toLocalDate()
         }
+        EventBus.on(Events.FL_UPD) {updPers()}
+    }
+
+    private fun updPers() {
+        peopleBox.items.clear()
+        peopleBox.items.addAll(peopleList.map { "${it.fio} ${it.pasportseries} ${it.passportid}" })
+        ex?.let {
+            peopleBox.selectionModel.select(Logic.create!!
+                    .select()
+                    .from(Tables.PERSON)
+                    .where(Tables.PERSON.PERSON_PK.eq(it.personPk1))
+                    .fetchOne()
+                    .into(Person::class.java)
+                    .let { "${it.fio} ${it.pasportseries} ${it.passportid}" })
+        }
+    }
+
+    fun openPers() {
+        Persons().openModal(block = true)
     }
 
 

@@ -37,11 +37,6 @@
                   <Label text="Категория:" GridPane.rowIndex="1" />
                   <Label text="Статус:" GridPane.rowIndex="2" />
                   <Label text="Дата:" GridPane.rowIndex="3" />
-                  <ComboBox fx:id="peopleBox" prefHeight="25.0" prefWidth="257.0" GridPane.columnIndex="1">
-                     <GridPane.margin>
-                        <Insets left="5.0" />
-                     </GridPane.margin>
-                  </ComboBox>
                   <ComboBox fx:id="catBox" prefHeight="25.0" prefWidth="256.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="5.0" />
@@ -57,6 +52,15 @@
                         <Insets left="5.0" />
                      </GridPane.margin>
                   </DatePicker>
+                  <HBox prefHeight="30.0" prefWidth="248.0" spacing="5.0" GridPane.columnIndex="1">
+                     <children>
+                        <ComboBox fx:id="peopleBox" prefHeight="25.0" prefWidth="241.0" />
+                        <Button mnemonicParsing="false" onAction="#openPers" text="..." />
+                     </children>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="9.0" />
+                     </GridPane.margin>
+                  </HBox>
                </children>
                <BorderPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
