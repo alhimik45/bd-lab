@@ -8,4 +8,5 @@ enum class Events {
     DRLI_UPD,
     PRTC_UPD,
     FL_UPD,
+    VEH_UPD
 }

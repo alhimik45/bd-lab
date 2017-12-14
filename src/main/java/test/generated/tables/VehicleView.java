@@ -33,7 +33,7 @@ import test.generated.tables.records.VehicleViewRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class VehicleView extends TableImpl<VehicleViewRecord> {
 
-    private static final long serialVersionUID = -1544510080;
+    private static final long serialVersionUID = -921471575;
 
     /**
      * The reference instance of <code>public.vehicle_view</code>
@@ -82,6 +82,11 @@ public class VehicleView extends TableImpl<VehicleViewRecord> {
      * The column <code>public.vehicle_view.end_date</code>.
      */
     public final TableField<VehicleViewRecord, Date> END_DATE = createField("end_date", org.jooq.impl.SQLDataType.DATE, this, "");
+
+    /**
+     * The column <code>public.vehicle_view.Vehicle_PK</code>.
+     */
+    public final TableField<VehicleViewRecord, Long> VEHICLE_PK = createField("Vehicle_PK", org.jooq.impl.SQLDataType.BIGINT, this, "");
 
     /**
      * Create a <code>public.vehicle_view</code> table reference

@@ -23,7 +23,7 @@ import javax.annotation.Generated;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class VehicleView implements Serializable {
 
-    private static final long serialVersionUID = -517285296;
+    private static final long serialVersionUID = -435469317;
 
     private String licensePlate;
     private String modelcar;
@@ -32,6 +32,7 @@ public class VehicleView implements Serializable {
     private String status;
     private Date   begDate;
     private Date   endDate;
+    private Long   vehiclePk;
 
     public VehicleView() {}
 
@@ -43,6 +44,7 @@ public class VehicleView implements Serializable {
         this.status = value.status;
         this.begDate = value.begDate;
         this.endDate = value.endDate;
+        this.vehiclePk = value.vehiclePk;
     }
 
     public VehicleView(
@@ -52,7 +54,8 @@ public class VehicleView implements Serializable {
         String fio,
         String status,
         Date   begDate,
-        Date   endDate
+        Date   endDate,
+        Long   vehiclePk
     ) {
         this.licensePlate = licensePlate;
         this.modelcar = modelcar;
@@ -61,6 +64,7 @@ public class VehicleView implements Serializable {
         this.status = status;
         this.begDate = begDate;
         this.endDate = endDate;
+        this.vehiclePk = vehiclePk;
     }
 
     public String getLicensePlate() {
@@ -119,6 +123,14 @@ public class VehicleView implements Serializable {
         this.endDate = endDate;
     }
 
+    public Long getVehiclePk() {
+        return this.vehiclePk;
+    }
+
+    public void setVehiclePk(Long vehiclePk) {
+        this.vehiclePk = vehiclePk;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("VehicleView (");
@@ -130,6 +142,7 @@ public class VehicleView implements Serializable {
         sb.append(", ").append(status);
         sb.append(", ").append(begDate);
         sb.append(", ").append(endDate);
+        sb.append(", ").append(vehiclePk);
 
         sb.append(")");
         return sb.toString();
