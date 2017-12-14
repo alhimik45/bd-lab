@@ -106,15 +106,7 @@
                                                 <Font size="24.0" />
                                              </font>
                                           </Label>
-                                          <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="524.0" VBox.vgrow="ALWAYS">
-                                             <children>
-                                                <TextField fx:id="searchRegistration" prefWidth="220.0" promptText="Поиск...">
-                                                   <HBox.margin>
-                                                      <Insets left="5.0" right="5.0" />
-                                                   </HBox.margin>
-                                                </TextField>
-                                             </children>
-                                          </HBox>
+                                          <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="524.0" VBox.vgrow="ALWAYS" />
                                        </children>
                                     </VBox>
                                     <TableView fx:id="regs" VBox.vgrow="ALWAYS">
@@ -163,15 +155,7 @@
                                                 <Font size="24.0" />
                                              </font>
                                           </Label>
-                                          <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="524.0" VBox.vgrow="ALWAYS">
-                                             <children>
-                                                <TextField fx:id="searchDereg" prefWidth="220.0" promptText="Поиск...">
-                                                   <HBox.margin>
-                                                      <Insets left="5.0" right="5.0" />
-                                                   </HBox.margin>
-                                                </TextField>
-                                             </children>
-                                          </HBox>
+                                          <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="524.0" VBox.vgrow="ALWAYS" />
                                        </children>
                                     </VBox>
                                     <TableView fx:id="deregs" VBox.vgrow="ALWAYS">
