@@ -56,7 +56,7 @@ class ExamForm(val ex: Examlist? = null) : View("Экзаменационные 
             peopleBox.selectionModel.select(Logic.create!!
                     .select()
                     .from(Tables.PERSON)
-                    .where(Tables.PERSON.PERSON_PK.eq(it.personPk1))
+                    .where(Tables.PERSON.PERSON_PK.eq(it.personPk))
                     .fetchOne()
                     .into(Person::class.java)
                     .let { "${it.fio} ${it.pasportseries} ${it.passportid}" })

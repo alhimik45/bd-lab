@@ -45,7 +45,7 @@ class AssignForm(pe: Assignment? = null) : View("Распределение") {
 
     fun cancel() {
         if (p.postdpsPk != null)
-            Logic.unlock(Lock.POST, p.postdpsPk)
+            Logic.unlock(Lock.ASS, p.assignmentPk)
         currentStage!!.close()
     }
 
