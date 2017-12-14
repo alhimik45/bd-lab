@@ -170,7 +170,7 @@
                                           </HBox>
                                        </children>
                                     </VBox>
-                                    <TableView VBox.vgrow="ALWAYS">
+                                    <TableView fx:id="deregs" VBox.vgrow="ALWAYS">
                                       <columns>
                                         <TableColumn prefWidth="75.0" text="C1" />
                                         <TableColumn prefWidth="75.0" text="C2" />
@@ -183,12 +183,12 @@
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                              </HBox.margin>
                                           </Button>
-                                          <Button fx:id="addrmreg" mnemonicParsing="false" text="Добавить">
+                                          <Button fx:id="addrmreg" mnemonicParsing="false" onAction="#addDereg" text="Добавить">
                                              <HBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                              </HBox.margin>
                                           </Button>
-                                          <Button fx:id="editrmreg" mnemonicParsing="false" text="Редактировать">
+                                          <Button fx:id="editrmreg" mnemonicParsing="false" onAction="#editDereg" text="Редактировать">
                                              <HBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                              </HBox.margin>

@@ -72,7 +72,7 @@ class RegForm(val re: Appregistration? = null) : View("Заявление о р�
             val rre = re ?: Appregistration()
             Logic.comboCheckEmpty("Владелец", peopleBox)
             Logic.comboCheckEmpty("Транспортное средство", tsBox)
-            rre.personPk = peopleList[peopleBox.selectionModel.selectedIndex].personPk
+            rre.personPk1 = peopleList[peopleBox.selectionModel.selectedIndex].personPk
             rre.date = Logic.dateCheckEmpty("Дыата", datePick)
             rre.vehiclePk = aaa[tsBox.selectionModel.selectedIndex].vehiclePk
 

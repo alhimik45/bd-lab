@@ -39,7 +39,7 @@ import test.generated.tables.records.AppderigistrationRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Appderigistration extends TableImpl<AppderigistrationRecord> {
 
-    private static final long serialVersionUID = 1788751643;
+    private static final long serialVersionUID = 541107866;
 
     /**
      * The reference instance of <code>public.AppDerigistration</code>
@@ -62,7 +62,7 @@ public class Appderigistration extends TableImpl<AppderigistrationRecord> {
     /**
      * The column <code>public.AppDerigistration.Person_PK</code>.
      */
-    public final TableField<AppderigistrationRecord, Long> PERSON_PK = createField("Person_PK", org.jooq.impl.SQLDataType.BIGINT.nullable(false), this, "");
+    public final TableField<AppderigistrationRecord, Long> PERSON_PK = createField("Person_PK", org.jooq.impl.SQLDataType.BIGINT, this, "");
 
     /**
      * The column <code>public.AppDerigistration.RegCert_PK</code>.

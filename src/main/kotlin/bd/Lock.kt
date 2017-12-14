@@ -10,4 +10,5 @@ enum class Lock {
     ASS,
     PRTC,
     APPREG,
+    APPDEREG,
 }

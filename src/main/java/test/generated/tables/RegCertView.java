@@ -33,7 +33,7 @@ import test.generated.tables.records.RegCertViewRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class RegCertView extends TableImpl<RegCertViewRecord> {
 
-    private static final long serialVersionUID = 1083290471;
+    private static final long serialVersionUID = -148870979;
 
     /**
      * The reference instance of <code>public.reg_cert_view</code>
@@ -82,6 +82,26 @@ public class RegCertView extends TableImpl<RegCertViewRecord> {
      * The column <code>public.reg_cert_view.Content</code>.
      */
     public final TableField<RegCertViewRecord, String> CONTENT = createField("Content", org.jooq.impl.SQLDataType.VARCHAR(1000), this, "");
+
+    /**
+     * The column <code>public.reg_cert_view.Brand</code>.
+     */
+    public final TableField<RegCertViewRecord, String> BRAND = createField("Brand", org.jooq.impl.SQLDataType.VARCHAR(30), this, "");
+
+    /**
+     * The column <code>public.reg_cert_view.ModelCar</code>.
+     */
+    public final TableField<RegCertViewRecord, String> MODELCAR = createField("ModelCar", org.jooq.impl.SQLDataType.VARCHAR(30), this, "");
+
+    /**
+     * The column <code>public.reg_cert_view.license_plate</code>.
+     */
+    public final TableField<RegCertViewRecord, String> LICENSE_PLATE = createField("license_plate", org.jooq.impl.SQLDataType.CLOB, this, "");
+
+    /**
+     * The column <code>public.reg_cert_view.Person_PK1</code>.
+     */
+    public final TableField<RegCertViewRecord, Long> PERSON_PK1 = createField("Person_PK1", org.jooq.impl.SQLDataType.BIGINT, this, "");
 
     /**
      * Create a <code>public.reg_cert_view</code> table reference

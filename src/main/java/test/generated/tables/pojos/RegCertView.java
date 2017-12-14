@@ -23,7 +23,7 @@ import javax.annotation.Generated;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class RegCertView implements Serializable {
 
-    private static final long serialVersionUID = 1893848684;
+    private static final long serialVersionUID = -1841826880;
 
     private Long   regcertPk;
     private Long   personPk;
@@ -32,6 +32,10 @@ public class RegCertView implements Serializable {
     private Date   begDate;
     private Date   endDate;
     private String content;
+    private String brand;
+    private String modelcar;
+    private String licensePlate;
+    private Long   personPk1;
 
     public RegCertView() {}
 
@@ -43,6 +47,10 @@ public class RegCertView implements Serializable {
         this.begDate = value.begDate;
         this.endDate = value.endDate;
         this.content = value.content;
+        this.brand = value.brand;
+        this.modelcar = value.modelcar;
+        this.licensePlate = value.licensePlate;
+        this.personPk1 = value.personPk1;
     }
 
     public RegCertView(
@@ -52,7 +60,11 @@ public class RegCertView implements Serializable {
         Long   employePk,
         Date   begDate,
         Date   endDate,
-        String content
+        String content,
+        String brand,
+        String modelcar,
+        String licensePlate,
+        Long   personPk1
     ) {
         this.regcertPk = regcertPk;
         this.personPk = personPk;
@@ -61,6 +73,10 @@ public class RegCertView implements Serializable {
         this.begDate = begDate;
         this.endDate = endDate;
         this.content = content;
+        this.brand = brand;
+        this.modelcar = modelcar;
+        this.licensePlate = licensePlate;
+        this.personPk1 = personPk1;
     }
 
     public Long getRegcertPk() {
@@ -119,6 +135,38 @@ public class RegCertView implements Serializable {
         this.content = content;
     }
 
+    public String getBrand() {
+        return this.brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getModelcar() {
+        return this.modelcar;
+    }
+
+    public void setModelcar(String modelcar) {
+        this.modelcar = modelcar;
+    }
+
+    public String getLicensePlate() {
+        return this.licensePlate;
+    }
+
+    public void setLicensePlate(String licensePlate) {
+        this.licensePlate = licensePlate;
+    }
+
+    public Long getPersonPk1() {
+        return this.personPk1;
+    }
+
+    public void setPersonPk1(Long personPk1) {
+        this.personPk1 = personPk1;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("RegCertView (");
@@ -130,6 +178,10 @@ public class RegCertView implements Serializable {
         sb.append(", ").append(begDate);
         sb.append(", ").append(endDate);
         sb.append(", ").append(content);
+        sb.append(", ").append(brand);
+        sb.append(", ").append(modelcar);
+        sb.append(", ").append(licensePlate);
+        sb.append(", ").append(personPk1);
 
         sb.append(")");
         return sb.toString();

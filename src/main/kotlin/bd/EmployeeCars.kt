@@ -7,6 +7,7 @@ import javafx.scene.control.cell.PropertyValueFactory
 import javafx.scene.layout.BorderPane
 import test.generated.Tables
 import test.generated.Tables.VEHICLE_VIEW
+import test.generated.tables.pojos.Appderigistration
 import test.generated.tables.pojos.Appregistration
 import test.generated.tables.pojos.Driverlicense
 import test.generated.tables.pojos.VehicleView
@@ -18,6 +19,7 @@ class EmployeeCars : View("Учёт транспортных средств") {
     override val root: TabPane by fxml()
     private val vehicleTable: TableView<VehicleView> by fxid()
     private val regs: TableView<Appregistration> by fxid()
+    private val deregs: TableView<Appderigistration> by fxid()
     private val licPlate: TableColumn<VehicleView, String> by fxid()
     private val model: TableColumn<VehicleView, String> by fxid()
     private val brand: TableColumn<VehicleView, String> by fxid()
@@ -59,6 +61,24 @@ class EmployeeCars : View("Учёт транспортных средств") {
             return
         }
         RegForm(temp).openModal(block = true)
+    }
+
+    fun addDereg(){
+        DeregForm().openModal(block = true)
+    }
+
+    fun editDereg(){
+        if (deregs.selectionModel.selectedItem == null){
+            Helpers.alert("Необходимо выбрать запись для редактирования")
+            return
+        }
+        val temp = deregs.selectionModel.selectedItem
+
+        if (!Logic.lock(Lock.APPDEREG, temp.appderigistrationPk)) {
+            Helpers.alert("Данная запись редактируется другим пользователем")
+            return
+        }
+        DeregForm(temp).openModal(block = true)
     }
 }
 
