@@ -119,13 +119,17 @@
                                     </VBox>
                                     <TableView fx:id="regs" VBox.vgrow="ALWAYS">
                                       <columns>
-                                        <TableColumn prefWidth="235.0" text="C1" />
-                                        <TableColumn prefWidth="288.0" text="C2" />
+                                        <TableColumn fx:id="vlad" prefWidth="235.0" text="Владелец" />
+                                        <TableColumn fx:id="ts" prefWidth="288.0" text="ТС" />
+                                          <TableColumn fx:id="dataa" prefWidth="288.0" text="Дата подачи" />
                                       </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
                                     </TableView>
                                     <HBox alignment="CENTER">
                                        <children>
-                                          <Button fx:id="refrReg" mnemonicParsing="false" text="Обновить">
+                                          <Button fx:id="refrReg" mnemonicParsing="false" onAction="#updateReg" text="Обновить">
                                              <HBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                              </HBox.margin>
@@ -172,9 +176,12 @@
                                     </VBox>
                                     <TableView fx:id="deregs" VBox.vgrow="ALWAYS">
                                       <columns>
-                                        <TableColumn prefWidth="75.0" text="C1" />
-                                        <TableColumn prefWidth="75.0" text="C2" />
+                                        <TableColumn fx:id="tss" prefWidth="75.0" text="ТС" />
+                                        <TableColumn fx:id="dataaaa" prefWidth="75.0" text="Дата" />
                                       </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
                                     </TableView>
                                     <HBox alignment="CENTER">
                                        <children>

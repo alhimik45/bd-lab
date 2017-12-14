@@ -26,7 +26,7 @@ class DeregForm(val re: Appderigistration? = null) : View("Заявление о
             tsBox.selectionModel.select(Logic.create!!
                     .select()
                     .from(Tables.REG_CERT_VIEW)
-                    .where(Tables.REG_CERT_VIEW.VEHICLE_PK.eq(it.regcertPk))
+                    .where(Tables.REG_CERT_VIEW.REGCERT_PK.eq(it.regcertPk))
                     .fetchOne()
                     .into(RegCertView::class.java)
                     .let { "${it.brand} ${it.modelcar}, ${it.licensePlate}" })

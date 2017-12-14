@@ -1,5 +1,6 @@
 package bd
 
+import javafx.beans.property.SimpleStringProperty
 import javafx.collections.transformation.FilteredList
 import javafx.scene.control.TabPane
 import javafx.scene.control.TableColumn
@@ -9,12 +10,7 @@ import javafx.scene.control.cell.PropertyValueFactory
 import javafx.scene.layout.BorderPane
 import test.generated.Tables
 import test.generated.Tables.VEHICLE_VIEW
-import test.generated.tables.pojos.Appderigistration
-import test.generated.tables.pojos.Appregistration
-import test.generated.tables.pojos.Driverlicense
-import test.generated.tables.pojos.ProtocolView
-import test.generated.tables.pojos.Vehicle
-import test.generated.tables.pojos.VehicleView
+import test.generated.tables.pojos.*
 import tornadofx.*
 import java.util.*
 
@@ -31,6 +27,11 @@ class EmployeeCars : View("Учёт транспортных средств") {
     private val status: TableColumn<VehicleView, String> by fxid()
     private val beg: TableColumn<VehicleView, Date> by fxid()
     private val end: TableColumn<VehicleView, Date> by fxid()
+    private val vlad: TableColumn<Appregistration, String> by fxid()
+    private val ts: TableColumn<Appregistration, String> by fxid()
+    private val tss: TableColumn<Appderigistration, String> by fxid()
+    private val dataa: TableColumn<Appregistration, Date> by fxid()
+    private val dataaaa: TableColumn<Appderigistration, Date> by fxid()
 
     private val searchTransport: TextField by fxid()
     private var dataTs = vehicleTable.items
@@ -44,11 +45,44 @@ class EmployeeCars : View("Учёт транспортных средств") {
         status.cellValueFactory = PropertyValueFactory<VehicleView, String>("status")
         beg.cellValueFactory = PropertyValueFactory<VehicleView, Date>("begDate")
         end.cellValueFactory = PropertyValueFactory<VehicleView, Date>("endDate")
+        dataa.cellValueFactory = PropertyValueFactory<Appregistration, Date>("date")
+        dataaaa.cellValueFactory = PropertyValueFactory<Appderigistration, Date>("date")
+        vlad.setCellValueFactory {
+            SimpleStringProperty(Logic.create!!
+                    .select()
+                    .from(Tables.PERSON)
+                    .where(Tables.PERSON.PERSON_PK.eq(it.value.personPk1))
+                    .fetchOne()
+                    .into(Person::class.java)
+                    .fio)
+        }
+        ts.setCellValueFactory {
+            SimpleStringProperty(Logic.create!!
+                    .select()
+                    .from(Tables.PTS)
+                    .where(Tables.PTS.VEHICLE_PK.eq(it.value.vehiclePk))
+                    .orderBy(Tables.PTS.DATE)
+                    .fetch()[0]
+                    .into(Pts::class.java)
+                    .let { "${it.brand} ${it.modelcar}, ${it.vin}" })
+        }
+        tss.setCellValueFactory {
+            SimpleStringProperty(Logic.create!!
+                    .select()
+                    .from(Tables.REG_CERT_VIEW)
+                    .where(Tables.REG_CERT_VIEW.REGCERT_PK.eq(it.value.regcertPk))
+                    .fetchOne()
+                    .into(RegCertView::class.java)
+                    .let { "${it.brand} ${it.modelcar}, ${it.licensePlate}" })
+        }
+
+
 
         vehicleTable.columnResizePolicy = SmartResize.POLICY
 
         update()
-
+        updateReg()
+        updateDereg()
         searchTransport.textProperty().addListener { _, _, newValue ->
             searchPr.setPredicate { item ->
                 if (newValue == null || newValue.isEmpty()) {
@@ -66,7 +100,8 @@ class EmployeeCars : View("Учёт транспортных средств") {
                 }
             }
         }
-
+        EventBus.on(Events.AREG_UPD) {updateReg()}
+        EventBus.on(Events.ADEREG_UPD) {updateDereg()}
     }
 
     fun update() {
@@ -79,6 +114,28 @@ class EmployeeCars : View("Учёт транспортных средств") {
                 .asIterable())
         searchPr = FilteredList<VehicleView>(dataTs){ _ -> true }
         vehicleTable.items = searchPr
+    }
+
+    fun updateReg() {
+        var data = regs.items
+        data.clear()
+        data.addAll(Logic.create!!
+                .select()
+                .from(Tables.APPREGISTRATION)
+                .fetch()
+                .into(Appregistration::class.java)!!
+                .asIterable())
+    }
+
+    fun updateDereg() {
+        var data = deregs.items
+        data.clear()
+        data.addAll(Logic.create!!
+                .select()
+                .from(Tables.APPDERIGISTRATION)
+                .fetch()
+                .into(Appderigistration::class.java)!!
+                .asIterable())
     }
 
     fun newVehicle() {

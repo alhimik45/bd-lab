@@ -41,7 +41,8 @@ class RegForm(val re: Appregistration? = null) : View("Заявление о р�
                     .select()
                     .from(Tables.PTS)
                     .where(Tables.PTS.VEHICLE_PK.eq(it.vehiclePk))
-                    .fetchOne()
+                    .orderBy(Tables.PTS.DATE)
+                    .fetch()[0]
                     .into(Pts::class.java)
                     .let { "${it.brand} ${it.modelcar}, ${it.vin}" })
             datePick.value = it.date.toLocalDate()
@@ -87,7 +88,7 @@ class RegForm(val re: Appregistration? = null) : View("Заявление о р�
             re?.let {
                 Logic.unlock(Lock.APPREG, it.appregistrationPk)
             }
-            EventBus.emit(Events.EXAM_UPD)
+            EventBus.emit(Events.AREG_UPD)
             currentStage!!.close()
         } catch (e: KekException) {
 
