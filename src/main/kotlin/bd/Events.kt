@@ -10,4 +10,5 @@ enum class Events {
     FL_UPD,
     AREG_UPD,
     ADEREG_UPD,
+    VEH_UPD
 }
