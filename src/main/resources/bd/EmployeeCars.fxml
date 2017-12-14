@@ -117,10 +117,10 @@
                                           </HBox>
                                        </children>
                                     </VBox>
-                                    <TableView VBox.vgrow="ALWAYS">
+                                    <TableView fx:id="regs" VBox.vgrow="ALWAYS">
                                       <columns>
                                         <TableColumn prefWidth="235.0" text="C1" />
-                                        <TableColumn fx:id="regs" prefWidth="288.0" text="C2" />
+                                        <TableColumn prefWidth="288.0" text="C2" />
                                       </columns>
                                     </TableView>
                                     <HBox alignment="CENTER">
