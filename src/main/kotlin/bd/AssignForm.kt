@@ -31,6 +31,7 @@ class AssignForm(pe: Assignment? = null) : View("Распределение") {
         }
         if (p.date != null)
             date.value = p.date.toLocalDate()
+
     }
 
     fun updatePost() {

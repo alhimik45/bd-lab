@@ -23,7 +23,7 @@ import javax.annotation.Generated;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class VehicleView implements Serializable {
 
-    private static final long serialVersionUID = -435469317;
+    private static final long serialVersionUID = 219395947;
 
     private String licensePlate;
     private String modelcar;
@@ -33,6 +33,7 @@ public class VehicleView implements Serializable {
     private Date   begDate;
     private Date   endDate;
     private Long   vehiclePk;
+    private Long   ptsPk;
 
     public VehicleView() {}
 
@@ -45,6 +46,7 @@ public class VehicleView implements Serializable {
         this.begDate = value.begDate;
         this.endDate = value.endDate;
         this.vehiclePk = value.vehiclePk;
+        this.ptsPk = value.ptsPk;
     }
 
     public VehicleView(
@@ -55,7 +57,8 @@ public class VehicleView implements Serializable {
         String status,
         Date   begDate,
         Date   endDate,
-        Long   vehiclePk
+        Long   vehiclePk,
+        Long   ptsPk
     ) {
         this.licensePlate = licensePlate;
         this.modelcar = modelcar;
@@ -65,6 +68,7 @@ public class VehicleView implements Serializable {
         this.begDate = begDate;
         this.endDate = endDate;
         this.vehiclePk = vehiclePk;
+        this.ptsPk = ptsPk;
     }
 
     public String getLicensePlate() {
@@ -131,6 +135,14 @@ public class VehicleView implements Serializable {
         this.vehiclePk = vehiclePk;
     }
 
+    public Long getPtsPk() {
+        return this.ptsPk;
+    }
+
+    public void setPtsPk(Long ptsPk) {
+        this.ptsPk = ptsPk;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("VehicleView (");
@@ -143,6 +155,7 @@ public class VehicleView implements Serializable {
         sb.append(", ").append(begDate);
         sb.append(", ").append(endDate);
         sb.append(", ").append(vehiclePk);
+        sb.append(", ").append(ptsPk);
 
         sb.append(")");
         return sb.toString();

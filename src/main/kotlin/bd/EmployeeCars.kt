@@ -7,7 +7,6 @@ import javafx.scene.control.TableColumn
 import javafx.scene.control.TableView
 import javafx.scene.control.TextField
 import javafx.scene.control.cell.PropertyValueFactory
-import javafx.scene.layout.BorderPane
 import test.generated.Tables
 import test.generated.Tables.VEHICLE_VIEW
 import test.generated.tables.pojos.*
@@ -102,6 +101,7 @@ class EmployeeCars : View("Учёт транспортных средств") {
         }
         EventBus.on(Events.AREG_UPD) {updateReg()}
         EventBus.on(Events.ADEREG_UPD) {updateDereg()}
+        EventBus.on(Events.VEH_UPD) { update() }
     }
 
     fun update() {
@@ -117,7 +117,7 @@ class EmployeeCars : View("Учёт транспортных средств") {
     }
 
     fun updateReg() {
-        var data = regs.items
+        val data = regs.items
         data.clear()
         data.addAll(Logic.create!!
                 .select()
@@ -128,7 +128,7 @@ class EmployeeCars : View("Учёт транспортных средств") {
     }
 
     fun updateDereg() {
-        var data = deregs.items
+        val data = deregs.items
         data.clear()
         data.addAll(Logic.create!!
                 .select()
@@ -154,11 +154,24 @@ class EmployeeCars : View("Учёт транспортных средств") {
                 .where(Tables.VEHICLE.VEHICLE_PK.eq(temp.vehiclePk))
                 .fetchOne()
                 .into(Vehicle::class.java)
+        val pts = Logic.create!!
+                .select()
+                .from(Tables.PTS)
+                .where(Tables.PTS.PTS_PK.eq(temp.ptsPk))
+                .fetchOne()
+                .into(Pts::class.java)
         if (!Logic.lock(Lock.VEH, temp.vehiclePk)) {
             Helpers.alert("Данная запись редактируется другим пользователем")
             return
         }
-        VehicleForm(l).openModal(block = true)
+
+        if (!Logic.lock(Lock.PTS, temp.ptsPk)) {
+            Logic.unlock(Lock.VEH, temp.vehiclePk)
+            Helpers.alert("Данная запись редактируется другим пользователем")
+            return
+        }
+
+        VehicleForm(l, pts, temp).openModal(block = true)
     }
 
 

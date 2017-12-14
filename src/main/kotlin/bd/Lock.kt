@@ -11,5 +11,6 @@ enum class Lock {
     PRTC,
     APPREG,
     APPDEREG,
-    VEH
+    VEH,
+    PTS
 }
