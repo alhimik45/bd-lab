@@ -44,7 +44,7 @@ class ProtocolForm(val pe: Protocol?  = null) : View("Протокол") {
             fio.selectionModel.select(Logic.create!!
                     .select()
                     .from(Tables.PERSON)
-                    .where(Tables.PERSON.PERSON_PK.eq(it.personPk))
+                    .where(Tables.PERSON.PERSON_PK.eq(it.personPk1))
                     .fetchOne()
                     .into(Person::class.java)
                     .let { "${it.fio} ${it.pasportseries} ${it.passportid}" })

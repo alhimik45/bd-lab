@@ -33,7 +33,7 @@ class RegForm(val re: Appregistration? = null) : View("Заявление о р�
             peopleBox.selectionModel.select(Logic.create!!
                     .select()
                     .from(Tables.PERSON)
-                    .where(Tables.PERSON.PERSON_PK.eq(it.personPk))
+                    .where(Tables.PERSON.PERSON_PK.eq(it.personPk1))
                     .fetchOne()
                     .into(Person::class.java)
                     .let { "${it.fio} ${it.pasportseries} ${it.passportid}" })
@@ -52,6 +52,12 @@ class RegForm(val re: Appregistration? = null) : View("Заявление о р�
 
     private fun updPers() {
         peopleBox.items.clear()
+        peopleList.clear()
+        peopleList.addAll(Logic.create!!
+                .select()
+                .from(Tables.PERSON)
+                .fetch()
+                .into(Person::class.java))
         peopleBox.items.addAll(peopleList.map { "${it.fio} ${it.pasportseries} ${it.passportid}" })
         re?.let {
             peopleBox.selectionModel.select(Logic.create!!
