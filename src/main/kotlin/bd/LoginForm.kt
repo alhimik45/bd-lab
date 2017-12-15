@@ -34,7 +34,7 @@ class LoginForm : Fragment("Вход на рабочее место") {
         Logic.create(login, password)
         if (Logic.create == null) {
             Helpers.alert("Данные не верны")
-            System.exit(0)
+            return
         }
         currentStage!!.hide()
         when (Logic.user!!.positionPk!!) {

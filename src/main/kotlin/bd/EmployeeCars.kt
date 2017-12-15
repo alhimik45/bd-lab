@@ -89,10 +89,10 @@ class EmployeeCars : View("Учёт транспортных средств") {
                 } else {
                     var flag = true
                     newValue.toLowerCase().split(" ").forEach {
-                        if (!(item.fio.toLowerCase().contains(it) ||
-                                item.brand.toLowerCase().contains(it) ||
-                                item.modelcar.toLowerCase().contains(it) ||
-                                item.licensePlate.toLowerCase().contains(it)))
+                        if (!(item.fio?.toLowerCase()?.contains(it) == true ||
+                                item.brand?.toLowerCase()?.contains(it) == true ||
+                                item.modelcar?.toLowerCase()?.contains(it) == true ||
+                                item.licensePlate?.toLowerCase()?.contains(it) == true))
                             flag = false
                     }
                     flag
