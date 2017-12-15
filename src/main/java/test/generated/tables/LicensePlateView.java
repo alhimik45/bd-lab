@@ -31,7 +31,7 @@ import test.generated.tables.records.LicensePlateViewRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class LicensePlateView extends TableImpl<LicensePlateViewRecord> {
 
-    private static final long serialVersionUID = 1445741087;
+    private static final long serialVersionUID = -361958255;
 
     /**
      * The reference instance of <code>public.license_plate_view</code>
@@ -55,6 +55,11 @@ public class LicensePlateView extends TableImpl<LicensePlateViewRecord> {
      * The column <code>public.license_plate_view.LicensePlate_PK</code>.
      */
     public final TableField<LicensePlateViewRecord, Long> LICENSEPLATE_PK = createField("LicensePlate_PK", org.jooq.impl.SQLDataType.BIGINT, this, "");
+
+    /**
+     * The column <code>public.license_plate_view.Vehicle_PK</code>.
+     */
+    public final TableField<LicensePlateViewRecord, Long> VEHICLE_PK = createField("Vehicle_PK", org.jooq.impl.SQLDataType.BIGINT, this, "");
 
     /**
      * Create a <code>public.license_plate_view</code> table reference

@@ -145,11 +145,12 @@ class VehicleForm(val ve: Vehicle? = null,
                             .regionPk
                 } catch (e: NumberFormatException) {
                     throw KekException()
+                } catch (e: NullPointerException) {
+                    Helpers.alert("Нет такого региона")
+                    throw KekException()
                 }
             }
-//            } catch (e: NullPointerException) {
-//                throw KekException()
-//            }
+
 
             Logic.create!!.transaction { c ->
                 if (p.ptsPk != null) {
@@ -170,13 +171,21 @@ class VehicleForm(val ve: Vehicle? = null,
                     val er = DSL.using(c).newRecord(Tables.PTS, p)
                     er.store()
                 }
-                if (lp.text != "" && vi?.licensePlate != lp.text) {
-                    val veh = p.vehiclePk ?: v.vehiclePk
-                    if (!Logic.create!!
-                            .fetchOne("SELECT set_license_plate($veh, '${lpS[0]}' , $regPK)")
-                            .into(Boolean::class.java)) {
-                        Helpers.alert("Номер занят, или неправильно введен регион")
+                if (vi?.licensePlate != lp.text) {
+                    if (vi?.licensePlate != "") {
+                        Logic.create!!
+                                .execute("update \"LicensePlate\" SET \"Vehicle_PK\" = NULL WHERE \"LicensePlate_PK\"=${vi?.licenseplatePk}")
                     }
+                    if (lp.text != "" ) {
+                        val veh = p.vehiclePk ?: v.vehiclePk
+                        if (!Logic.create!!
+                                .fetchOne("SELECT set_license_plate($veh, '${lpS[0]}' , $regPK)")
+                                .into(Boolean::class.java)) {
+                            Helpers.alert("Номер занят, или неправильно введен регион")
+                        }
+                    }
+                } else if (vi?.licensePlate != "" && lp.text != "") {
+
                 }
             }
             ve?.let { veh ->

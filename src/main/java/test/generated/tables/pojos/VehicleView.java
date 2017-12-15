@@ -23,7 +23,7 @@ import javax.annotation.Generated;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class VehicleView implements Serializable {
 
-    private static final long serialVersionUID = 219395947;
+    private static final long serialVersionUID = -1213425479;
 
     private String licensePlate;
     private String modelcar;
@@ -34,6 +34,7 @@ public class VehicleView implements Serializable {
     private Date   endDate;
     private Long   vehiclePk;
     private Long   ptsPk;
+    private Long   licenseplatePk;
 
     public VehicleView() {}
 
@@ -47,6 +48,7 @@ public class VehicleView implements Serializable {
         this.endDate = value.endDate;
         this.vehiclePk = value.vehiclePk;
         this.ptsPk = value.ptsPk;
+        this.licenseplatePk = value.licenseplatePk;
     }
 
     public VehicleView(
@@ -58,7 +60,8 @@ public class VehicleView implements Serializable {
         Date   begDate,
         Date   endDate,
         Long   vehiclePk,
-        Long   ptsPk
+        Long   ptsPk,
+        Long   licenseplatePk
     ) {
         this.licensePlate = licensePlate;
         this.modelcar = modelcar;
@@ -69,6 +72,7 @@ public class VehicleView implements Serializable {
         this.endDate = endDate;
         this.vehiclePk = vehiclePk;
         this.ptsPk = ptsPk;
+        this.licenseplatePk = licenseplatePk;
     }
 
     public String getLicensePlate() {
@@ -143,6 +147,14 @@ public class VehicleView implements Serializable {
         this.ptsPk = ptsPk;
     }
 
+    public Long getLicenseplatePk() {
+        return this.licenseplatePk;
+    }
+
+    public void setLicenseplatePk(Long licenseplatePk) {
+        this.licenseplatePk = licenseplatePk;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("VehicleView (");
@@ -156,6 +168,7 @@ public class VehicleView implements Serializable {
         sb.append(", ").append(endDate);
         sb.append(", ").append(vehiclePk);
         sb.append(", ").append(ptsPk);
+        sb.append(", ").append(licenseplatePk);
 
         sb.append(")");
         return sb.toString();

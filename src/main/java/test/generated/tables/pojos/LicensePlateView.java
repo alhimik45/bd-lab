@@ -22,24 +22,28 @@ import javax.annotation.Generated;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class LicensePlateView implements Serializable {
 
-    private static final long serialVersionUID = 12355767;
+    private static final long serialVersionUID = 761835702;
 
     private String licensePlate;
     private Long   licenseplatePk;
+    private Long   vehiclePk;
 
     public LicensePlateView() {}
 
     public LicensePlateView(LicensePlateView value) {
         this.licensePlate = value.licensePlate;
         this.licenseplatePk = value.licenseplatePk;
+        this.vehiclePk = value.vehiclePk;
     }
 
     public LicensePlateView(
         String licensePlate,
-        Long   licenseplatePk
+        Long   licenseplatePk,
+        Long   vehiclePk
     ) {
         this.licensePlate = licensePlate;
         this.licenseplatePk = licenseplatePk;
+        this.vehiclePk = vehiclePk;
     }
 
     public String getLicensePlate() {
@@ -58,12 +62,21 @@ public class LicensePlateView implements Serializable {
         this.licenseplatePk = licenseplatePk;
     }
 
+    public Long getVehiclePk() {
+        return this.vehiclePk;
+    }
+
+    public void setVehiclePk(Long vehiclePk) {
+        this.vehiclePk = vehiclePk;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("LicensePlateView (");
 
         sb.append(licensePlate);
         sb.append(", ").append(licenseplatePk);
+        sb.append(", ").append(vehiclePk);
 
         sb.append(")");
         return sb.toString();

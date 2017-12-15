@@ -33,7 +33,7 @@ import test.generated.tables.records.VehicleViewRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class VehicleView extends TableImpl<VehicleViewRecord> {
 
-    private static final long serialVersionUID = -203637207;
+    private static final long serialVersionUID = -1680326205;
 
     /**
      * The reference instance of <code>public.vehicle_view</code>
@@ -92,6 +92,11 @@ public class VehicleView extends TableImpl<VehicleViewRecord> {
      * The column <code>public.vehicle_view.PTS_PK</code>.
      */
     public final TableField<VehicleViewRecord, Long> PTS_PK = createField("PTS_PK", org.jooq.impl.SQLDataType.BIGINT, this, "");
+
+    /**
+     * The column <code>public.vehicle_view.LicensePlate_PK</code>.
+     */
+    public final TableField<VehicleViewRecord, Long> LICENSEPLATE_PK = createField("LicensePlate_PK", org.jooq.impl.SQLDataType.BIGINT, this, "");
 
     /**
      * Create a <code>public.vehicle_view</code> table reference
