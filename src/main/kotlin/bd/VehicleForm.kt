@@ -127,27 +127,56 @@ class VehicleForm(val ve: Vehicle? = null,
             p.engineid = ndvig.text
             p.Сhassisid = nhod.text
 
-            if(v.vehiclePk == null) {
-                Logic.create!!
-                        .insertInto(Tables.VEHICLE, Tables.VEHICLE.VEHICLE_PK)
-                        .values(Sequences.VEHICLE_VEHICLE_PK_SEQ.nextval())
-                        .execute()
-                p.vehiclePk = Logic.create!!
-                        .select()
-                        .from(Tables.VEHICLE)
-                        .fetch()
-                        .into(Vehicle::class.java)
-                        .last()
-                        .vehiclePk
+            var lpS = listOf<String>()
+            var regPK = 0L
+            if (lp.text != "") {
+                lpS = lp.text.split(" ")
+                if (lpS.size != 2) {
+                    Helpers.alert("Гос номер должен состоять из номера и региона(цифрами) через пробел")
+                    throw KekException()
+                }
+                regPK = try {
+                    Logic.create!!
+                            .select()
+                            .from(Tables.REGION)
+                            .where(Tables.REGION.NUMBER.eq(lpS[1].toInt()))
+                            .fetchOne()
+                            .into(Region::class.java)
+                            .regionPk
+                } catch (e: NumberFormatException) {
+                    throw KekException()
+                }
             }
+//            } catch (e: NullPointerException) {
+//                throw KekException()
+//            }
 
             Logic.create!!.transaction { c ->
                 if (p.ptsPk != null) {
                     val pr = DSL.using(c).newRecord(Tables.PTS, p)
                     DSL.using(c).executeUpdate(pr)
                 } else {
+                    Logic.create!!
+                            .insertInto(Tables.VEHICLE, Tables.VEHICLE.VEHICLE_PK)
+                            .values(Sequences.VEHICLE_VEHICLE_PK_SEQ.nextval())
+                            .execute()
+                    p.vehiclePk = Logic.create!!
+                            .select()
+                            .from(Tables.VEHICLE)
+                            .fetch()
+                            .into(Vehicle::class.java)
+                            .last()
+                            .vehiclePk
                     val er = DSL.using(c).newRecord(Tables.PTS, p)
                     er.store()
+                }
+                if (lp.text != "" && vi?.licensePlate != lp.text) {
+                    val veh = p.vehiclePk ?: v.vehiclePk
+                    if (!Logic.create!!
+                            .fetchOne("SELECT set_license_plate($veh, '${lpS[0]}' , $regPK)")
+                            .into(Boolean::class.java)) {
+                        Helpers.alert("Номер занят, или неправильно введен регион")
+                    }
                 }
             }
             ve?.let { veh ->
