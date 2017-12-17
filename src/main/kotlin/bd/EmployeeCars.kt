@@ -2,15 +2,15 @@ package bd
 
 import javafx.beans.property.SimpleStringProperty
 import javafx.collections.transformation.FilteredList
-import javafx.scene.control.TabPane
-import javafx.scene.control.TableColumn
-import javafx.scene.control.TableView
-import javafx.scene.control.TextField
+import javafx.scene.control.*
 import javafx.scene.control.cell.PropertyValueFactory
+import javafx.stage.FileChooser
+import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import test.generated.Tables
 import test.generated.Tables.VEHICLE_VIEW
 import test.generated.tables.pojos.*
 import tornadofx.*
+import java.io.FileOutputStream
 import java.util.*
 
 
@@ -31,6 +31,13 @@ class EmployeeCars : View("Учёт транспортных средств") {
     private val tss: TableColumn<Appderigistration, String> by fxid()
     private val dataa: TableColumn<Appregistration, Date> by fxid()
     private val dataaaa: TableColumn<Appderigistration, Date> by fxid()
+
+    private val fioC: ComboBox<String> by fxid()
+    private val addL: Label by fxid()
+    private val dateL: Label by fxid()
+    private val catL: Label by fxid()
+    private val tsL: ListView<String> by fxid()
+    private val peopleList = mutableListOf<Person>()
 
     private val searchTransport: TextField by fxid()
     private var dataTs = vehicleTable.items
@@ -102,6 +109,99 @@ class EmployeeCars : View("Учёт транспортных средств") {
         EventBus.on(Events.AREG_UPD) {updateReg()}
         EventBus.on(Events.ADEREG_UPD) {updateDereg()}
         EventBus.on(Events.VEH_UPD) { update() }
+        EventBus.on(Events.FL_UPD) { updateFios() }
+
+        fioC.valueProperty().addListener { _ ->
+            val p = peopleList[fioC.selectionModel.selectedIndex]
+            addL.text = p.homeaddress
+            dateL.text = p.daybirth.toString()
+            val cats = Logic.create!!.select(Tables.CATEGORY.NAME)
+                    .from(Tables.DRCATEG)
+                    .join(Tables.CATEGORY)
+                    .on(Tables.DRCATEG.CATEGORY_PK.eq(Tables.CATEGORY.CATEGORY_PK))
+                    .join(Tables.DRIVERLICENSE)
+                    .on(Tables.DRCATEG.DRIVERLICENSE_PK.eq(Tables.DRIVERLICENSE.DRIVERLICENSE_PK))
+                    .where(Tables.DRIVERLICENSE.PERSON_PK1.eq(p.personPk))
+                    .orderBy(Tables.CATEGORY.NAME)
+                    .fetch()
+                    .into(String::class.java)
+            val sss= cats.joinToString(", ")
+            catL.text = if (sss.isBlank())  "нет" else sss
+            tsL.items.clear()
+            val tss = Logic.create!!.select(Tables.VEHICLE_VIEW.BRAND
+                    .concat(" ")
+                    .concat(Tables.VEHICLE_VIEW.MODELCAR)
+                    .concat(" ")
+                    .concat(Tables.VEHICLE_VIEW.LICENSE_PLATE))
+                    .from(Tables.VEHICLE_VIEW)
+                    .where(Tables.VEHICLE_VIEW.FIO.eq(p.fio))
+                    .fetch()
+                    .into(String::class.java)
+            tsL.items.addAll(tss)
+        }
+
+        updateFios()
+    }
+
+    fun export(){
+        val fileChooser = FileChooser()
+        fileChooser.title = "Создать отчет"
+        val extFilter = FileChooser.ExtensionFilter("XLSX files (*.xlsx)", "*.xlsx")
+        fileChooser.extensionFilters.add(extFilter)
+        val file = fileChooser.showSaveDialog(currentWindow) ?: return
+        val myWorkBook = XSSFWorkbook()
+        val mySheet = myWorkBook.createSheet("Отчёт")
+        var rowNum = mySheet.lastRowNum
+
+        var row = mySheet.createRow(rowNum++)
+        var cellnum = 0
+        var cell = row.createCell(0)
+        cell.setCellValue("ФИО")
+        cell = row.createCell(1)
+        cell.setCellValue(peopleList[fioC.selectionModel.selectedIndex].fio)
+
+        row = mySheet.createRow(rowNum++)
+        cell = row.createCell(0)
+        cell.setCellValue("Дата рождения")
+        cell = row.createCell(1)
+        cell.setCellValue(peopleList[fioC.selectionModel.selectedIndex].daybirth.toString())
+
+        row = mySheet.createRow(rowNum++)
+        cell = row.createCell(0)
+        cell.setCellValue("Адрес")
+        cell = row.createCell(1)
+        cell.setCellValue(peopleList[fioC.selectionModel.selectedIndex].homeaddress)
+
+        row = mySheet.createRow(rowNum++)
+        cell = row.createCell(0)
+        cell.setCellValue("Категории вождения")
+        cell = row.createCell(1)
+        cell.setCellValue(catL.text)
+        mySheet.createRow(rowNum++)
+        row = mySheet.createRow(rowNum++)
+        cell = row.createCell(0)
+        cell.setCellValue("Транспортные средства")
+        for (o in tsL.items) {
+            row = mySheet.createRow(rowNum++)
+            cell = row.createCell(0)
+            cell.setCellValue(o)qqq
+        }
+        for (i in 0..7) {
+            mySheet.autoSizeColumn(i)
+        }
+        myWorkBook.write(FileOutputStream(file))
+    }
+
+    fun updateFios(){
+        peopleList.clear()
+        peopleList.addAll(Logic.create!!
+                .select()
+                .from(Tables.PERSON)
+                .fetch()
+                .into(Person::class.java))
+        fioC.items.clear()
+        fioC.items.addAll(peopleList.map { "${it.fio} ${it.pasportseries} ${it.passportid}" })
+        fioC.selectionModel.select(0)
     }
 
     fun update() {
