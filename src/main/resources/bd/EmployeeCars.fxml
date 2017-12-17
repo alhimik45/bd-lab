@@ -199,7 +199,7 @@
             </AnchorPane>
         </content>
       </Tab>
-      <Tab text="Отчет об автовладельце">
+      <Tab text="Информация об автовладельце">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
         </content>
