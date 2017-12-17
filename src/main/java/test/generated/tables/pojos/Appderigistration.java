@@ -23,7 +23,7 @@ import javax.annotation.Generated;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Appderigistration implements Serializable {
 
-    private static final long serialVersionUID = -1548034467;
+    private static final long serialVersionUID = 1031493931;
 
     private String content;
     private Long   personPk;
@@ -32,6 +32,7 @@ public class Appderigistration implements Serializable {
     private Long   employePk;
     private Long   personPk1;
     private Date   date;
+    private String status;
 
     public Appderigistration() {}
 
@@ -43,6 +44,7 @@ public class Appderigistration implements Serializable {
         this.employePk = value.employePk;
         this.personPk1 = value.personPk1;
         this.date = value.date;
+        this.status = value.status;
     }
 
     public Appderigistration(
@@ -52,7 +54,8 @@ public class Appderigistration implements Serializable {
         Long   appderigistrationPk,
         Long   employePk,
         Long   personPk1,
-        Date   date
+        Date   date,
+        String status
     ) {
         this.content = content;
         this.personPk = personPk;
@@ -61,6 +64,7 @@ public class Appderigistration implements Serializable {
         this.employePk = employePk;
         this.personPk1 = personPk1;
         this.date = date;
+        this.status = status;
     }
 
     public String getContent() {
@@ -119,6 +123,14 @@ public class Appderigistration implements Serializable {
         this.date = date;
     }
 
+    public String getStatus() {
+        return this.status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Appderigistration (");
@@ -130,6 +142,7 @@ public class Appderigistration implements Serializable {
         sb.append(", ").append(employePk);
         sb.append(", ").append(personPk1);
         sb.append(", ").append(date);
+        sb.append(", ").append(status);
 
         sb.append(")");
         return sb.toString();

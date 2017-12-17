@@ -4,6 +4,7 @@ import javafx.scene.control.ComboBox
 import javafx.scene.control.DatePicker
 import javafx.scene.layout.VBox
 import org.jooq.impl.DSL
+import sun.rmi.runtime.Log
 import test.generated.Tables
 import test.generated.tables.pojos.*
 import tornadofx.*
@@ -80,9 +81,11 @@ class RegForm(val re: Appregistration? = null) : View("Заявление о р�
             Logic.comboCheckEmpty("Владелец", peopleBox)
             Logic.comboCheckEmpty("Транспортное средство", tsBox)
             rre.personPk1 = peopleList[peopleBox.selectionModel.selectedIndex].personPk
-            rre.date = Logic.dateCheckEmpty("Дыата", datePick)
+            rre.date = Logic.dateCheckEmpty("Дата", datePick)
             rre.vehiclePk = aaa[tsBox.selectionModel.selectedIndex].vehiclePk
-
+            rre.status = "Рассматривается"
+            rre.personPk = Logic.user?.personPk
+            rre.employePk = Logic.user?.employePk
             Logic.create!!.transaction { c ->
                 val pr = DSL.using(c).newRecord(Tables.APPREGISTRATION, rre)
                 if (rre.appregistrationPk != null) {

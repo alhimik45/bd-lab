@@ -99,6 +99,7 @@
                                            <TableColumn fx:id="vlad" prefWidth="235.0" text="Владелец" />
                                            <TableColumn fx:id="ts" prefWidth="288.0" text="ТС" />
                                              <TableColumn fx:id="dataa" prefWidth="288.0" text="Дата подачи" />
+                              <TableColumn fx:id="stata" prefWidth="75.0" text="Статус" />
                                          </columns>
                                           <columnResizePolicy>
                                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -127,6 +128,12 @@
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </Button>
+                              <Button mnemonicParsing="false" onAction="#odobA" text="Одобрить" />
+                              <Button mnemonicParsing="false" onAction="#rejectA" text="Отказать">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </Button>
                                           </children>
                                        </HBox>
                      </bottom>
@@ -169,6 +176,12 @@
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </HBox.margin>
                                                 </Button>
+                              <Button mnemonicParsing="false" onAction="#odobD" text="Одобрить" />
+                              <Button mnemonicParsing="false" onAction="#rejectD" text="Отказать">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </Button>
                                           </children>
                                        </HBox>
                      </bottom>
@@ -177,6 +190,7 @@
                                          <columns>
                                            <TableColumn fx:id="tss" minWidth="-1.0" prefWidth="235.0" text="ТС" />
                                            <TableColumn fx:id="dataaaa" prefWidth="234.0" text="Дата" />
+                              <TableColumn fx:id="statd" prefWidth="75.0" text="Статус" />
                                          </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

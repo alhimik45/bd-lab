@@ -20,6 +20,12 @@ object Helpers {
         alert.showAndWait()
     }
 
+    fun mes(message: String) {
+        val alert = Alert(Alert.AlertType.INFORMATION, message)
+        alert.dialogPane.minHeight = Region.USE_PREF_SIZE
+        alert.showAndWait()
+    }
+
     internal fun validationAlert(validation: List<String>): Boolean {
         if (validation.size != 0) {
             val alert = Alert(Alert.AlertType.ERROR, "Данные введены неверно:\n" + validation.joinToString("\n"))

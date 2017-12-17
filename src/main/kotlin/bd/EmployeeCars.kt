@@ -7,10 +7,13 @@ import javafx.scene.control.TableColumn
 import javafx.scene.control.TableView
 import javafx.scene.control.TextField
 import javafx.scene.control.cell.PropertyValueFactory
+import org.jooq.impl.DSL
 import test.generated.Tables
 import test.generated.Tables.VEHICLE_VIEW
 import test.generated.tables.pojos.*
 import tornadofx.*
+import java.sql.Date
+import java.time.LocalDate
 import java.util.*
 
 
@@ -31,6 +34,9 @@ class EmployeeCars : View("Учёт транспортных средств") {
     private val tss: TableColumn<Appderigistration, String> by fxid()
     private val dataa: TableColumn<Appregistration, Date> by fxid()
     private val dataaaa: TableColumn<Appderigistration, Date> by fxid()
+    private val stata: TableColumn<Appregistration, String> by fxid()
+    private val statd: TableColumn<Appderigistration, String> by fxid()
+
 
     private val searchTransport: TextField by fxid()
     private var dataTs = vehicleTable.items
@@ -46,6 +52,8 @@ class EmployeeCars : View("Учёт транспортных средств") {
         end.cellValueFactory = PropertyValueFactory<VehicleView, Date>("endDate")
         dataa.cellValueFactory = PropertyValueFactory<Appregistration, Date>("date")
         dataaaa.cellValueFactory = PropertyValueFactory<Appderigistration, Date>("date")
+        stata.cellValueFactory = PropertyValueFactory<Appregistration, String>("status")
+        statd.cellValueFactory = PropertyValueFactory<Appderigistration, String>("status")
         vlad.setCellValueFactory {
             SimpleStringProperty(Logic.create!!
                     .select()
@@ -78,6 +86,9 @@ class EmployeeCars : View("Учёт транспортных средств") {
 
 
         vehicleTable.columnResizePolicy = SmartResize.POLICY
+        regs.columnResizePolicy = SmartResize.POLICY
+        deregs.columnResizePolicy = SmartResize.POLICY
+
 
         update()
         updateReg()
@@ -99,9 +110,120 @@ class EmployeeCars : View("Учёт транспортных средств") {
                 }
             }
         }
-        EventBus.on(Events.AREG_UPD) {updateReg()}
-        EventBus.on(Events.ADEREG_UPD) {updateDereg()}
+        EventBus.on(Events.AREG_UPD) {
+            updateReg()
+        }
+        EventBus.on(Events.ADEREG_UPD) {
+            updateDereg()
+        }
         EventBus.on(Events.VEH_UPD) { update() }
+    }
+
+    fun odobA() {
+        val temp = regs.selectionModel.selectedItem
+        if (temp == null){
+            Helpers.alert("Необходимо выбрать запись для редактирования")
+            return
+        }
+        if (temp.status != "Рассматривается") {
+            Helpers.alert("Запись уже рассмотрена")
+            return
+        }
+
+        val reg = Regcert()
+
+        reg.date = Date.valueOf(LocalDate.now())
+        reg.employePk = Logic.user?.employePk
+        reg.personPk = Logic.user?.personPk
+        reg.personPk1 = temp.personPk1
+        reg.vehiclePk = temp.vehiclePk
+
+        Logic.create!!.transaction { c ->
+            val pr = DSL.using(c).newRecord(Tables.REGCERT, reg)
+            pr.store()
+        }
+
+        Logic.create!!
+                .update(Tables.APPREGISTRATION)
+                .set(Tables.APPREGISTRATION.STATUS, "Одобрено")
+                .where(Tables.APPREGISTRATION.APPREGISTRATION_PK.eq(temp.appregistrationPk))
+                .execute()
+        EventBus.emit(Events.AREG_UPD)
+        EventBus.emit(Events.VEH_UPD)
+        Helpers.mes("Статус записи изменен на Одобрено")
+    }
+
+    fun odobD() {
+        val temp = deregs.selectionModel.selectedItem
+        if (temp == null){
+            Helpers.alert("Необходимо выбрать запись для редактирования")
+            return
+        }
+        if (temp.status != "Рассматривается") {
+            Helpers.alert("Запись уже рассмотрена")
+            return
+        }
+
+        val reg = Logic.create!!
+                .select()
+                .from(Tables.REGCERT)
+                .where(Tables.REGCERT.REGCERT_PK.eq(temp.regcertPk))
+                .fetchOne()
+                .into(Regcert::class.java)
+
+        reg.enddate = Date.valueOf(LocalDate.now())
+
+        Logic.create!!.transaction { c ->
+            val pr = DSL.using(c).newRecord(Tables.REGCERT, reg)
+            DSL.using(c).executeUpdate(pr)
+        }
+
+        Logic.create!!
+                .update(Tables.APPDERIGISTRATION)
+                .set(Tables.APPDERIGISTRATION.STATUS, "Одобрено")
+                .where(Tables.APPDERIGISTRATION.APPDERIGISTRATION_PK.eq(temp.appderigistrationPk))
+                .execute()
+        EventBus.emit(Events.ADEREG_UPD)
+        EventBus.emit(Events.VEH_UPD)
+        Helpers.mes("Статус записи изменен на Одобрено")
+    }
+
+    fun rejectA() {
+        val temp = regs.selectionModel.selectedItem
+        if (temp == null){
+            Helpers.alert("Необходимо выбрать запись для редактирования")
+            return
+        }
+        if (temp.status != "Рассматривается") {
+            Helpers.alert("Запись уже рассмотрена")
+            return
+        }
+        Logic.create!!
+                .update(Tables.APPREGISTRATION)
+                .set(Tables.APPREGISTRATION.STATUS, "Отказано")
+                .where(Tables.APPREGISTRATION.APPREGISTRATION_PK.eq(temp.appregistrationPk))
+                .execute()
+        EventBus.emit(Events.AREG_UPD)
+        Helpers.mes("Статус записи изменен на Отказано")
+    }
+
+    fun rejectD(){
+        val temp = deregs.selectionModel.selectedItem
+        if (temp == null){
+            Helpers.alert("Необходимо выбрать запись для редактирования")
+            return
+        }
+        if (temp.status != "Рассматривается") {
+            Helpers.alert("Запись уже рассмотрена")
+            return
+        }
+        Logic.create!!
+                .update(Tables.APPDERIGISTRATION)
+                .set(Tables.APPDERIGISTRATION.STATUS, "Отказано")
+                .where(Tables.APPDERIGISTRATION.APPDERIGISTRATION_PK.eq(temp.appderigistrationPk))
+                .execute()
+        EventBus.emit(Events.ADEREG_UPD)
+        Helpers.mes("Статус записи изменен на Отказано")
     }
 
     fun update() {

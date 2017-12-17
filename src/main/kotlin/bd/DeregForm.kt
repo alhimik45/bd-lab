@@ -41,7 +41,9 @@ class DeregForm(val re: Appderigistration? = null) : View("Заявление о
             rre.date = Logic.dateCheckEmpty("Дата", datePick)
             rre.regcertPk = aaa[tsBox.selectionModel.selectedIndex].regcertPk
             rre.personPk1 = aaa[tsBox.selectionModel.selectedIndex].personPk1
-
+            rre.status = "Рассматривается"
+            rre.personPk = Logic.user?.personPk
+            rre.employePk = Logic.user?.employePk
             Logic.create!!.transaction { c ->
                 val pr = DSL.using(c).newRecord(Tables.APPDERIGISTRATION, rre)
                 if (rre.appderigistrationPk != null) {

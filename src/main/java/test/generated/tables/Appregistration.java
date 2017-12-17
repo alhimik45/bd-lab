@@ -39,7 +39,7 @@ import test.generated.tables.records.AppregistrationRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Appregistration extends TableImpl<AppregistrationRecord> {
 
-    private static final long serialVersionUID = 480146506;
+    private static final long serialVersionUID = -1978732244;
 
     /**
      * The reference instance of <code>public.AppRegistration</code>
@@ -88,6 +88,11 @@ public class Appregistration extends TableImpl<AppregistrationRecord> {
      * The column <code>public.AppRegistration.Date</code>.
      */
     public final TableField<AppregistrationRecord, Date> DATE = createField("Date", org.jooq.impl.SQLDataType.DATE.nullable(false), this, "");
+
+    /**
+     * The column <code>public.AppRegistration.status</code>.
+     */
+    public final TableField<AppregistrationRecord, String> STATUS = createField("status", org.jooq.impl.SQLDataType.VARCHAR(40).defaultValue(org.jooq.impl.DSL.field("'Рассматривается'::character varying", org.jooq.impl.SQLDataType.VARCHAR)), this, "");
 
     /**
      * Create a <code>public.AppRegistration</code> table reference
