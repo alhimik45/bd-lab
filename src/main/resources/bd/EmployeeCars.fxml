@@ -230,7 +230,7 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <BorderPane layoutX="183.0" layoutY="10.0">
+                  <BorderPane layoutX="11.0" layoutY="10.0" prefHeight="495.0" prefWidth="679.0">
                      <top>
                         <VBox alignment="CENTER">
                            <children>

@@ -6,6 +6,7 @@ import javafx.scene.control.*
 import javafx.scene.control.cell.PropertyValueFactory
 import javafx.stage.FileChooser
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
+import org.jooq.DSLContext
 import org.jooq.impl.DSL
 import test.generated.Tables
 import test.generated.Tables.VEHICLE_VIEW
@@ -143,15 +144,13 @@ class EmployeeCars : View("Учёт транспортных средств") {
             val sss= cats.joinToString(", ")
             catL.text = if (sss.isBlank())  "нет" else sss
             tsL.items.clear()
-            val tss = Logic.create!!.select(Tables.VEHICLE_VIEW.BRAND
-                    .concat(" ")
-                    .concat(Tables.VEHICLE_VIEW.MODELCAR)
-                    .concat(" ")
-                    .concat(Tables.VEHICLE_VIEW.LICENSE_PLATE))
-                    .from(Tables.VEHICLE_VIEW)
-                    .where(Tables.VEHICLE_VIEW.FIO.eq(p.fio))
-                    .fetch()
-                    .into(String::class.java)
+            val tss = Logic.create!!.fetch("""
+                SELECT concat(${Tables.VEHICLE_VIEW.BRAND.qualifiedName}, ' ',
+            ${Tables.VEHICLE_VIEW.MODELCAR.qualifiedName}, ' ' ,
+             ${Tables.VEHICLE_VIEW.LICENSE_PLATE.qualifiedName})
+            FROM ${Tables.VEHICLE_VIEW.name}
+            WHERE ${Tables.VEHICLE_VIEW.FIO} = '${p.fio}'
+                """).into(String::class.java)
             tsL.items.addAll(tss)
         }
 
