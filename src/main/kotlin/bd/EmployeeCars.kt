@@ -184,7 +184,7 @@ class EmployeeCars : View("Учёт транспортных средств") {
         for (o in tsL.items) {
             row = mySheet.createRow(rowNum++)
             cell = row.createCell(0)
-            cell.setCellValue(o)qqq
+            cell.setCellValue(o)
         }
         for (i in 0..7) {
             mySheet.autoSizeColumn(i)
