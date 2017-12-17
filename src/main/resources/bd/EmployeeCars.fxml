@@ -10,7 +10,7 @@
    <tabs>
          <Tab closable="false" text="Транспорт">
             <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0">
+                <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                    <children>
                            <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                               <bottom>
@@ -89,7 +89,7 @@
          <Tab closable="false" text="Постановка на учет">
             <content>
       
-                <AnchorPane>
+                <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
          <children>
          
                            <BorderPane layoutX="16.0" layoutY="21.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="474.0" prefWidth="853.0">
@@ -132,7 +132,7 @@
                      </bottom>
                      <top>
 
-                                                                              <Label fx:id="nameInTop11" alignment="CENTER" contentDisplay="CENTER" text="Постановка на учет" BorderPane.alignment="CENTER">
+                                                                                    <Label fx:id="nameInTop11" alignment="CENTER" contentDisplay="CENTER" text="Постановка на учет" BorderPane.alignment="CENTER" HBox.hgrow="ALWAYS">
                                              <font>
                                                 <Font size="24.0" />
                                              </font>
@@ -147,7 +147,7 @@
          </Tab>
       <Tab text="Снятие с учета">
         <content>
-          <AnchorPane>
+          <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                <children>
                   <BorderPane layoutX="16.0" layoutY="21.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="474.0" prefWidth="853.0">
                      <bottom>
@@ -197,6 +197,11 @@
                   </BorderPane>
                </children>
             </AnchorPane>
+        </content>
+      </Tab>
+      <Tab text="Отчет об автовладельце">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
         </content>
       </Tab>
    </tabs>
