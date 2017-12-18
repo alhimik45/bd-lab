@@ -368,6 +368,7 @@ class EmployeeCars : View("Учёт транспортных средств") {
             Helpers.alert("Необходимо выбрать запись для редактирования")
             return
         }
+
         val temp = vehicleTable.selectionModel.selectedItem
         val l = Logic.create!!
                 .select()
@@ -406,7 +407,10 @@ class EmployeeCars : View("Учёт транспортных средств") {
             return
         }
         val temp = regs.selectionModel.selectedItem
-
+        if (temp.status != "Рассматривается") {
+            Helpers.alert("Запись уже рассмотрена")
+            return
+        }
         if (!Logic.lock(Lock.APPREG, temp.appregistrationPk)) {
             Helpers.alert("Данная запись редактируется другим пользователем")
             return
@@ -424,7 +428,10 @@ class EmployeeCars : View("Учёт транспортных средств") {
             return
         }
         val temp = deregs.selectionModel.selectedItem
-
+        if (temp.status != "Рассматривается") {
+            Helpers.alert("Запись уже рассмотрена")
+            return
+        }
         if (!Logic.lock(Lock.APPDEREG, temp.appderigistrationPk)) {
             Helpers.alert("Данная запись редактируется другим пользователем")
             return
